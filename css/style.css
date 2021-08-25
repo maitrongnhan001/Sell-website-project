@@ -104,6 +104,10 @@ fieldset{
     width: 10%;
     float: left;
 }
+
+.logo img {
+    height: 70px;
+}
 .menu{
     line-height: 60px;
 }

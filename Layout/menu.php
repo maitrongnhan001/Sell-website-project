@@ -19,7 +19,7 @@ include('config/connect_database.php');
         <div class="container">
             <div class="logo">
                 <a href= <?php echo SITEURL.'index.php'; ?> title="Logo">
-                    <img src="<?php echo SITEURL ?>images/logo.png" alt="Restaurant Logo" class="img-responsive">
+                    <img src="images/Logo.jpeg" alt="Restaurant Logo" class="img-responsive">
                 </a>
             </div>
 
