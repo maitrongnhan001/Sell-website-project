@@ -1,6 +1,6 @@
 <?php include('Layout/menu.php'); ?>
 
-<!-- fOOD sEARCH Section Starts Here -->
+<!-- Food Search Section Starts Here -->
 <section class="food-search text-center">
     <div class="container">
 
@@ -21,7 +21,7 @@ if (isset($_SESSION['order'])) {
 }
 ?>
 
-<!-- CAtegories Section Starts Here -->
+<!-- Categories Section Starts Here -->
 <section class="categories">
     <div class="container">
         <h2 class="text-center">Explore Foods</h2>

@@ -3,7 +3,7 @@ define('HOST','localhost');
 define('USERNAME', 'root');
 define('PASSWORD', '');
 define('DATABASE', 'food-order');
-define('SITEURL', 'http://localhost/food-order/');
+define('SITEURL', 'http://localhost/Web-Store/');
 session_start();
 
 function clearStringSql ($value) {
