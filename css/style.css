@@ -111,7 +111,7 @@ fieldset{
 
 
 /* for search */
-.food-search{
+.product-search{
     background-image: url(../images/for-web/background.jpeg);
     height: 200px;
     background-size: cover;
@@ -120,7 +120,7 @@ fieldset{
     padding: 7% 0;
 }
 
-.food-search input[type="search"]{
+.product-search input[type="search"]{
     width: 50%;
     padding: 1%;
     font-size: 1rem;
@@ -128,7 +128,7 @@ fieldset{
     border-radius: 5px;
 }
 
-.food-search .container a {
+.product-search .container a {
     color: white;
 }
 
@@ -179,11 +179,11 @@ nav .line {
     font-size: 14px;
   }
 
-.food-price{
+.product-price{
     font-size: 1.2rem;
     margin: 2% 0;
 }
-.food-detail{
+.product-detail{
     font-size: 1rem;
     color: #747d8c;
     max-height: 70px;
@@ -203,11 +203,11 @@ nav .line {
 
 /* for food-menu */
 
-.food-menu{
+.product-menu{
     background-color: #ececec;
     padding: 4% 0;
 }
-.food-menu-box{
+.product-menu-box{
     width: 43%;
     margin: 1%;
     padding: 2%;
@@ -216,22 +216,22 @@ nav .line {
     border-radius: 15px;
 }
 
-.food-menu-img{
+.product-menu-img{
     width: 20%;
     float: left;
 }
 
-.food-menu-desc{
+.product-menu-desc{
     width: 70%;
     float: left;
     margin-left: 8%;
 }
 
-.food-price{
+.product-price{
     font-size: 1.2rem;
     margin: 2% 0;
 }
-.food-detail{
+.product-detail{
     font-size: 1rem;
     color: #747d8c;
     max-height: 70px;
