@@ -128,6 +128,9 @@ fieldset{
     border-radius: 5px;
 }
 
+.food-search .container a {
+    color: white;
+}
 
 /* for Menu */
 
@@ -246,10 +249,22 @@ nav .line {
 }
 
 /* for Order Section */
+.product-order {
+    background-image: url('../images/for-web/Background-Order.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.product-order .container h2 {
+    color: black;
+}
+
 .order{
     width: 50%;
     margin: 0 auto;
 }
+
 .input-responsive{
     width: 96%;
     height: 35px;
@@ -259,6 +274,7 @@ nav .line {
     border-radius: 5px;
     font-size: 1rem;
 }
+
 .order-label{
     margin-bottom: 1%; 
     font-weight: bold;
@@ -267,3 +283,4 @@ nav .line {
 .total-container {
     margin: 0 auto;
 }
+
