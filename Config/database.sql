@@ -13,6 +13,8 @@ CREATE TABLE LoaiHangHoa (
 CREATE TABLE NhanVien (
 	MSNV INT(5) AUTO_INCREMENT PRIMARY KEY,
     HoTenNV VARCHAR(50),
+    UserName VARCHAR(50) UNIQUE,
+    Password VARCHAR(50) UNIQUE,
     ChucVu VARCHAR(50),
     DiaChi VARCHAR(50),
     SoDienThoai VARCHAR(10) CHECK(1 = SoDienThoai REGEXP '^[0-9]{10}$')
@@ -31,6 +33,8 @@ CREATE TABLE HangHoa (
 CREATE TABLE KhachHang (
 	MSKH INT(5) AUTO_INCREMENT PRIMARY KEY,
     HoTenKH VARCHAR(50),
+    UserName VARCHAR(50) UNIQUE,
+    Password VARCHAR(50) UNIQUE,
     TenCongTy VARCHAR(50),
     SoDienThoai VARCHAR(10) CHECK(1 = SoDienThoai REGEXP '^[0-9]{10}$'),
     SoFax VARCHAR(20)
