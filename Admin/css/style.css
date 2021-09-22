@@ -25,8 +25,84 @@ body {
     display: flex;
 }
 
+.clear-fix {
+    float: none;
+    clear: both;
+}
+
 .pink {
     color: #ff6b81;
+}
+
+.success {
+    color: #2ed573;
+}
+
+.error {
+    color: #ff4757;
+}
+
+.white {
+    background-color: white;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.orange {
+    color: orange;
+}
+
+.btn-200 {
+    width: 150px;
+}
+
+.btn-primary {
+    background-color: #1e90ff;
+    padding: 1%;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.btn-primary:hover{
+    background-color: #3742fa;
+}
+
+.btn-secondary {
+    background-color: #b7ed9f;
+    border: 0;
+    padding: 1%;
+    border-radius: 5px;
+    color: black;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.btn-secondary:hover{
+    background-color: #2ed573;
+}
+
+.btn-danger {
+    background-color: #ff6b81;
+    padding: 1%;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.btn-danger:hover{
+    background-color: #ff4758;
 }
 
 a{
@@ -74,6 +150,37 @@ a{
 .main .item-details h1 {
     padding: 20px;
 }
+
+/* css for table manager */
+
+.tbl-manager {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-spacing: 0;
+}
+
+.tbl-manager tr th {
+    border-bottom: 1px solid black;
+    padding: 1%;
+    margin-left: 100px;
+}
+
+.tbl-manager tr td {
+    padding: 1%;
+}
+
+.tbl-manager tr td:last-child {
+    width: 16em;
+}
+
+.tbl-manager tr td:last-child a{
+    width: 100px;
+    float: left;
+    padding: 5px;
+    margin-left: 5px;
+}
+
 
 /* for social */
 .social ul{
