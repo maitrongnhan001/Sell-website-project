@@ -1,10 +1,26 @@
-<!--footer section start-->
-<div class="footer">
-        <div class="wrapper">
-            <p class="text-center">2021 all rights reserved, Food house. Developed by - <a href="#">Mai Trong Nhan</a></p>
+ <!-- social -->
+ <section class="social">
+        <div class="container text-center">
+            <ul>
+                <li>
+                    <a href="#"><img width="50px" src="../Customer/images/for-web/Logo-facebook.png" /></a>
+                </li>
+                <li>
+                    <a href="#"><img width="50px" src="../Customer/images/for-web/Logo-Instagram.png" /></a>
+                </li>
+                <li>
+                    <a href="#"><img width="50px" src="../Customer/images/for-web/Logo-Tiwtter.png" /></a>
+                </li>
+            </ul>
         </div>
-    </div>
-    <!--footer section end-->
+    </section>
+    <!--footer-->
+    <section class="footer">
+        <div class="container text-center">
+            <p>All rights reserved. Designed By <a href="#" class="pink">Mai Trong Nhan</a></p>
+        </div>
+    </section>
+
 </body>
 
 </html>
