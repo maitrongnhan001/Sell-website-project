@@ -20,7 +20,8 @@
             <p>All rights reserved. Designed By <a href="#" class="pink">Mai Trong Nhan</a></p>
         </div>
     </section>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./app/script.js"></script>
 </body>
 
 </html>
