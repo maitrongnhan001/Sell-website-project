@@ -5,6 +5,13 @@
         <h1 class="text-center">Thêm nhân viên</h1>
         <br>
         <form action="" method="POST">
+            <?php
+            //show nofication add admin error
+            if (isset($_SESSION['status_add_user'])) {
+                echo ("<br><div class='red'>" . $_SESSION['status_add_user'] . "</div>");
+                unset($_SESSION['status_add_user']);
+            }
+            ?>
             <div class="group-input">
                 <p>Họ và Tên</p>
                 <input type="text" name="FullName" required placeholder="Nhập họ và tên *" class="format-ip">
@@ -31,11 +38,6 @@
                 <p id="nofi-5"></p>
             </div>
             <div class="group-input">
-                <p>Phái</p>
-                <input type="radio" value="Nam" name="Sex" checked>Nam
-                <input type="radio" value="Nu" name="Sex">Nữ
-            </div>
-            <div class="group-input">
                 <p>Chức vụ</p>
                 <Select name="Position" class="format-ip">
                     <option value="Nhân viên">Nhân viên</option>
@@ -50,5 +52,38 @@
         </form>
     </div>
 </section>
+<?php
+if (isset($_POST['submit'])) {
+    //get value of method post
+    $FullName = trim($_POST['FullName']);
+    $UserName = $_POST['UserName'];
+    $Password = md5($_POST['Password']);
+    $Phone = $_POST['Phone'];
+    $Address = $_POST['Address'];
+    $Position = $_POST['Position'];
+
+
+    $sql = "INSERT INTO NhanVien (HoTenNV, UserName, Password, ChucVu, DiaChi, SoDienThoai) VALUES (
+            '$FullName',
+            '$UserName',
+            '$Password',
+            '$Position',
+            '$Address',
+            '$Phone')";
+
+    //clear data
+    unset($FullName, $UserName, $Password, $Phone, $Address, $Position);
+
+    $conn = connectToDatabase();
+    $result = executeSQL($conn, $sql);
+    if ($result) {
+        $_SESSION['status_add_user'] = 'Thêm nhân viên thành công.';
+        header('Location: ' . URL . '/Admin/manager-admin.php');
+    } else {
+        $_SESSION['status_add_user'] = 'Thêm nhân viên thất bại.';
+        header('Location: ' . URL . '/Admin/add-admin.php');
+    }
+}
+?>
 
 <?php include('./layouts/footer.php') ?>

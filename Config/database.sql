@@ -14,7 +14,7 @@ CREATE TABLE NhanVien (
 	MSNV INT(5) AUTO_INCREMENT PRIMARY KEY,
     HoTenNV VARCHAR(50),
     UserName VARCHAR(50) UNIQUE,
-    Password VARCHAR(50) UNIQUE,
+    Password VARCHAR(50),
     ChucVu VARCHAR(50),
     DiaChi VARCHAR(50),
     SoDienThoai VARCHAR(10) CHECK(1 = SoDienThoai REGEXP '^[0-9]{10}$')

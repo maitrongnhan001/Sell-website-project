@@ -5,6 +5,13 @@
         <h1>Quản lý nhân viên</h1>
         <br>
         <a href="#" class="btn-200 btn-primary">Thêm nhân viên</a>
+        <?php
+        //show nofication add admin successfully
+        if (isset($_SESSION['status_add_user'])) {
+            echo ("<br><div class='green'>".$_SESSION['status_add_user']."</div>");
+            unset($_SESSION['status_add_user']);
+        }
+        ?>
         <br><br>
         <table class="tbl-manager">
             <tr>

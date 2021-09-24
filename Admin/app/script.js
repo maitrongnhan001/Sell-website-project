@@ -29,7 +29,7 @@ function CheckPassword(Password) {
 
 function CheckPhone(Phone) {
     //the first element is zero
-    if (Phone[0] == 0 && (Phone.length === 10 || Phone.length === 11)) {
+    if (Phone[0] == 0 && (Phone.length === 10)) {
         return true;
     }
     return false;
