@@ -235,3 +235,8 @@ a{
 .group-input input[type="submit"]:hover {
     cursor: pointer;
 }
+
+
+/* css for image category */
+.img-category {
+}
