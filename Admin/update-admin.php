@@ -30,7 +30,7 @@ function CheckPosition($value, $ChucVu)
 ?>
 <section class="main">
     <div class="container">
-        <h1 class="text-center">Thêm nhân viên</h1>
+        <h1 class="text-center">Cập nhật nhân viên</h1>
         <br>
         <form action="" method="POST">
             <?php
@@ -80,6 +80,7 @@ function CheckPosition($value, $ChucVu)
             <?php
             //update admin
             if (isset($_POST["submit"])) {
+                include('../Debug/Debug.php');
                 //get value
                 $HoVaTen = $_POST['FullName'];
                 $UserName = $_POST['UserName'];
@@ -87,7 +88,7 @@ function CheckPosition($value, $ChucVu)
                 $SoDienThoai = $_POST["Phone"];
                 $DiaChi = $_POST['Address'];
                 $ChucVu = $_POST['Position'];
-                $
+                
                 $sql = "UPDATE NhanVien SET 
                     HoTenNV = '$HoVaTen',
                     UserName = '$UserName',
@@ -95,9 +96,11 @@ function CheckPosition($value, $ChucVu)
                     ChucVu = '$ChucVu',
                     DiaChi = '$DiaChi',
                     SoDienThoai = '$SoDienThoai' 
-                WHERE MSNV = $id";
-                unset($_POST['FullName'], $_POST['UserName'], $_POST['Password'], $_POST['Phone'], $_POST['Address'], $_POST['Position']);
+                WHERE MSNV = $id;";
+                
                 $result = executeSQL($conn, $sql);
+
+                unset($_POST['FullName'], $_POST['UserName'], $_POST['Password'], $_POST['Phone'], $_POST['Address'], $_POST['Position']);
                 if ($result) {
                     //update successfully
                     $_SESSION['status_user'] = 'Cập nhật nhân viên thành công.';
