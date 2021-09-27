@@ -7,9 +7,9 @@
         <form action="" method="POST">
             <?php
             //show nofication add admin error
-            if (isset($_SESSION['status_add_user'])) {
-                echo ("<br><div class='red'>" . $_SESSION['status_add_user'] . "</div>");
-                unset($_SESSION['status_add_user']);
+            if (isset($_SESSION['status_user'])) {
+                echo ("<br><div class='red'>" . $_SESSION['status_user'] . "</div>");
+                unset($_SESSION['status_user']);
             }
             ?>
             <div class="group-input">
@@ -42,8 +42,8 @@
                 <Select name="Position" class="format-ip">
                     <option value="Nhân viên">Nhân viên</option>
                     <option value="Quản lý">Quản lý</option>
-                    <option value="Quản lý">Thủ kho</option>
-                    <option value="Quản lý">Bán hàng</option>
+                    <option value="Thủ kho">Thủ kho</option>
+                    <option value="Bán hàng">Bán hàng</option>
                 </Select>
             </div>
             <div class="group-input">
@@ -72,15 +72,15 @@ if (isset($_POST['submit'])) {
             '$Phone')";
 
     //clear data
-    unset($FullName, $UserName, $Password, $Phone, $Address, $Position);
+    unset($_POST['FullName'], $_POST['UserName'], $_POST['Password'], $_POST['Phone'], $_POST['Address'], $_POST['Position']);
 
     $conn = connectToDatabase();
     $result = executeSQL($conn, $sql);
     if ($result) {
-        $_SESSION['status_add_user'] = 'Thêm nhân viên thành công.';
+        $_SESSION['status_user'] = 'Thêm nhân viên thành công.';
         header('Location: ' . URL . '/Admin/manager-admin.php');
     } else {
-        $_SESSION['status_add_user'] = 'Thêm nhân viên thất bại.';
+        $_SESSION['status_user'] = 'Thêm nhân viên thất bại.';
         header('Location: ' . URL . '/Admin/add-admin.php');
     }
 }

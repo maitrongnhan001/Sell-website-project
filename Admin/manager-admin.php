@@ -4,12 +4,16 @@
     <div class="container">
         <h1>Quản lý nhân viên</h1>
         <br>
-        <a href="#" class="btn-200 btn-primary">Thêm nhân viên</a>
+        <a href=<?php echo URL . "admin/add-admin.php"; ?> class="btn-200 btn-primary">Thêm nhân viên</a>
         <?php
         //show nofication add admin successfully
-        if (isset($_SESSION['status_add_user'])) {
-            echo ("<br><div class='green'>".$_SESSION['status_add_user']."</div>");
-            unset($_SESSION['status_add_user']);
+        if (isset($_SESSION['status_user'])) {
+            echo ("<br><div class='green'>" . $_SESSION['status_user'] . "</div>");
+            unset($_SESSION['status_user']);
+        }
+        if (isset($_SESSION['error'])) {
+            echo ("<br><div class='red'>" . $_SESSION['error'] . "</div>");
+            unset($_SESSION['error']);
         }
         ?>
         <br><br>
@@ -22,69 +26,63 @@
                 <th>Số điện thoại</th>
                 <th>Quản lý</th>
             </tr>
-            <tr class="white text-center">
-                <td>1</td>
-                <td>Mai Trọng Nhân</td>
-                <td>Quản lý</td>
-                <td>Cà Mau</td>
-                <td>0943363414</td>
-                <td>
-                    <a href="#" class="btn-primary">Cập nhật</a>
-                    <a href="#" class="btn-danger">Xoá</a>
-                    <div class="clear-fix"></div>
-                </td>
-            </tr>
-            <tr class="text-center">
-                <td>2</td>
-                <td>Mai Trọng Nhân</td>
-                <td>Quản lý</td>
-                <td>Cà Mau</td>
-                <td>0943363414</td>
-                <td>
-                    <a href="#" class="btn-primary">Cập nhật</a>
-                    <a href="#" class="btn-danger">Xoá</a>
-                    <div class="clear-fix"></div>
-                </td>
-            </tr>
-            <tr class="white text-center">
-                <td>3</td>
-                <td>Mai Trọng Nhân</td>
-                <td>Quản lý</td>
-                <td>Cà Mau</td>
-                <td>0943363414</td>
-                <td>
-                    <a href="#" class="btn-primary">Cập nhật</a>
-                    <a href="#" class="btn-danger">Xoá</a>
-                    <div class="clear-fix"></div>
-                </td>
-            </tr>
-            <tr class="text-center">
-                <td>4</td>
-                <td>Mai Trọng Nhân</td>
-                <td>Quản lý</td>
-                <td>Cà Mau</td>
-                <td>0943363414</td>
-                <td>
-                    <a href="#" class="btn-primary">Cập nhật</a>
-                    <a href="#" class="btn-danger">Xoá</a>
-                    <div class="clear-fix"></div>
-                </td>
-            </tr>
-            <tr class="white text-center">
-                <td>5</td>
-                <td>Mai Trọng Nhân</td>
-                <td>Quản lý</td>
-                <td>Cà Mau</td>
-                <td>0943363414</td>
-                <td>
-                    <a href="#" class="btn-primary">Cập nhật</a>
-                    <a href="#" class="btn-danger">Xoá</a>
-                    <div class="clear-fix"></div>
-                </td>
-            </tr>
+            <?php
+            //get data admin
+            $conn = connectToDatabase();
+            $sql = "SELECT * FROM NhanVien";
+            $listAdmin = executeSQLResult($conn, $sql);
+            for ($i = 1; $i <= count($listAdmin); $i++) {
+                //show data admin to screen
+                if ($i % 2 == 0) {
+                    //gray
+                    $id = $listAdmin[$i-1]['MSNV'];
+                    $hoVaTen = $listAdmin[$i - 1]['HoTenNV'];
+                    $chucVu = $listAdmin[$i - 1]['ChucVu'];
+                    $diaChi = $listAdmin[$i - 1]['DiaChi'];
+                    $soDienThoai = $listAdmin[$i - 1]['SoDienThoai'];
+            ?>
+                    <tr class="text-center">
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $hoVaTen; ?></td>
+                        <td><?php echo $chucVu; ?></td>
+                        <td><?php echo $diaChi; ?></td>
+                        <td><?php echo $soDienThoai; ?></td>
+                        <td>
+                            <a href=<?php echo URL."admin/update-admin.php?id=".$id; ?> class="btn-primary">Cập nhật</a>
+                            <a href=<?php echo URL."admin/delete-item.php?id=".$id."&type=1"; ?> class="btn-danger">Xoá</a>
+                            <div class="clear-fix"></div>
+                        </td>
+                    </tr>
+            <?php
+                } else {
+                    //white
+                    $id = $listAdmin[$i-1]['MSNV'];
+                    $hoVaTen = $listAdmin[$i - 1]['HoTenNV'];
+                    $chucVu = $listAdmin[$i - 1]['ChucVu'];
+                    $diaChi = $listAdmin[$i - 1]['DiaChi'];
+                    $soDienThoai = $listAdmin[$i - 1]['SoDienThoai'];
+            ?>
+                    <tr class="white text-center">
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $hoVaTen; ?></td>
+                        <td><?php echo $chucVu;?></td>
+                        <td><?php echo $diaChi; ?></td>
+                        <td><?php echo $soDienThoai; ?></td>
+                        <td>
+                            <a href=<?php echo URL."admin/update-admin.php?id=".$id; ?> class="btn-primary">Cập nhật</a>
+                            <a href=<?php echo URL."admin/delete-item.php?id=".$id."&type=1"; ?> class="btn-danger">Xoá</a>
+                            <div class="clear-fix"></div>
+                        </td>
+                    </tr>
+            <?php
+                }
+            }
+            ?>
         </table>
-        
+
     </div>
 </section>
 
-<?php include('./layouts/footer.php') ?>
+<?php 
+closeConnect($conn);
+include('./layouts/footer.php') ?>
