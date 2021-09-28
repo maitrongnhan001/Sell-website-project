@@ -100,4 +100,12 @@ $('document').ready(() => {
         CheckSubmit();
     });
 
+    //review image before upload
+    $('#image-upload').change(() => {
+        var File = new FileReader();
+        File.readAsDataURL($('#image-upload').prop('files')[0]);
+        File.onload = (e) => {
+            $('#img-review').append("<img class='img-category' width=400px height=400px src='" + e.target.result + "' >")
+        }
+    });
 });

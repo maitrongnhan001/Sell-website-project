@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Quản lý danh mục sản phẩm</h1>
         <br>
-        <a href=<?php echo URL . "admin/add-admin.php"; ?> class="btn-200 btn-primary">Thêm danh mục</a>
+        <a href=<?php echo URL . "admin/add-category.php"; ?> class="btn-200 btn-primary">Thêm danh mục</a>
         <?php
         //show nofication add admin successfully
         if (isset($_SESSION['status_user'])) {
