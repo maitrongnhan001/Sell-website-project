@@ -103,6 +103,7 @@ $('document').ready(() => {
     //review image before upload
     $('#image-upload').change(() => {
         $('#text-review-img').remove();
+        $('#img-show').remove();
         var File = new FileReader();
         File.readAsDataURL($('#image-upload').prop('files')[0]);
         File.onload = (e) => {

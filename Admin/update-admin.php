@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
     $SoDienThoai = $result[0]['SoDienThoai'];
     unset($_GET['id']);
 } else {
-    $_SESSION['error'] = 'Không lấy được thông tin.';
+    $_SESSION['error'] = 'Không lấy được thông tin nhân viên';
     header('Location: ' . URL . '/Admin/manager-admin.php');
 }
 

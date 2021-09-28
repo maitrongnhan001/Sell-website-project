@@ -2,7 +2,7 @@
 
 <section class="main">
     <div class="container">
-        <h1 class="text-center">Thêm danh mục</h1>
+        <h1 class="text-center">Cập nhật danh mục</h1>
         <br>
         <form action="" method="POST" enctype="multipart/form-data">
             <?php
@@ -12,16 +12,30 @@
                 unset($_SESSION['status_category']);
             }
             ?>
+            <?php
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $conn = connectToDatabase();
+                $sql = "SELECT * FROM LoaiHangHoa WHERE MaLoaiHang = $id";
+                $result = executeSQLResult($conn, $sql);
+                $nameCategory = $result[0]['TenLoaiHang'];
+                $nameImage = $result[0]['HinhAnh'];
+                $pathImage = URL.'images/categories/'.$nameImage;
+            } else {
+                $_SESSION['error'] = 'Không lấy được thông tin danh mục';
+                header('Location: '.URL.'Admin/manager-categories.php');
+            }
+            ?>
             <div class="group-input">
                 <p>Họ và Tên</p>
-                <input type="text" name="Name-Category" required placeholder="Tên danh mục" class="format-ip">
+                <input type="text" name="Name-Category" value="<?php echo $nameCategory; ?>" required placeholder="Tên danh mục" class="format-ip">
                 <p id="nofi-1"></p>
             </div>
             <div class="group-input">
                 <p>Hình ảnh</p>
                 <br>
                 <div id="img-review">
-                    <p id="text-review-img">Chưa chọn ảnh nào</p>
+                    <img id='img-show' class='format-img-review img-category' width=300px height=300px src=<?php echo $pathImage; ?> >
                 </div>
                 <br>
                 <label for="image-upload" class="input-file btn-secondary">
@@ -48,12 +62,15 @@ if (isset($_POST['submit'])) {
         //render the name image
         $imageName = "food_category_".rand(0000, 9999).'.'.$extension;
         $sourceFile = $_FILES['Image-Category']['tmp_name'];
+        $delete = unlink('../images/categories/'.$nameImage);
         $pathImage = "../images/categories/$imageName";
         $upload = move_uploaded_file($sourceFile, $pathImage);
+        //delete image
+        $upload = $upload && $upload;
         //check image
         if (!$upload) {
             unset($_POST['submit'],$_POST['Name-Category'], $_POST['Image-Category']);
-            $_SESSION['status_category'] = 'Thêm danh mục sản phẩm thất bại';
+            $_SESSION['status_category'] = 'Cập nhật danh mục sản phẩm thất bại';
             header('Location: '.URL.'Admin/add-category.php');
             die();
         }
@@ -61,28 +78,26 @@ if (isset($_POST['submit'])) {
         $imageName = "";
     }
     
-    //insert category to database
+    //update category to database
     $conn = connectToDatabase();
-    $sql = "INSERT INTO LoaiHangHoa (
-        TenLoaiHang,
-        HinhAnh
-    ) VALUES (
-        '$nameCategory',
-        '$imageName'
-    )";
+    $sql = ($imageName != "") ? "UPDATE LoaiHangHoa SET 
+        TenLoaiHang='$nameCategory', 
+        HinhAnh='$imageName'
+    WHERE MaLoaiHang = $id" : "UPDATE LoaiHangHoa SET 
+        TenLoaiHang='$nameCategory'
+    WHERE MaLoaiHang = $id";
 
     $result = executeSQL($conn, $sql);
 
     if ($result) {
-        $_SESSION['status_category'] = 'Thêm danh mục sản phẩm thành công';
+        $_SESSION['status_category'] = 'Cập nhật danh mục sản phẩm thành công';
         header('Location: '.URL.'Admin/manager-categories.php');
     } else {
-        $_SESSION['status_category'] = 'Thêm danh mục sản phẩm thất bại';
+        $_SESSION['status_category'] = 'Cập nhật danh mục sản phẩm thất bại';
         header('Location: '.URL.'Admin/add-category.php');
     }
 
     unset($_POST['submit'],$_POST['Name-Category'], $_POST['Image-Category']);
-    closeConnect($conn);
 }
 ?>
 
