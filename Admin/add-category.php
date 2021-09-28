@@ -4,34 +4,34 @@
     <div class="container">
         <h1 class="text-center">Thêm danh mục</h1>
         <br>
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             <?php
             //show nofication add admin error
-            if (isset($_SESSION['status_user'])) {
-                echo ("<br><div class='red'>" . $_SESSION['status_user'] . "</div>");
-                unset($_SESSION['status_user']);
+            if (isset($_SESSION['status_category'])) {
+                echo ("<br><div class='red'>" . $_SESSION['status_category'] . "</div>");
+                unset($_SESSION['status_category']);
             }
             ?>
             <div class="group-input">
                 <p>Họ và Tên</p>
-                <input type="text" name="Name" required placeholder="Tên danh mục" class="format-ip">
+                <input type="text" name="Name-Category" required placeholder="Tên danh mục" class="format-ip">
                 <p id="nofi-1"></p>
             </div>
             <div class="group-input">
-                <p>Địa chỉ</p>
+                <p>Hình ảnh</p>
                 <br>
                 <div id="img-review"">
                     <p id="text-review-img">Chưa chọn ảnh nào</p>
                 </div>
                 <br>
                 <label for="image-upload" class="input-file btn-secondary">
-                    <input type="file" name="image" id="image-upload" required placeholder="Thêm hình ảnh">
+                    <input type="file" name="Image-Category" id="image-upload" required placeholder="Thêm hình ảnh">
                     Chọn ảnh
                 </label>
                 <p id="nofi-5"></p>
             </div>
             <div class="group-input">
-                <input type="submit" id="register" value="Đăng ký" name="submit" class="btn-primary">
+                <input type="submit" id="register" value="Thêm danh mục" name="submit" class="btn-primary">
             </div>
         </form>
     </div>
@@ -39,34 +39,49 @@
 <?php
 if (isset($_POST['submit'])) {
     //get value of method post
-    $FullName = trim($_POST['FullName']);
-    $UserName = $_POST['UserName'];
-    $Password = md5($_POST['Password']);
-    $Phone = $_POST['Phone'];
-    $Address = $_POST['Address'];
-    $Position = $_POST['Position'];
-
-
-    $sql = "INSERT INTO NhanVien (HoTenNV, UserName, Password, ChucVu, DiaChi, SoDienThoai) VALUES (
-            '$FullName',
-            '$UserName',
-            '$Password',
-            '$Position',
-            '$Address',
-            '$Phone')";
-
-    //clear data
-    unset($_POST['FullName'], $_POST['UserName'], $_POST['Password'], $_POST['Phone'], $_POST['Address'], $_POST['Position']);
-
-    $conn = connectToDatabase();
-    $result = executeSQL($conn, $sql);
-    if ($result) {
-        $_SESSION['status_user'] = 'Thêm nhân viên thành công.';
-        header('Location: ' . URL . '/Admin/manager-admin.php');
+    $nameCategory = $_POST['Name-Category'];
+    //check and store file
+    if ($_FILES['Image-Category']['name'] != "") {
+        $imageName = $_FILES['Image-Category']['name'];
+        //get extension of out image (.jpg, .png, ...)
+        $extension = end(explode('.', $imageName));
+        //render the name image
+        $imageName = "food_category_".rand(0000, 9999).'.'.$extension;
+        $sourceFile = $_FILES['Image-Category']['tmp_name'];
+        $pathImage = "../images/categories/$imageName";
+        $upload = move_uploaded_file($sourceFile, $pathImage);
+        //check image
+        if (!$upload) {
+            unset($_POST['submit'],$_POST['Name-Category'], $_POST['Image-Category']);
+            $_SESSION['status_category'] = 'Thêm danh mục sản phẩm thất bại';
+            header('Location: '.URL.'Admin/add-category.php');
+            die();
+        }
     } else {
-        $_SESSION['status_user'] = 'Thêm nhân viên thất bại.';
-        header('Location: ' . URL . '/Admin/add-admin.php');
+        $imageName = "";
     }
+    
+    //insert category to database
+    $conn = connectToDatabase();
+    $sql = "INSERT INTO LoaiHangHoa (
+        TenLoaiHang,
+        HinhAnh
+    ) VALUES (
+        '$nameCategory',
+        '$imageName'
+    )";
+
+    $result = executeSQL($conn, $sql);
+
+    if ($result) {
+        $_SESSION['status_category'] = 'Thêm danh mục sản phẩm thành công';
+        header('Location: '.URL.'Admin/manager-categories.php');
+    } else {
+        $_SESSION['status_category'] = 'Thêm danh mục sản phẩm thất bại';
+        header('Location: '.URL.'Admin/add-category.php');
+    }
+
+    unset($_POST['submit'],$_POST['Name-Category'], $_POST['Image-Category']);
 }
 ?>
 
