@@ -270,3 +270,10 @@ a{
     font-size: 20px;
     color: gray;
 }
+
+.format-img-review {
+    position: relative;
+    left: 50px;
+    top: 5px;
+    line-height: 310px;
+}

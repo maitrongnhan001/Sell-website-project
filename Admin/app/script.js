@@ -102,10 +102,11 @@ $('document').ready(() => {
 
     //review image before upload
     $('#image-upload').change(() => {
+        $('#text-review-img').remove();
         var File = new FileReader();
         File.readAsDataURL($('#image-upload').prop('files')[0]);
         File.onload = (e) => {
-            $('#img-review').append("<img class='img-category' width=400px height=400px src='" + e.target.result + "' >")
+            $('#img-review').append("<img class='format-img-review img-category' width=300px height=300px src='" + e.target.result + "' >")
         }
     });
 });

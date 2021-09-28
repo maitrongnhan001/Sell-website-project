@@ -21,7 +21,7 @@
                 <p>Địa chỉ</p>
                 <br>
                 <div id="img-review"">
-                    <p>Chưa chọn ảnh nào</p>
+                    <p id="text-review-img">Chưa chọn ảnh nào</p>
                 </div>
                 <br>
                 <label for="image-upload" class="input-file btn-secondary">
