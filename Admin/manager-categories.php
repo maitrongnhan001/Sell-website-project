@@ -68,4 +68,5 @@
 </section>
 
 <?php
+closeConnect($conn);
 include('./layouts/footer.php') ?>
