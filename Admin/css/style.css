@@ -222,6 +222,14 @@ a{
     margin: 10px 5px 10px 20px;
 }
 
+.group-input textarea {
+    border: 0;
+    width: 100%;
+    padding: 5px;
+    font-size: 17px;
+    border-radius: 7px;
+}
+
 .format-ip {
     border: 0;
     width: 100%;
@@ -276,4 +284,15 @@ a{
     left: 85px;
     top: 5px;
     line-height: 310px;
+}
+
+/* css for product */
+.description {
+    min-width: 100px;
+    max-width: 250px;
+    text-align: justify;
+}
+
+.name-product {
+    width: 150px;
 }

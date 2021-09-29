@@ -19,8 +19,8 @@ include('../config/connect.php');
             <ul>
                 <li><a href=<?php echo URL."admin/index.php"; ?>>Trang Chủ</a></li>
                 <li><a href=<?php echo URL."admin/manager-admin.php"; ?>>Nhân Viên</a></li>
-                <li><a href="<?php echo URL."admin/manager-categories.php"; ?>">Danh Mục</a></li>
-                <li><a href="#">Sản Phẩm</a></li>
+                <li><a href=<?php echo URL."admin/manager-categories.php"; ?>>Danh Mục</a></li>
+                <li><a href=<?php echo URL."admin/manager-products.php"; ?>>Sản Phẩm</a></li>
                 <li><a href="#">Đơn Hàng</a></li>
                 <li><a href="#">Đăng Xuất</a></li>
             </ul>
