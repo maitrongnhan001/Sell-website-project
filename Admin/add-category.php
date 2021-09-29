@@ -13,7 +13,7 @@
             }
             ?>
             <div class="group-input">
-                <p>Họ và Tên</p>
+                <p>Họ danh mục</p>
                 <input type="text" name="Name-Category" required placeholder="Tên danh mục" class="format-ip">
                 <p id="nofi-1"></p>
             </div>
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
         //get extension of out image (.jpg, .png, ...)
         $extension = end(explode('.', $imageName));
         //render the name image
-        $imageName = "food_category_".rand(0000, 9999).'.'.$extension;
+        $imageName = "category_".rand(0000, 9999).'.'.$extension;
         $sourceFile = $_FILES['Image-Category']['tmp_name'];
         $pathImage = "../images/categories/$imageName";
         $upload = move_uploaded_file($sourceFile, $pathImage);

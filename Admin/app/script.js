@@ -110,4 +110,33 @@ $('document').ready(() => {
             $('#img-review').append("<img class='format-img-review img-category' width=300px height=300px src='" + e.target.result + "' >")
         }
     });
+
+    //check price and quality
+    $('#price').change(() => {
+        const price = $('#price').val();
+        if (price <= 0) {
+            $('#nofi-2').text('Giá phải lớn hơn 0');
+            $('#register').prop('disabled', 'true');
+        } else {
+            $('#nofi-2').text('');
+            const quality = $('#quality').val();
+            if (quality > 0) {
+                $('#register').removeAttr('disabled');
+            }
+        }
+    });
+
+    $('#quality').change(() => {
+        const quality = $('#quality').val();
+        if (quality <= 0) {
+            $('#nofi-3').text('Số lượng phải lớn hơn 0');
+            $('#register').prop('disabled', 'true');
+        } else {
+            $('#nofi-3').text('');
+            const price = $('#price').val();
+            if (price > 0) {
+                $('#register').removeAttr('disabled');
+            }
+        }
+    });
 });
