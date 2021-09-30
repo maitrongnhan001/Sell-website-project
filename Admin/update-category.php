@@ -63,15 +63,19 @@ if (isset($_POST['submit'])) {
         $imageName = "food_category_".rand(0000, 9999).'.'.$extension;
         $sourceFile = $_FILES['Image-Category']['tmp_name'];
         $delete = unlink('../images/categories/'.$nameImage);
+        if (!$delete) {
+            unset($_POST['submit'],$_POST['Name-Category'], $_POST['Image-Category']);
+            $_SESSION['status_category'] = 'Cập nhật danh mục sản phẩm thất bại';
+            header('Location: '.URL.'Admin/add-category.php?id='.$id);
+            die();
+        }
         $pathImage = "../images/categories/$imageName";
         $upload = move_uploaded_file($sourceFile, $pathImage);
-        //delete image
-        $upload = $upload && $upload;
         //check image
         if (!$upload) {
             unset($_POST['submit'],$_POST['Name-Category'], $_POST['Image-Category']);
             $_SESSION['status_category'] = 'Cập nhật danh mục sản phẩm thất bại';
-            header('Location: '.URL.'Admin/add-category.php');
+            header('Location: '.URL.'Admin/add-category.php?id='.$id);
             die();
         }
     } else {
@@ -94,7 +98,7 @@ if (isset($_POST['submit'])) {
         header('Location: '.URL.'Admin/manager-categories.php');
     } else {
         $_SESSION['status_category'] = 'Cập nhật danh mục sản phẩm thất bại';
-        header('Location: '.URL.'Admin/add-category.php');
+        header('Location: '.URL.'Admin/update-category.php?id='.$id);
     }
 
     unset($_POST['submit'],$_POST['Name-Category'], $_POST['Image-Category']);

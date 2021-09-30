@@ -43,7 +43,7 @@
                     for ($i = 0; $i < count($listCategories); $i++) {
                         $codeCategory = $listCategories[$i]['MaLoaiHang'];
                         $nameCategory = $listCategories[$i]['TenLoaiHang'];
-                        echo "<option value='$nameCategory'>$nameCategory</option>";
+                        echo "<option value='$codeCategory'>$nameCategory</option>";
                     }
                     ?>
                 </select>
@@ -108,7 +108,7 @@ if (isset($_POST['submit'])) {
         '$description',
         $price,
         $quality,
-        $codeCategory
+        $category
     )";
     $result = executeSQL($conn, $sql);
     //insert data to table HinhHangHoa
