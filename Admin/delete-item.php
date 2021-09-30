@@ -28,7 +28,7 @@ function deleteItem($type, $id)
         //delete image
         $image = executeSQLResult($conn, "SELECT HinhAnh FROM LoaiHangHoa WHERE MaLoaiHang = $id");
         $image = $image[0]['HinhAnh'];
-        $pathImage = '../images/categories/'.$image;
+        $pathImage = '../images/categories/' . $image;
         $delete = unlink($pathImage);
         if (!$delete) {
             //delete error
@@ -53,9 +53,37 @@ function deleteItem($type, $id)
         return $result;
     }
     if ($type == 3) {
-        $sql = "DELETE FROM HangHoa WHERE MSNV = $id";
+        require('../Debug/Debug.php');
+        //delete image
+        $sql = "SELECT TenHinh FROM HinhHangHoa WHERE MSHH = $id";
+        $listImageName = executeSQLResult($conn, $sql);
+        for ($i = 0; $i < count($listImageName); $i++) {
+            $pathImage = '../images/products/' . $listImageName[$i]['TenHinh'];
+            $delete  = unlink($pathImage);
+            if (!$delete) {
+                //delete error
+                $_SESSION['error'] = 'Xoá sản phẩm không thành công.';
+                header('Location: ' . URL . '/Admin/manager-products.php');
+                closeConnect($conn);
+                return;
+            }
+        }
+        //delete table HinhHanHoa
+        $sql = "DELETE FROM HinhHangHoa WHERE MSHH = $id";
         $result = executeSQL($conn, $sql);
+        //delete table HangHoa
+        $sql = "DELETE FROM HangHoa WHERE MSHH = $id";
+        $result = $result && executeSQL($conn, $sql);
         closeConnect($conn);
+        if ($result) {
+            //delete successfully
+            $_SESSION['status_product'] = 'Xoá sản phẩm thành công.';
+            header('Location: ' . URL . '/Admin/manager-products.php');
+        } else {
+            //delete error
+            $_SESSION['error'] = 'Xoá sản phẩm không thành công.';
+            header('Location: ' . URL . '/Admin/manager-products.php');
+        }
         return $result;
     }
 }

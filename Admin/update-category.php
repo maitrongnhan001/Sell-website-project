@@ -27,7 +27,7 @@
             }
             ?>
             <div class="group-input">
-                <p>Họ và Tên</p>
+                <p>Tên danh mục</p>
                 <input type="text" name="Name-Category" value="<?php echo $nameCategory; ?>" required placeholder="Tên danh mục" class="format-ip">
                 <p id="nofi-1"></p>
             </div>
@@ -39,13 +39,13 @@
                 </div>
                 <br>
                 <label for="image-upload" class="input-file btn-secondary">
-                    <input type="file" name="Image-Category" id="image-upload" required placeholder="Thêm hình ảnh">
+                    <input type="file" name="Image-Category" id="image-upload" placeholder="Thêm hình ảnh">
                     Chọn ảnh
                 </label>
                 <p id="nofi-5"></p>
             </div>
             <div class="group-input">
-                <input type="submit" id="register" value="Thêm danh mục" name="submit" class="btn-primary">
+                <input type="submit" id="register" value="Cập nhật danh mục" name="submit" class="btn-primary">
             </div>
         </form>
     </div>

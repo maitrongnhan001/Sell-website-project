@@ -13,7 +13,7 @@
             }
             ?>
             <div class="group-input">
-                <p>Họ danh mục</p>
+                <p>Tên danh mục</p>
                 <input type="text" name="Name-Category" required placeholder="Tên danh mục" class="format-ip">
                 <p id="nofi-1"></p>
             </div>
