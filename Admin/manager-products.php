@@ -28,62 +28,58 @@
                 <th>Hình ảnh</th>
                 <th>Quản lý</th>
             </tr>
-            <tr class="white text-center">
-                <td>1</td>
-                <td class="name-product">product product product product</td>
-                <td class="description">Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá</td>
-                <td>VNĐ: 100.000</td>
-                <td>1000</td>
-                <td>Không biết</td>
-                <td><a href="../images/categories/Food_Category_530.jpg"><img src="../images/categories/Food_Category_530.jpg" width="100px" height="100px" alt="No image" class="img-category"></a></td>
-                <td>
-                    <a href=<?php echo URL . "admin/update-category.php?id=" . $id; ?> class="btn-primary">Cập nhật</a>
-                    <a href=<?php echo URL . "admin/delete-item.php?id=" . $id . "&type=2"; ?> class="btn-danger">Xoá</a>
-                    <div class="clear-fix"></div>
-                </td>
-            </tr>
-            <tr class="text-center">
-                <td>1</td>
-                <td class="name-product">product</td>
-                <td class="description">Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá</td>
-                <td>VNĐ: 100.000</td>
-                <td>1000</td>
-                <td>Không biết</td>
-                <td><a href="../images/categories/Food_Category_530.jpg"><img src="../images/categories/Food_Category_530.jpg" width="100px" height="100px" alt="No image" class="img-category"></a></td>
-                <td>
-                    <a href=<?php echo URL . "admin/update-category.php?id=" . $id; ?> class="btn-primary">Cập nhật</a>
-                    <a href=<?php echo URL . "admin/delete-item.php?id=" . $id . "&type=2"; ?> class="btn-danger">Xoá</a>
-                    <div class="clear-fix"></div>
-                </td>
-            </tr>
-            <tr class="white text-center">
-                <td>1</td>
-                <td class="name-product">product</td>
-                <td class="description">Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá Đây là hàng hoá</td>
-                <td>VNĐ: 100.000</td>
-                <td>1000</td>
-                <td>Không biết</td>
-                <td><a href="../images/categories/Food_Category_530.jpg"><img src="../images/categories/Food_Category_530.jpg" width="100px" height="100px" alt="No image" class="img-category"></a></td>
-                <td>
-                    <a href=<?php echo URL . "admin/update-category.php?id=" . $id; ?> class="btn-primary">Cập nhật</a>
-                    <a href=<?php echo URL . "admin/delete-item.php?id=" . $id . "&type=2"; ?> class="btn-danger">Xoá</a>
-                    <div class="clear-fix"></div>
-                </td>
-            </tr>
-            <tr class="text-center">
-                <td>1</td>
-                <td class="name-product">product</td>
-                <td class="description">Đây là hàng hoá</td>
-                <td>VNĐ: 100.000</td>
-                <td>1000</td>
-                <td>Không biết</td>
-                <td><a href="../images/categories/Food_Category_530.jpg"><img src="../images/categories/Food_Category_530.jpg" width="100px" height="100px" alt="No image" class="img-category"></a></td>
-                <td>
-                    <a href=<?php echo URL . "admin/update-category.php?id=" . $id; ?> class="btn-primary">Cập nhật</a>
-                    <a href=<?php echo URL . "admin/delete-item.php?id=" . $id . "&type=2"; ?> class="btn-danger">Xoá</a>
-                    <div class="clear-fix"></div>
-                </td>
-            </tr>
+            <?php
+            //get list products
+            $conn = connectToDatabase();
+            $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, SoLuongHang, TenLoaiHang, TenHinh 
+                    FROM HangHoa, HinhHangHoa, LoaiHangHoa 
+                    WHERE HangHoa.MSHH = HinhHangHoa.MSHH AND LoaiHangHoa.MaLoaiHang = HangHoa.MaLoaiHang;";
+            $listProducts = executeSQLResult($conn, $sql);
+            for ($i = 1; $i <= count($listProducts); $i++) {
+                $id = $listProducts[$i - 1]['MSHH'];
+                $nameProduct = $listProducts[$i - 1]['TenHH'];
+                $description = $listProducts[$i - 1]['QuyCach'];
+                $price = $listProducts[$i - 1]['Gia'];
+                $quality = $listProducts[$i - 1]['SoLuongHang'];
+                $category = $listProducts[$i - 1]['TenLoaiHang'];
+                $pathImage = URL . 'images/products/' . $listProducts[$i - 1]['TenHinh'];
+                if ($i % 2 == 0) {
+            ?>
+                    <tr class="text-center">
+                        <td><?php echo $i; ?></td>
+                        <td class="name-product"><?php echo $nameProduct; ?></td>
+                        <td class="description"><?php echo $description; ?></td>
+                        <td>VNĐ: <?php echo $price; ?></td>
+                        <td><?php echo $quality; ?></td>
+                        <td><?php echo $category; ?></td>
+                        <td><a href=<?php echo $pathImage; ?>><img src=<?php echo $pathImage; ?> width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                        <td>
+                            <a href=<?php echo URL . "admin/update-product.php?id=" . $id; ?> class="btn-primary">Cập nhật</a>
+                            <a href=<?php echo URL . "admin/delete-item.php?id=" . $id . "&type=3"; ?> class="btn-danger">Xoá</a>
+                            <div class="clear-fix"></div>
+                        </td>
+                    </tr>
+                <?php
+                } else {
+                ?>
+                    <tr class="white text-center">
+                        <td><?php echo $i; ?></td>
+                        <td class="name-product"><?php echo $nameProduct; ?></td>
+                        <td class="description"><?php echo $description; ?></td>
+                        <td>VNĐ: <?php echo $price; ?></td>
+                        <td><?php echo $quality; ?></td>
+                        <td><?php echo $category; ?></td>
+                        <td><a href=<?php echo $pathImage; ?>><img src=<?php echo $pathImage; ?> width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                        <td>
+                            <a href=<?php echo URL . "admin/update-product.php?id=" . $id; ?> class="btn-primary">Cập nhật</a>
+                            <a href=<?php echo URL . "admin/delete-item.php?id=" . $id . "&type=3"; ?> class="btn-danger">Xoá</a>
+                            <div class="clear-fix"></div>
+                        </td>
+                    </tr>
+            <?php
+                }
+            }
+            ?>
         </table>
 
     </div>
