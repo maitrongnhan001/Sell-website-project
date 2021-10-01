@@ -195,6 +195,11 @@ nav .line {
     padding: 4% 0;
 }
 
+.container-category-center {
+    width: 1180px;
+    margin: 0 auto;
+}
+
 .box-3{
     width: 28%;
     float: left;
