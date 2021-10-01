@@ -18,11 +18,11 @@ include('./layouts/search.php');
                 $nameCategory = $listCategories[$i]['TenLoaiHang'];
                 $pathImageCategory = URL . 'images/categories/' . $listCategories[$i]['HinhAnh'];
             ?>
-                <a href=<?php echo URL . 'Category-Products.php?codeCategory='.$codeCategory; ?>>
+                <a href=<?php echo URL . '/Customer/category-products.php?codeCategory='.$codeCategory; ?>>
                     <div class="box-3 float-container">
 
                         <img src=<?php echo $pathImageCategory; ?> width="330px" height="330px" alt="<?php echo $nameCategory; ?>" class="img-curve">
-                        <h3 class="float-text text-white"><?php echo $nameCategory; ?></h3>
+                        <h3 class="float-text white"><?php echo $nameCategory; ?></h3>
                     </div>
                 </a>
             <?php

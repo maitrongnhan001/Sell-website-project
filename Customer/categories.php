@@ -23,7 +23,7 @@ include('./layouts/search.php');
                     <div class="box-3 float-container">
 
                         <img src=<?php echo $pathImageCategory; ?> width="330px" height="330px" alt="<?php echo $nameCategory; ?>" class="img-curve">
-                        <h3 class="float-text text-white"><?php echo $nameCategory; ?></h3>
+                        <h3 class="float-text white"><?php echo $nameCategory; ?></h3>
                     </div>
                 </a>
             <?php

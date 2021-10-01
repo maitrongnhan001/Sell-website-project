@@ -1,6 +1,17 @@
 <?php
 include('./layouts/header.php');
 include('./layouts/search.php');
+if (isset($_GET['codeCategory'])) {
+    $id = $_GET['codeCategory'];
+    //get category name
+    $conn = connectToDatabase();
+    $sql = "SELECT TenLoaiHang FROM LoaiHangHoa WHERE MaLoaiHang = $id";
+    $nameCategory = executeSQLResult($conn, $sql);
+    $nameCategory = $nameCategory[0]['TenLoaiHang'];
+    ShowResult($nameCategory);
+} else {
+    
+}
 ?>
 
 <!-- fOOD MEnu Section Starts Here -->
@@ -9,11 +20,11 @@ include('./layouts/search.php');
         <h2 class="text-center">Sản Phẩm</h2>
         <?php
         //get data products
-        $conn = connectToDatabase();
         $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, TenLoaiHang, TenHinh 
                 FROM HangHoa, LoaiHangHoa, HinhHangHoa 
                 WHERE HangHoa.MaLoaiHang = LoaiHangHoa.MaLoaiHang
-                        AND HangHoa.MSHH = HinhHangHoa.MSHH LIMIT 6";
+                        AND HangHoa.MSHH = HinhHangHoa.MSHH  
+                        AND HangHoa.MaLoaiHang = $id";
         $listProducts = executeSQLResult($conn, $sql);
         //render to display
         for ($i = 0; $i < count($listProducts); $i++) {
@@ -80,5 +91,7 @@ include('./layouts/search.php');
 </section>
 
 <?php
+closeConnect($conn);
+unset($_GET['codeCategory']);
 include('./layouts/footer.php');
 ?>
