@@ -1,4 +1,10 @@
  <!-- Food Search Section Starts Here -->
+ <?php
+ function ShowResult($result)
+ {
+     $_SESSION['search'] = 'Kết quả cho "' . $result.'"';
+ }
+ ?>
  <section class="product-search text-center">
      <div class="container">
 
@@ -20,8 +26,15 @@
  </section>
 
  <?php
-    function ShowResult($result)
-    {
-        $_SESSION['search'] = 'Kết quả cho "' . $result.'"';
+ include('./Config/connect.php');
+    if (isset($_POST['submit'])) {
+        //get value search
+        if (isset($_POST['submit'])) {
+            $valueSearch = $_POST['search'];
+            ShowResult($valueSearch);
+            header('location: '.URL.'Customer/search-page.php?search='.$valueSearch);
+        }
+        //unset search
+        unset($_POST['submit'], $_POST['search']);
     }
-    ?>
+?>

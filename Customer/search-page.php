@@ -1,38 +1,57 @@
 <?php
 include('./layouts/header.php');
-if (isset($_GET['codeCategory'])) {
-    $id = $_GET['codeCategory'];
-    //get category name
-    $conn = connectToDatabase();
-    $sql = "SELECT TenLoaiHang FROM LoaiHangHoa WHERE MaLoaiHang = $id";
-    $nameCategory = executeSQLResult($conn, $sql);
-    $nameCategory = $nameCategory[0]['TenLoaiHang'];
-    $_SESSION['search'] = 'Kết quả cho "' . $nameCategory.'"';
-} else {
-    header('location: '.URL.'Customer/');
-}
 include('./layouts/search.php');
+if (isset($_GET['search'])) {
+    $valueSearch = $_GET['search'];
+    //search from database
+    $conn = connectToDatabase();
+    $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, TenLoaiHang, TenHinh 
+                FROM HangHoa, LoaiHangHoa, HinhHangHoa 
+                WHERE HangHoa.MaLoaiHang = LoaiHangHoa.MaLoaiHang
+                AND HangHoa.MSHH = HinhHangHoa.MSHH";
+    $listProducts = executeSQLResult($conn, $sql);
+    /*
+    listProductSearch is all result search
+    listProductsId is result search by id
+    listProductsName is reuslt search by name product
+    listProductsCategory is result search by name category
+    */
+    $listProductsSearch = array();
+    $listProductsId = array();
+    $listProductsName = array();
+    $listProductsCategory = array();
+    for ($i = 0; $i < count($listProducts); $i++) {
+        //search id
+        $id = (int) filter_var($valueSearch, FILTER_SANITIZE_NUMBER_INT);
+        if ($id == $listProducts[$i]['MSHH']) {
+            array_push($listProductsId, $i);
+        }
+        //search name product
+        if (strcasecmp($valueSearch, $listProducts[$i]['TenHH']) == 0) {
+            array_push($listProductsName, $i);
+        }
+        //search name category
+        if (strcasecmp($valueSearch, $listProducts[$i]['TenLoaiHang']) == 0) {
+            array_push($listProductsCategory, $i);
+        }
+    }
+    $listProductsSearch = array_merge($listProductsId, $listProductsName, $listProductsCategory);
+}
 ?>
 
 <!-- fOOD MEnu Section Starts Here -->
 <section class="product-menu">
     <div class="container">
-        <h2 class="text-center">Sản Phẩm</h2>
+        <h2 class="text-center">Products Menu</h2>
         <?php
-        //get data products
-        $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, TenLoaiHang, TenHinh 
-                FROM HangHoa, LoaiHangHoa, HinhHangHoa 
-                WHERE HangHoa.MaLoaiHang = LoaiHangHoa.MaLoaiHang
-                        AND HangHoa.MSHH = HinhHangHoa.MSHH  
-                        AND HangHoa.MaLoaiHang = $id";
-        $listProducts = executeSQLResult($conn, $sql);
         //render to display
-        for ($i = 0; $i < count($listProducts); $i++) {
-            $codeProduct = $listProducts[$i]['MSHH'];
-            $nameProduct = $listProducts[$i]['TenHH'];
-            $price = $listProducts[$i]['Gia'];
-            $description = $listProducts[$i]['QuyCach'];
-            $pathImageProduct = URL . 'images/products/' . $listProducts[$i]['TenHinh'];
+        for ($i = 0; $i < count($listProductsSearch); $i++) {
+            $index = $listProductsSearch[$i];
+            $codeProduct = $listProducts[$index]['MSHH'];
+            $nameProduct = $listProducts[$index]['TenHH'];
+            $price = $listProducts[$index]['Gia'];
+            $description = $listProducts[$index]['QuyCach'];
+            $pathImageProduct = URL . 'images/products/' . $listProducts[$index]['TenHinh'];
             //start in odd
             if ($i % 2 == 0) {
         ?>
@@ -83,15 +102,15 @@ include('./layouts/search.php');
                 }
             }
 ?>
+</div>
 
 <p class="text-center">
-    <a href="#" class="pink">Xem thêm sản phẩm</a>
+    <a href="#" class="pink">See All Foods</a>
 </p>
 
 </section>
 
 <?php
 closeConnect($conn);
-unset($_GET['codeCategory']);
 include('./layouts/footer.php');
 ?>
