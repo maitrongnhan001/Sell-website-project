@@ -261,7 +261,7 @@ nav .line {
 
 /* for Order Section */
 .product-order {
-    background-image: url('../images/for-web/Background-Order.jpeg');
+    background-color: #ececec;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
