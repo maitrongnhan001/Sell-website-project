@@ -27,7 +27,7 @@ include('../Config/connect.php');
                     <li class="active"><a href= <?php echo URL.'Customer/'; ?>>Trang Chủ</a></li>
                     <li><a href=<?php echo URL.'Customer/categories.php'; ?>>Danh Mục</a></li>
                     <li><a href=<?php echo URL.'Customer/products.php'; ?>>Sản Phẩm</a></li>
-                    <li><a href="#">Đăng Nhập</a></li>
+                    <li><a href=<?php echo URL.'Customer/login.php'; ?>>Đăng Nhập</a></li>
                 </ul>
             </nav>
 
