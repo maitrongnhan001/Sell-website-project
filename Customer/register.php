@@ -97,5 +97,6 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+closeConnect($conn);
 include('./layouts/footer.php');
 ?>

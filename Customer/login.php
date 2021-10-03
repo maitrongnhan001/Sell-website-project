@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\sql_injection_subst;
+
 include('./layouts/header.php');
 ?>
 <!-- login -->
@@ -8,9 +11,9 @@ include('./layouts/header.php');
         <form action="" method="POST">
             <div class="input-login">
                 Tên đăng nhập
-                <input type="text" name="username" id="username" class="input-responsive" require placeholder="Nhâp tên tài khoản *">
+                <input type="text" name="username" class="input-responsive" require placeholder="Nhâp tên tài khoản *">
                 Mật khẩu
-                <input type="password" name="password" id="password" class="input-responsive" require placeholder="Nhập mật khẩu *">
+                <input type="password" name="password" class="input-responsive" require placeholder="Nhập mật khẩu *">
                 <p id="nofi-1"></p>
                 <br>
                 <a href="" class="pink">Quên mật khẩu</a>
@@ -21,14 +24,41 @@ include('./layouts/header.php');
                 echo "<div class='green text-center'>".$_SESSION['add_user']."</div>";
                 unset($_SESSION['add_user']);
             }
+            if ($_SESSION['error']) {
+                echo "<div class='red text-center'>".$_SESSION['error']."</div>";
+                unset($_SESSION['error']);
+            }
             ?>
             <div class="text-center">
-                <input type="submit" name="login" value="Đăng nhập" class="btn btn-login">
+                <input type="submit" name="submit" value="Đăng nhập" class="btn btn-login">
             </div>
         </form>
     </div>
 </section>
+
 <!-- end login -->
 <?php
+$conn = connectToDatabase();
+if (isset($_POST['submit'])) {
+    //get data
+    $userName = $conn->real_escape_string($_POST['username']);
+    $password = md5($conn->real_escape_string($_POST['password']));
+    //login
+    $sql = "SELECT UserName FROM KhachHang WHERE UserName = '%s' AND Password = '%s'";
+    $sql = sprintf($sql, $userName, $password);
+    $userName = executeSQLResult($conn, $sql);
+    if (count($userName) == 1) {
+        $userName = $userName[0]['UserName'];
+        $_SESSION['username'] = $userName;
+        header('location: '.URL.'Customer');
+    } else {
+        $_SESSION['error'] = "Tài khoản hoặc mật khẩu không đúng.";
+        header('location: '.URL.'/Customer/login.php');
+    }
+    //clear data and connnect
+    unset($_POST['submit'], $_POST['username'], $_POST['password']);
+    closeConnect($conn);
+    //redirect
+}
 include('./layouts/footer.php');
 ?>
