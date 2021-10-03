@@ -88,6 +88,19 @@ $('document').ready(() => {
         CheckSubmit();
     });
 
+    $('input[name="r-password"]').change(() => {
+        //check confirm password
+        const r_password = $('input[name="r-password"]').val();
+        const password = $('input[name="password"]').val();
+        if (r_password !== password) {
+            $('#nofi-3').text("Không trùng khớp.");
+            $('#register').prop('disabled', 'true');
+        } else {
+            $('#nofi-3').text("");
+            $('#register').removeAttr('disabled');
+        }
+    });
+
     $('input[name="phone"]').change(() => {
         //check Phone
         const Phone = $('input[name="phone"]').val();

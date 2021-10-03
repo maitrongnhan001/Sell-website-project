@@ -16,6 +16,12 @@ include('./layouts/header.php');
                 <a href="" class="pink">Quên mật khẩu</a>
                 <a href= <?php echo URL.'Customer/register.php'; ?> class="pink">Tạo tài khoản</a>
             </div>
+            <?php
+            if ($_SESSION['add_user']) {
+                echo "<div class='green text-center'>".$_SESSION['add_user']."</div>";
+                unset($_SESSION['add_user']);
+            }
+            ?>
             <div class="text-center">
                 <input type="submit" name="login" value="Đăng nhập" class="btn btn-login">
             </div>
