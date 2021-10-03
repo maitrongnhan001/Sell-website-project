@@ -1,7 +1,4 @@
 <?php
-
-use function PHPSTORM_META\sql_injection_subst;
-
 include('./layouts/header.php');
 ?>
 <!-- login -->
@@ -9,6 +6,12 @@ include('./layouts/header.php');
     <div class="container">
         <h1 class="text-center">Đăng nhập</h1>
         <form action="" method="POST">
+            <?php
+            if (isset($_SESSION['status'])) {
+                echo "<div class='red text-center'>".$_SESSION['status']."</div>";
+                unset($_SESSION['status']);
+            }
+            ?>
             <div class="input-login">
                 Tên đăng nhập
                 <input type="text" name="username" class="input-responsive" require placeholder="Nhâp tên tài khoản *">

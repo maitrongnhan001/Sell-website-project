@@ -111,4 +111,19 @@ $('document').ready(() => {
         }
         CheckSubmit();
     });
+
+    $('input[name="qty"]').change(() => {
+        //show total price
+        const price = $('input[name="price"]').val();
+        let quality = $('input[name="qty"]').val();
+        if ($('input[name="qty"]').val() <= 0) {
+            quality = 0;
+            $('#nofi-1').text('Số lượng phải lớn hơn 0');
+            $('#submit-order').prop('disabled', 'true');
+            return;
+        }
+        $('#submit-order').removeAttr('disabled');
+        const total_price = price * quality;
+        $('#rt').text('VNĐ: ' + total_price);
+    });
 });

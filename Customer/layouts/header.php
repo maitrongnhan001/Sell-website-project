@@ -24,10 +24,23 @@ include('../Config/connect.php');
 
             <nav class="menu text-right">
                 <ul>
-                    <li class="active"><a href= <?php echo URL.'Customer/'; ?>>Trang Chủ</a></li>
-                    <li><a href=<?php echo URL.'Customer/categories.php'; ?>>Danh Mục</a></li>
-                    <li><a href=<?php echo URL.'Customer/products.php'; ?>>Sản Phẩm</a></li>
-                    <li><a href=<?php echo URL.'Customer/login.php'; ?>>Đăng Nhập</a></li>
+                    <li class="active"><a href=<?php echo URL . 'Customer/'; ?>>Trang Chủ</a></li>
+                    <li><a href=<?php echo URL . 'Customer/categories.php'; ?>>Danh Mục</a></li>
+                    <li><a href=<?php echo URL . 'Customer/products.php'; ?>>Sản Phẩm</a></li>
+                    <li>
+                        <?php
+                        if (isset($_SESSION['username'])) {
+                        ?>
+
+                            <a href=<?php echo URL . 'Customer/logout.php'; ?>>Tài khoản</a>
+                        <?php
+                        } else {
+                        ?>
+                            <a href=<?php echo URL . 'Customer/login.php'; ?>>Đăng Nhập</a>
+                        <?php
+                        }
+                        ?>
+                    </li>
                 </ul>
             </nav>
 

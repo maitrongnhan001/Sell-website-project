@@ -1,6 +1,10 @@
 <?php
 include('./layouts/header.php');
 include('./layouts/search.php');
+if (isset($_SESSION['status'])) {
+    echo "<h3 class='green text-center'>".$_SESSION['status']."</h3>";
+    unset($_SESSION['status']);
+}
 ?>
 <!-- Categories Section Starts Here -->
 <section class="categories">
@@ -63,7 +67,7 @@ include('./layouts/search.php');
                         </div>
                         <div class="product-menu-desc">
                             <h4><?php echo $nameProduct; ?></h4>
-                            <p class="product-price"><?php echo $price ?></p>
+                            <p class="product-price"><?php echo $price; ?></p>
                             <p class="product-detail"><?php echo $description; ?></p>
                             <br>
 
