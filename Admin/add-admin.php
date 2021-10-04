@@ -13,32 +13,32 @@
             }
             ?>
             <div class="group-input">
-                <p>Họ và Tên</p>
+                <p><b>Họ và Tên</b></p>
                 <input type="text" name="FullName" required placeholder="Nhập họ và tên *" class="format-ip">
                 <p id="nofi-1"></p>
             </div>
             <div class="group-input">
-                <p>Tên tài khoản</p>
+                <p><b>Tên tài khoản</b></p>
                 <input type="text" name="UserName" placeholder="Nhập tên tài khoản  *" class="format-ip" required>
                 <p id="nofi-2" class="red"></p>
             </div>
             <div class="group-input">
-                <p>Mật khẩu</p>
+                <p><b>Mật khẩu</b></p>
                 <input type="password" name="Password" required placeholder="Nhập mật khẩu *" class="format-ip">
                 <p id="nofi-3"></p>
             </div>
             <div class="group-input">
-                <p>Số điện thoại</p>
+                <p><b>Số điện thoại</b></p>
                 <input type="number" name="Phone" required placeholder="Nhập số điện thoại *" class="format-ip">
                 <p id="nofi-4" class="red"></p>
             </div>
             <div class="group-input">
-                <p>Địa chỉ</p>
+                <p><b>Địa chỉ</b></p>
                 <input type="text" name="Address" required placeholder="Nhập địa chỉ *" class="format-ip">
                 <p id="nofi-5"></p>
             </div>
             <div class="group-input">
-                <p>Chức vụ</p>
+                <p><b>Chức vụ</b></p>
                 <Select name="Position" class="format-ip">
                     <option value="Nhân viên">Nhân viên</option>
                     <option value="Quản lý">Quản lý</option>

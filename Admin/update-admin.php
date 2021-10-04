@@ -41,32 +41,32 @@ function CheckPosition($value, $ChucVu)
             }
             ?>
             <div class="group-input">
-                <p>Họ và Tên</p>
+                <p><b>Họ và Tên</b></p>
                 <input type="text" name="FullName" value="<?php echo $HoVaTen; ?>" required placeholder="Nhập họ và tên *" class="format-ip">
                 <p id="nofi-1"></p>
             </div>
             <div class="group-input">
-                <p>Tên tài khoản</p>
+                <p><b>Tên tài khoản</b></p>
                 <input type="text" name="UserName" value="<?php echo $UserName; ?>" placeholder="Nhập tên tài khoản  *" class="format-ip" required>
                 <p id="nofi-2" class="red"></p>
             </div>
             <div class="group-input">
-                <p>Mật khẩu</p>
+                <p><b>Mật khẩu</b></p>
                 <input type="password" name="Password" placeholder="Nhập mật khẩu" class="format-ip">
                 <p id="nofi-3"></p>
             </div>
             <div class="group-input">
-                <p>Số điện thoại</p>
+                <p><b>Số điện thoại</b></p>
                 <input type="number" name="Phone" value="<?php echo $SoDienThoai; ?>" required placeholder="Nhập số điện thoại *" class="format-ip">
                 <p id="nofi-4" class="red"></p>
             </div>
             <div class="group-input">
-                <p>Địa chỉ</p>
+                <p><b>Địa chỉ</b></p>
                 <input type="text" name="Address" value="<?php echo $DiaChi; ?>" required placeholder="Nhập địa chỉ *" class="format-ip">
                 <p id="nofi-5"></p>
             </div>
             <div class="group-input">
-                <p>Chức vụ</p>
+                <p><b>Chức vụ</b></p>
                 <Select name="Position" class="format-ip">
                     <option value="Nhân viên" <?php CheckPosition("Nhân viên", $ChucVu) ?>>Nhân viên</option>
                     <option value="Quản lý" <?php CheckPosition("Quản lý", $ChucVu) ?>>Quản lý</option>

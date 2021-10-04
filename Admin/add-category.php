@@ -13,12 +13,12 @@
             }
             ?>
             <div class="group-input">
-                <p>Tên danh mục</p>
+                <p><b>Tên danh mục</b></p>
                 <input type="text" name="Name-Category" required placeholder="Tên danh mục" class="format-ip">
                 <p id="nofi-1"></p>
             </div>
             <div class="group-input">
-                <p>Hình ảnh</p>
+                <p><b>Hình ảnh</b></p>
                 <br>
                 <div id="img-review">
                     <p id="text-review-img">Chưa chọn ảnh nào</p>

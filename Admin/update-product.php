@@ -34,26 +34,26 @@
             ?>
 
             <div class="group-input">
-                <p>Tên sản phẩm</p>
+                <p><b>Tên sản phẩm</b></p>
                 <input type="text" name="Name-Product" value="<?php echo $nameProduct; ?>" required placeholder="Tên sản phẩm *" class="format-ip">
                 <p id="nofi-1"></p>
             </div>
             <div class="group-input">
-                <p>Quy cách</p>
+                <p><b>Quy cách</b></p>
                 <textarea name="Description" id="" cols="30" rows="10" require placeholder="Quy cách *"><?php echo $description; ?></textarea>
             </div>
             <div class="group-input">
-                <p>Giá</p>
+                <p><b>Giá</b></p>
                 <input type="number" name="Price" id="price" value="<?php echo $price; ?>" required placeholder="Giá *" class="format-ip">
                 <p id="nofi-2" class="red"></p>
             </div>
             <div class="group-input">
-                <p>Số lượng</p>
+                <p><b>Số lượng</b></p>
                 <input type="number" name="Quality" id="quality" value="<?php echo $quality; ?>" required placeholder="Số lượng *" class="format-ip">
                 <p id="nofi-3" class="red"></p>
             </div>
             <div class="group-input">
-                <p>Danh mục</p>
+                <p><b>Danh mục</b></p>
                 <select name="Category" class="format-ip">
                     <?php
                     //get list category
@@ -74,7 +74,7 @@
                 </select>
             </div>
             <div class="group-input">
-                <p>Hình ảnh</p>
+                <p><b>Hình ảnh</b></p>
                 <br>
                 <div id="img-review">
                     <img id='img-show' class='format-img-review img-category' width=300px height=300px src=<?php echo $pathImage; ?>>

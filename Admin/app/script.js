@@ -147,4 +147,9 @@ $('document').ready(() => {
     $('.menu-filter ul li').hover(() => {
         console.log($(this));
     });
+
+    //check update order
+    $("input[name='dayShip']").change(() => {
+        //change
+    })
 });
