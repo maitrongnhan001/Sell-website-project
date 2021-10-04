@@ -139,4 +139,12 @@ $('document').ready(() => {
             }
         }
     });
+
+    //animation for menu for manager order page
+    // $('.menu-filter ul li').hover((e) => {
+    //     console.log($(this).is('#active'));
+    // }
+    $('.menu-filter ul li').hover(() => {
+        console.log($(this));
+    });
 });

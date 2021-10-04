@@ -105,8 +105,18 @@ body {
     background-color: #ff4758;
 }
 
+.clearfix{
+    clear: both;
+    float: none;
+}
+
+
 a{
     text-decoration: none;
+}
+
+select {
+    border: 0;
 }
 
 /* css for menu */
@@ -295,4 +305,33 @@ a{
 
 .name-product {
     width: 150px;
+}
+
+/* css for manager order */
+
+.menu-filter ul{
+    list-style-type: none;
+    font-size: 18px;
+}
+
+.menu-filter ul li{
+    font-size: 18px;
+    float: left;
+    margin-right: 30px;
+    color: #000;
+    border-bottom: 3px solid #f1f2f6;
+    transition: 0.2s all;
+}
+
+.menu-filter ul li:hover{
+    border-bottom: 3px solid #ff6b81;
+    color: #ff6b81;
+}
+
+.day-order {
+    width: 120px;
+}
+
+.select-link {
+    font-size: 16px;
 }
