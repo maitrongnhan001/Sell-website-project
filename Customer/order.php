@@ -104,6 +104,17 @@ if (isset($_GET['id'])) {
 </section>
 
 <?php
+function CheckExecuteSQL ($result, $codeProduct) {
+    //check sql execute success ???
+    //if error then redirect order.php with code of product, after die process
+    if (!$result) {
+        $_SESSION['error'] = "Đặt hàng không thành công";
+        header('location: ' . URL . 'Customer/order.php?id=' . $codeProduct);
+        unset($_POST['submit'], $_POST['price'], $_POST['qty'], $_POST['name-receive'], $_POST['phone'], $_POST['address']);
+        die();
+    }
+}
+
 if (isset($_POST['submit'])) {
     //get data
     $qty = $_POST['qty'];
@@ -125,12 +136,7 @@ if (isset($_POST['submit'])) {
                 SET HoTenKH = '$nameReceive', SoDienThoai = '$phoneReceive'
                 WHERE MSKH = $codeCustomer";
         $result = executeSQL($conn, $sql);
-        if (!$result) {
-            $_SESSION['error'] = "Đặt hàng không thành công";
-            header('location: ' . URL . 'Customer/order.php?id=' . $codeProduct);
-            unset($_POST['submit'], $_POST['price'], $_POST['qty'], $_POST['name-receive'], $_POST['phone'], $_POST['address']);
-            die();
-        }
+        CheckExecuteSQL($result, $codeProduct);
     }
     if (!($addressReceive == $address)) {
         //update table DiaChiKH
@@ -138,12 +144,7 @@ if (isset($_POST['submit'])) {
                 SET DiaChi = '$addressReceive'
                 WHERE MaDC = $codeAddress";
         $result = executeSQL($conn, $sql);
-        if (!$result) {
-            $_SESSION['error'] = "Đặt hàng không thành công";
-            header('location: ' . URL . 'Customer/order.php?id=' . $codeProduct);
-            unset($_POST['submit'], $_POST['price'], $_POST['qty'], $_POST['name-receive'], $_POST['phone'], $_POST['address']);
-            die();
-        }
+        CheckExecuteSQL($result, $codeProduct);
     }
     //store table DatHang
     date_default_timezone_set("VietNam/HoChiMinh");
@@ -165,12 +166,7 @@ if (isset($_POST['submit'])) {
     //get SoDonDH
     $result = executeSQL($conn, $sql);
     $codeOrder = $conn->insert_id;
-    if (!$result) {
-        $_SESSION['error'] = "Đặt hàng không thành công";
-        header('location: ' . URL . 'Customer/order.php?id=' . $codeProduct);
-        unset($_POST['submit'], $_POST['price'], $_POST['qty'], $_POST['name-receive'], $_POST['phone'], $_POST['address']);
-        die();
-    }
+    CheckExecuteSQL($result, $codeProduct);
     //store table ChiTietDatHang
     $sql = "INSERT INTO ChiTietDatHang (
         SoDonDH,
@@ -198,12 +194,7 @@ if (isset($_POST['submit'])) {
             SoLuongHang = $quality
             WHERE MSHH = $codeProduct";
     $result = executeSQL($conn, $sql);
-    if (!$result) {
-        $_SESSION['error'] = "Đặt hàng không thành công";
-        header('location: ' . URL . 'Customer/order.php?id=' . $codeProduct);
-        unset($_POST['submit'], $_POST['price'], $_POST['qty'], $_POST['name-receive'], $_POST['phone'], $_POST['address']);
-        die();
-    }
+    CheckExecuteSQL($result, $codeProduct);
     //check success
     $_SESSION['status'] = "Đặt hàng thành công";
     header('location: ' . URL . 'Customer/');
