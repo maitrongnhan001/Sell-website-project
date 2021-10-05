@@ -360,3 +360,25 @@ select {
 .group-info p{
     padding: 10px 0 10px 0;
 }
+/* css for login */
+.login {
+    background-color: #ececec;
+}
+
+.login form {
+    width: 500px;
+    margin: 0 auto;
+    padding: 30px 20px 30px 20px;
+}
+
+.input-login {
+    margin: 40px 0 40px 0;
+}
+
+.input-login a {
+    float: left;
+}
+
+.input-login a:last-child {
+    float: right;
+}
