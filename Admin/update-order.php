@@ -9,6 +9,11 @@ if (isset($_GET['noOrder'])) {
     header('location: ' . URL . 'admin/manager-order.php?filter=1');
     die();
 }
+if (isset($_GET['filter'])) {
+    $filter = $_GET['filter'];
+} else {
+    $filter = 1;
+}
 ?>
 
 <section class="main">
@@ -172,7 +177,7 @@ if (isset($_GET['noOrder'])) {
                     header('Location: ' . URL . 'admin/update-order.php?noOrder=' . $noOrder);
                 } else {
                     $_SESSION['status_order'] = "Cập nhật đơn hàng thành công";
-                    header('Location: ' . URL . '/admin/manager-order.php?filter=1');
+                    header('Location: ' . URL . '/admin/manager-order.php?filter=' . $filter);
                 }
             }
             ?>

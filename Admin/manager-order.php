@@ -129,8 +129,8 @@ include('./layouts/header.php');
                         <td><?php echo $discount; ?></td>
                         <td><?php echo $total; ?></td>
                         <td>
-                            <a href=<?php echo URL . "admin/update-order.php?noOrder=" . $noOrder; ?> class="btn-primary">Cập nhật</a>
-                            <a href=<?php echo URL . "admin/cancel-order.php?noOrder=" . $noOrder; ?> class="btn-danger">Huỷ đơn</a>
+                            <a href=<?php echo URL . "admin/update-order.php?noOrder=" . $noOrder . "&filter=".$filter; ?> class="btn-primary">Cập nhật</a>
+                            <a href=<?php echo URL . "admin/cancel-order.php?noOrder=" . $noOrder . "&filter=".$filter; ?> class="btn-danger">Huỷ đơn</a>
                         </td>
                     </tr>
                 <?php
@@ -148,8 +148,8 @@ include('./layouts/header.php');
                         <td><?php echo $discount; ?></td>
                         <td><?php echo $total; ?></td>
                         <td>
-                            <a href=<?php echo URL . "admin/update-order.php?noOrder=" . $noOrder; ?> class="btn-primary">Cập nhật</a>
-                            <a href=<?php echo URL . "admin/cancel-order.php?noOrder=" . $noOrder; ?> class="btn-danger">Huỷ đơn</a>
+                            <a href=<?php echo URL . "admin/update-order.php?noOrder=" . $noOrder . "&filter=".$filter; ?> class="btn-primary">Cập nhật</a>
+                            <a href=<?php echo URL . "admin/cancel-order.php?noOrder=" . $noOrder . "&filter=".$filter; ?> class="btn-danger">Huỷ đơn</a>
                         </td>
                     </tr>
             <?php
