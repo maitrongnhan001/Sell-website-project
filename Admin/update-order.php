@@ -1,5 +1,5 @@
 <?php
-//ob_start();
+ob_start();
 include('./layouts/header.php');
 if (isset($_GET['noOrder'])) {
     $noOrder = $_GET['noOrder'];
@@ -182,5 +182,5 @@ if (isset($_GET['noOrder'])) {
 <?php
 closeConnect($conn);
 include('./layouts/footer.php');
-//ob_end_flush();
+ob_end_flush();
 ?>
