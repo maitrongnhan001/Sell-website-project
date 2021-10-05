@@ -80,7 +80,6 @@ function CheckPosition($value, $ChucVu)
             <?php
             //update admin
             if (isset($_POST["submit"])) {
-                include('../Debug/Debug.php');
                 //get value
                 $HoVaTen = $_POST['FullName'];
                 $UserName = $_POST['UserName'];

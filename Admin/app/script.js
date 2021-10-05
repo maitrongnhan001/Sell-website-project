@@ -47,6 +47,40 @@ function CheckSubmit() {
     }
 }
 
+function checkDayShip () {
+    var dateOrder = $('input[name="dayOrder"]').val().split("-");;
+    const dayOrder = dateOrder[2];
+    const monthOrder = dateOrder[1];
+    const yearOrder = dateOrder[0];
+    var dateOrder = new Date(yearOrder, monthOrder, dayOrder);
+    var dateShip = $("input[name='dayShip']").val().split("-");
+    const dayShip = dateShip[2];
+    const monthShip = dateShip[1];
+    const yearShip = dateShip[0];
+    var dateShip = new Date(yearShip, monthShip, dayShip);
+    let reuslt = true;
+    if (dateOrder.getTime() > dateShip.getTime()) {
+        $('#nofi-2').text("Ngày giao hàng phải lớn hơn ngày đặt hàng");
+        reuslt = false;
+    } else {
+        $('#nofi-2').text("");
+        reuslt = true;
+    }
+    return result;
+}
+
+function checkDiscount () {
+    let result = true;
+    if ($("input[name='discount']").val() >= 0) {
+        $('#nofi-1').text('');
+        reuslt = true;
+    } else {
+        $('#nofi-1').text("Số lượng phải lớn hơn hoặt bằng không");
+        result = false;
+    }
+    return result;
+}
+
 $('document').ready(() => {
 
     $('input[name="UserName"]').change(() => {
@@ -140,16 +174,23 @@ $('document').ready(() => {
         }
     });
 
-    //animation for menu for manager order page
-    // $('.menu-filter ul li').hover((e) => {
-    //     console.log($(this).is('#active'));
-    // }
-    $('.menu-filter ul li').hover(() => {
-        console.log($(this));
+
+    let checkSubmit = true;
+    //check discount > 0
+    $("input[name='discount']").change(() => {
+        if (checkDiscount() && checkDayShip()) {
+            $('#update-order').removeAttr('disabled');
+        } else {
+            $('#update-order').prop('disabled', 'true');
+        }
     });
 
     //check update order
     $("input[name='dayShip']").change(() => {
-        //change
-    })
+        if (checkDiscount() && checkDayShip()) {
+            $('#update-order').removeAttr('disabled');
+        } else {
+            $('#update-order').prop('disabled', 'true');
+        }
+    });
 });

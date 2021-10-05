@@ -1,4 +1,5 @@
 <?php
+//ob_start();
 include('./layouts/header.php');
 if (isset($_GET['noOrder'])) {
     $noOrder = $_GET['noOrder'];
@@ -14,19 +15,20 @@ if (isset($_GET['noOrder'])) {
     <div class="container">
         <h1 class="text-center">Cập nhật đơn hàng</h1>
         <br>
+        <?php
+        if (isset($_SESSION['status_order'])) {
+            echo "<div class='red text-center'>" . $_SESSION['status_order'] . "</div><br>";
+            unset($_SESSION['status_order']);
+        }
+        ?>
         <form action="" method="POST" id="form-updade-order">
             <?php
-            if (isset($_SESSION['status_order'])) {
-                echo "<div class='red'>" . $_SESSION['status_order'] . "</div>";
-                unset($_SESSION['status_order']);
-            }
             //get data
             $conn = connectToDatabase();
             //check code admin
             $sql = "SELECT MSNV FROM DatHANG WHERE SoDonDH=$noOrder";
             $codeAdmin = executeSQLResult($conn, $sql);
             $codeAdmin = $codeAdmin[0]['MSNV'];
-            include('../Debug/Debug.php');
             if ($codeAdmin == null) {
                 $sql = "SELECT A.SoDonDH, B.HoTenKH, B.SoDienThoai, B.TenCongTy, B.SoFax, D.DiaChi, F.MSHH, F.TenHH , G.TenHinh, F.Gia, H.TenLoaiHang, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang
                         FROM DatHang AS A, KhachHang AS B, DiaChiKH AS D, ChiTietDatHang AS E, HangHoa AS F, HinhHangHoa as G, LoaiHangHoa AS H
@@ -64,7 +66,7 @@ if (isset($_GET['noOrder'])) {
 
             $codeProduct = $order[0]['MSHH'];
             $nameProduct = $order[0]['TenHH'];
-            $pathImage = URL.'images/products/'.$order[0]['TenHinh'];
+            $pathImage = URL . 'images/products/' . $order[0]['TenHinh'];
             $price = $order[0]['Gia'];
             $category = $order[0]['TenLoaiHang'];
 
@@ -89,7 +91,7 @@ if (isset($_GET['noOrder'])) {
                 <div class="group-info">
                     <p><b>Mã sảm phẩm:</b> <?php echo $codeProduct; ?> </p>
                     <p><b>Tên sản phẩm:</b> <?php echo $nameProduct; ?> </p>
-                    <p><b>Hình ảnh:</b></p><?php echo "<img class='img-category' width='250px' height='250px' src=".$pathImage." alt='noImage'>" ?>
+                    <p><b>Hình ảnh:</b></p><?php echo "<img class='img-category' width='250px' height='250px' src=" . $pathImage . " alt='noImage'>" ?>
                     <p><b>Giá:</b> <?php echo $price ?> </p>
                     <p><b>Loại sản phẩm:</b> <?php echo $category; ?> </p>
                 </div>
@@ -101,22 +103,32 @@ if (isset($_GET['noOrder'])) {
                 </div>
                 <div class="group-input">
                     <b>Giảm giá:</b>
-                    <input type="number" name="discount" class="format-ip" value="<?php echo $discount; ?>">
+                    <input type="number" name="discount" class="format-ip" value="<?php echo $discount; ?>" required>
+                    <p class="red" id="nofi-1"></p>
                 </div>
                 <div class="group-input">
                     <p><b>Ngày đặt hàng:</b> <?php echo $dayOrder; ?> </p>
-                    <input type="hidden" name="dayOrder" class="format-ip" value="<?php echo $dateOrder; ?>">
+                    <input type="hidden" name="dayOrder" class="format-ip" value="<?php echo $dayOrder; ?>">
                     <br>
                     <b>Ngày giao hàng:</b><?php echo $dateShip; ?>
-                    <input type="date" name="dayShip" class="format-ip" value="<?php echo $dateShip; ?>">
+                    <input type="date" name="dayShip" class="format-ip" value="<?php echo $dateShip; ?>" required>
+                    <p class="red" id="nofi-2"></p>
                 </div>
                 <div class="group-input">
                     <b>Trạng thái:</b>
                     <select class="format-ip" name="status">
-                        <option value="Đặt hàng" <?php if ($status == 'Đặt hàng') { echo "seleted"; } ?>>Đặt hàng</option>
-                        <option value="Đang giao" <?php if ($status == 'Đang giao') { echo "seleted"; } ?>>Đang giao</option>
-                        <option value="Đã giao" <?php if ($status == 'Đã giao') { echo "seleted"; } ?>>Đã giao</option>
-                        <option value="Bị huỷ" <?php if ($status == 'Bị huỷ') { echo "seleted"; } ?>>Huỷ đơn</option>
+                        <option value="Đặt hàng" <?php if ($status == 'Đặt hàng') {
+                                                        echo "selected";
+                                                    } ?>>Đặt hàng</option>
+                        <option value="Đang giao" <?php if ($status == 'Đang giao') {
+                                                        echo "selected";
+                                                    } ?>>Đang giao</option>
+                        <option value="Đã giao" <?php if ($status == 'Đã giao') {
+                                                    echo "selected";
+                                                } ?>>Đã giao</option>
+                        <option value="Bị huỷ" <?php if ($status == 'Bị huỷ') {
+                                                    echo "selected";
+                                                } ?>>Huỷ đơn</option>
                     </select>
                 </div>
                 <div class="group-info">
@@ -129,9 +141,46 @@ if (isset($_GET['noOrder'])) {
             <div class="group-input">
                 <input type="submit" id="update-order" value="Cập nhật đơn hàng" name="submit" class="btn-primary">
             </div>
+            <?php
+            if (isset($_POST['submit'])) {
+                //get data
+                $discount = $_POST['discount'];
+                $dayShip = $_POST['dayShip'];
+                $status = $_POST['status'];
+                $total = $total - $discount;
+                $username = $_SESSION['username'];
+                //update table ChiTietDatHang
+                $sql = "UPDATE ChiTietDatHang SET
+            GiaDatHang=$total,
+            GiamGia=$discount
+            WHERE SoDonDH=$noOrder";
+                $result = executeSQL($conn, $sql);
+                //get code admin
+                $sql = "SELECT MSNV FROM NhanVien WHERE UserName='$username'";
+                $codeAdmin = executeSQLResult($conn, $sql);
+                $codeAdmin = $codeAdmin[0]['MSNV'];
+                //update table DatHang
+                $sql = "UPDATE DatHang SET
+            MSNV=$codeAdmin,
+            NgayGH='$dayShip',
+            TrangThaiDH='$status'
+            WHERE SoDonDH=$noOrder";
+                $result = $result && executeSQL($conn, $sql);
+                unset($_POST['submit'], $_POST['dayShip'], $_POST['status']);
+                if (!$result) {
+                    $_SESSION['status_order'] = "Cập nhật đơn hàng không thành công";
+                    header('Location: ' . URL . 'admin/update-order.php?noOrder=' . $noOrder);
+                } else {
+                    $_SESSION['status_order'] = "Cập nhật đơn hàng thành công";
+                    header('Location: ' . URL . '/admin/manager-order.php?filter=1');
+                }
+            }
+            ?>
         </form>
     </div>
 </section>
 <?php
 closeConnect($conn);
-include('./layouts/footer.php') ?>
+include('./layouts/footer.php');
+//ob_end_flush();
+?>
