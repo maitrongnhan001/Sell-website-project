@@ -82,7 +82,7 @@ include('./layouts/header.php');
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
                         AND G.MSHH = F.MSHH
-                        AND A.TrangThaiDH = 'đang giao'";
+                        AND A.TrangThaiDH = 'Đang giao'";
                     break;
                 case 4:
                     $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, G.TenHinh
@@ -104,7 +104,7 @@ include('./layouts/header.php');
                     break;
             }
             $listOrder = executeSQLResult($conn, $sql);
-            for ($i = 1; $i < count($listOrder); $i++) {
+            for ($i = 1; $i <= count($listOrder); $i++) {
                 $noOrder = $listOrder[$i - 1]['SoDonDH'];
                 $nameCustomer = $listOrder[$i - 1]['HoTenKH'];
                 $product = $listOrder[$i - 1]['TenHH'];
