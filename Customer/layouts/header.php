@@ -32,7 +32,7 @@ include('../Config/connect.php');
                         if (isset($_SESSION['username'])) {
                         ?>
 
-                            <a href=<?php echo URL . 'Customer/logout.php'; ?>>Tài khoản</a>
+                            <a href=<?php echo URL . 'Customer/update-user.php'; ?>>Tài khoản</a>
                         <?php
                         } else {
                         ?>
