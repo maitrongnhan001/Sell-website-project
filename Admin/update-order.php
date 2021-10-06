@@ -154,11 +154,18 @@ if (isset($_GET['filter'])) {
                 $status = $_POST['status'];
                 $total = $total - $discount;
                 $username = $_SESSION['username'];
+
+                //check status is cancel
+                if ($status == 'Bị huỷ') {
+                    header('Location: '.URL.'admin/cancel-order.php?noOrder='.$noOrder);
+                    die();
+                }
+
                 //update table ChiTietDatHang
                 $sql = "UPDATE ChiTietDatHang SET
-            GiaDatHang=$total,
-            GiamGia=$discount
-            WHERE SoDonDH=$noOrder";
+                        GiaDatHang=$total,
+                        GiamGia=$discount
+                        WHERE SoDonDH=$noOrder";
                 $result = executeSQL($conn, $sql);
                 //get code admin
                 $sql = "SELECT MSNV FROM NhanVien WHERE UserName='$username'";
@@ -166,10 +173,10 @@ if (isset($_GET['filter'])) {
                 $codeAdmin = $codeAdmin[0]['MSNV'];
                 //update table DatHang
                 $sql = "UPDATE DatHang SET
-            MSNV=$codeAdmin,
-            NgayGH='$dayShip',
-            TrangThaiDH='$status'
-            WHERE SoDonDH=$noOrder";
+                        MSNV=$codeAdmin,
+                        NgayGH='$dayShip',
+                        TrangThaiDH='$status'
+                        WHERE SoDonDH=$noOrder";
                 $result = $result && executeSQL($conn, $sql);
                 unset($_POST['submit'], $_POST['dayShip'], $_POST['status']);
                 if (!$result) {

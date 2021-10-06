@@ -19,6 +19,12 @@ $conn = connectToDatabase();
 $sql = "SELECT MSNV FROM NhanVien WHERE UserName='$username'";
 $codeAdmin = executeSQLResult($conn, $sql);
 $codeAdmin = $codeAdmin[0]['MSNV'];
+//update table ChiTietDonHang
+$sql = "UPDATE ChiTietDatHang SET
+            GiaDatHang=0,
+            GiamGia=0
+            WHERE SoDonDH=$noOrder";
+$result = executeSQL($conn, $sql);
 //update table DatHang
 $sql = "UPDATE DatHang SET
             MSNV=$codeAdmin,
