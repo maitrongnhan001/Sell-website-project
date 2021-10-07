@@ -26,6 +26,9 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `ChiTietDatHang`
 --
+CREATE DATABASE Quanlydathang;
+
+USE Quanlydathang;
 
 CREATE TABLE `ChiTietDatHang` (
   `SoDonDH` int(5) NOT NULL,
