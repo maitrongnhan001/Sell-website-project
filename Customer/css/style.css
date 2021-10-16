@@ -369,3 +369,37 @@ nav .line {
 #username {
     padding: 5px 0 10px 10px;
 }
+
+/* css for account details page */
+
+.child-menu {
+    margin: 0 auto;
+    width: 740px;
+}
+
+.child-menu ul {
+    list-style-type: none;
+}
+
+.child-menu li {
+    float: left;
+    margin-right: 40px;
+    border-bottom: 3px solid #ececec;
+    padding-bottom: 15px;
+    transition: 0.3s all;
+}
+
+.child-menu li:hover {
+    border-bottom: 3px solid #ff4757;
+    color: #ff4757;
+}
+
+.child-menu li:last-child {
+    margin-right: 0;
+}
+
+.child-menu li a{
+    text-decoration: none;
+    color: #ff4757;
+    font-size: 18px;
+}
