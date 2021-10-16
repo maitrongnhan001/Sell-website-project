@@ -101,6 +101,13 @@ if (isset($_SESSION['username'])) {
             <div class="input-login">
                 <p><b>Mật khẩu cũ</b></p>
                 <input type="password" name="current-password" class="input-responsive" required placeholder="Nhập mật khẩu *">
+                <p class="red">
+                <?php
+                if (isset($_SESSION['error-password'])) {
+                    echo $_SESSION['error-password'];
+                    unset($_SESSION['error-password']);
+                }
+                ?></p>
                 <p><b>Mật khẩu mới</b></p>
                 <input type="password" name="password" class="input-responsive" required placeholder="Nhập mật khẩu *">
                 <p id="nofi-2"></p>
@@ -121,7 +128,7 @@ if (isset($_SESSION['username'])) {
             $sql = "SELECT * FROM KhachHang WHERE UserName='$username' AND Password='$current_password'";
             $result = executeSQLResult($conn, $sql);
             if (count($result) != 1) {
-                $_SESSION['error'] = "Cập nhật không thành công.";
+                $_SESSION['error-password'] = "Cập nhật không thành công.";
                 header('Location: ' . URL . 'Customer/account-details.php');
                 unset($_POST['current-password'], $_POST['password']);
                 closeConnect($conn);
