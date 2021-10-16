@@ -66,6 +66,13 @@ a{
     color: white;
     cursor: pointer;
 }
+
+.btn-disabled{
+    background-color: #a7a3a3;
+    color: white;
+    cursor: pointer;
+}
+
 .btn-primary:hover{
     color: white;
     background-color: #ff4757;
@@ -90,10 +97,7 @@ a{
     color: white;
     cursor: pointer;
 }
-.btn-primary:hover{
-    color: white;
-    background-color: #ff4757;
-}
+
 .row {
     display: flex;
 }
@@ -402,4 +406,64 @@ nav .line {
     text-decoration: none;
     color: #ff4757;
     font-size: 18px;
+}
+
+/* css for manager order */
+.tbl-manager {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-spacing: 0;
+}
+
+.tbl-manager tr th {
+    border-bottom: 1px solid black;
+    padding: 1%;
+    margin-left: 100px;
+}
+
+.tbl-manager tr td {
+    padding: 1%;
+}
+
+.tbl-manager tr td:last-child {
+    width: 9.5em;
+}
+
+.tbl-manager tr td:last-child a{
+    width: 100px;
+    float: left;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+menu-filter ul{
+    list-style-type: none;
+    font-size: 18px;
+}
+
+.menu-filter ul li{
+    font-size: 18px;
+    float: left;
+    margin-right: 30px;
+    color: #000;
+    border-bottom: 3px solid #f1f2f6;
+    transition: 0.2s all;
+}
+
+.menu-filter ul li:hover{
+    border-bottom: 3px solid #ff6b81;
+    color: #ff6b81;
+}
+
+.day-order {
+    width: 120px;
+}
+
+.select-link {
+    font-size: 16px;
+}
+
+.white-row {
+    background-color: white;
 }

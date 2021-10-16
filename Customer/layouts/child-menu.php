@@ -9,7 +9,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href=<?php echo URL . '/Customer/account-details.php'; ?>>
+                    <a href=<?php echo URL . '/Customer/manager-order.php'; ?>>
                         Quản lý đơn hàng
                     </a>
                 </li>
