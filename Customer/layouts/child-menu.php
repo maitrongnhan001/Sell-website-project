@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href=<?php echo URL . '/Customer/account-details.php'; ?>>
+                    <a href=<?php echo URL . '/Customer/manager-address.php'; ?>>
                         Số địa chỉ
                     </a>
                 </li>
