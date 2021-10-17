@@ -66,7 +66,7 @@ if ($_POST['submit']) {
     } else {
         unset($_POST['new-address']);
         $_SESSION["error"] = "Cập nhật địa chỉ không thành công";
-        header('location: '.URL.'Customer/manager-address.php');
+        header('location: '.URL.'Customer/update-address.php');
     }
 }
 include('./layouts/footer.php');
