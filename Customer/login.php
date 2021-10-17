@@ -13,9 +13,9 @@ include('./layouts/header.php');
             }
             ?>
             <div class="input-login">
-                Tên đăng nhập
+                <b>Tên đăng nhập</b>
                 <input type="text" name="username" class="input-responsive" require placeholder="Nhâp tên tài khoản *">
-                Mật khẩu
+                <b>Mật khẩu</b>
                 <input type="password" name="password" class="input-responsive" require placeholder="Nhập mật khẩu *">
                 <p id="nofi-1"></p>
                 <br>
