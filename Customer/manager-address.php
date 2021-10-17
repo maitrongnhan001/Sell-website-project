@@ -14,7 +14,18 @@ if (isset($_SESSION['username'])) {
 <section class="register">
     <div class="container">
         <h1 class="text-center">Quản lý địa chỉ giao hàng</h1>
-
+        <?php 
+            if (isset($_SESSION['error'])) {
+                 echo "<div class='red text-center'>".$_SESSION['error']."</div>";
+                 unset($_SESSION['error']);
+            }  
+            if (isset($_SESSION['success'])) {
+                echo "<div class='green text-center'>".$_SESSION['success']."</div>";
+                unset($_SESSION['success']);
+           }  
+        ?>
+        <br><br>
+        <a href=<?php echo URL.'Customer/add-address.php'; ?> class="btn btn-login">Thêm địa chỉ</a>
         <br><br>
         <table class="tbl-manager">
             <tr>
@@ -43,7 +54,7 @@ if (isset($_SESSION['username'])) {
                         <td><?php echo $address; ?></td>
                         <td>
                             <a href=<?php
-                                    echo URL . "Customer/cancel-order.php?noOrder=" . $noOrder . "&filter=" . $filter;
+                                    echo URL . "Customer/update-address.php?code_address=$code_address";
                                     ?> class="btn btn-primary">Cập nhật</a>
                         </td>
                     </tr>
@@ -55,7 +66,7 @@ if (isset($_SESSION['username'])) {
                         <td><?php echo $address; ?></td>
                         <td>
                             <a href=<?php
-                                    echo URL . "Customer/cancel-order.php?noOrder=" . $noOrder . "&filter=" . $filter;
+                                    echo URL . "Customer/update-address.php?code_address=$code_address";
                                     ?> class="btn btn-primary">Cập nhật</a>
                         </td>
                     </tr>
