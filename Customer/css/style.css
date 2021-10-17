@@ -31,6 +31,10 @@
     float: none;
 }
 
+.hide {
+    display: none;
+}
+
 a{
     text-decoration: none;
 }
@@ -65,6 +69,16 @@ a{
     background-color: #ff6b81;
     color: white;
     cursor: pointer;
+}
+
+.btn-address-order{
+    background-color: #1e90ff;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-address-order:hover{
+    background-color: #3742fa;
 }
 
 .btn-disabled{
@@ -325,6 +339,31 @@ nav .line {
 
 .total-container {
     margin: 0 auto;
+}
+
+.group-info {
+    width: 40%;
+    float: left;
+    margin-left: 10%;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+fieldset .input-responsive {
+    background-color: #fff;
+}
+
+.group-address {
+    margin-bottom: 20px;
+}
+
+.group-address button {
+    margin: 10px 0 0 20px
+}
+
+.group-address input[type="radio"] {
+    margin: 20px 20px 0px 40px;
+    transform: scale(1.4);
 }
 
 /* css for login */

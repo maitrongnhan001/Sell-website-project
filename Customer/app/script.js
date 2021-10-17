@@ -126,4 +126,23 @@ $('document').ready(() => {
         const total_price = price * quality;
         $('#rt').text('VNĐ: ' + total_price);
     });
+
+    //controll address
+    $('#btn-new-address').click((e) => {
+        e.preventDefault();
+        $('input[name="address"]').prop('checked', false);
+        $('#group-current-address').addClass('hide');
+        $('input[name="address"]').prop('required', false);
+        $('input[name="new-address"]').attr('required');
+        $('#group-new-address').removeClass('hide');
+    });
+
+    $('#btn-current-address').click((e) => {
+        e.preventDefault();
+        $("#ipn-new-address").val('');
+        $('input[name="new-address"]').removeAttr('required')
+        $('#group-current-address').removeClass('hide');
+        $('input[name="address"]').prop('required', true);
+        $('#group-new-address').addClass('hide');
+    });
 });

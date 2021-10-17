@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('./layouts/header.php');
 include('../Debug/Debug.php');
 if (isset($_SESSION['username'])) {
@@ -72,28 +73,47 @@ if (isset($_GET['id'])) {
             </fieldset>
             <?php
             //get data user
-            $sql = "SELECT KhachHang.MSKH, HoTenKH, SoDienThoai, MaDC, DiaChi 
-                    FROM KhachHang, DiaChiKH 
-                    WHERE KhachHang.MSKH = DiaChiKH.MSKH
-                    AND KhachHang.UserName = '$userName'";
+            $sql = "SELECT KhachHang.MSKH, HoTenKH, SoDienThoai 
+                    FROM KhachHang 
+                    WHERE KhachHang.UserName = '$userName'";
 
             $UserInfo = executeSQLResult($conn, $sql);
             $codeCustomer = $UserInfo[0]['MSKH'];
-            $codeAddress = $UserInfo[0]['MaDC'];
             $nameCustomer = $UserInfo[0]['HoTenKH'];
             $phone = $UserInfo[0]['SoDienThoai'];
-            $address = $UserInfo[0]['DiaChi'];
             ?>
             <fieldset>
                 <legend>Thông tin liên lạc</legend>
-                <div class="order-label">Tên người nhận</div>
-                <input type="text" name="name-receive" value="<?php echo $nameCustomer; ?>" placeholder="Nhập tên người nhận *" class="input-responsive" required>
+                <div class="order-label">Tên người nhận:</div>
+                <input type="text" id="ipn" class="input-responsive" disabled value="<?php echo $nameCustomer; ?>" required>
 
-                <div class="order-label">Số điện thoại</div>
-                <input type="tel" name="phone" value="<?php echo $phone; ?>" pattern="0[0-9]{9}" placeholder="Nhập số điện thoại người nhận *" class="input-responsive" required>
+                <div class="order-label">Số điện thoại:</div>
+                <input type="text" id="ipn" class="input-responsive" disabled value="<?php echo $phone; ?>" required>
 
-                <div class="order-label">Địa chỉ</div>
-                <textarea name="address" rows="10" placeholder="Nhập địa chỉ nhận *" class="input-responsive" required><?php echo $address; ?></textarea>
+                <div class="group-address" id="group-current-address">
+                    <div class="order-label">Chọn địa chỉ</div>
+                    <?php
+                    //get address
+                    $sql = "SELECT * FROM DiaChiKH
+                                WHERE MSKH=$codeCustomer";
+                    $list_address = executeSQLResult($conn, $sql);
+                    for ($i = 0; $i < count($list_address); $i++) {
+                        $address = $list_address[$i]['DiaChi'];
+                        $codeAddress = $list_address[$i]['MaDC'];
+                    ?>
+                        <p>
+                            <input type="radio" name="address" value="<?php echo $codeAddress; ?>" required><?php echo $address; ?>
+                        </p>
+                    <?php
+                    }
+                    ?>
+                    <button class="btn btn-address-order" id="btn-new-address">Địa chỉ mới</button>
+                </div>
+                <div class="group-address hide" id="group-new-address">
+                    <div class="order-label">Địa chỉ mới</div>
+                    <input type="text" id="ipn-new-address" name="new-address" class="input-responsive">
+                    <button class="btn btn-address-order" id="btn-current-address">Địa chỉ cũ</button>
+                </div>
 
                 <input type="submit" name="submit" id="submit-order" value="Confirm Order" class="btn btn-primary">
             </fieldset>
@@ -104,7 +124,8 @@ if (isset($_GET['id'])) {
 </section>
 
 <?php
-function CheckExecuteSQL ($result, $codeProduct) {
+function CheckExecuteSQL($result, $codeProduct)
+{
     //check sql execute success ???
     //if error then redirect order.php with code of product, after die process
     if (!$result) {
@@ -118,6 +139,7 @@ function CheckExecuteSQL ($result, $codeProduct) {
 if (isset($_POST['submit'])) {
     //get data
     $qty = $_POST['qty'];
+
     //check qty
     if ($quality < $qty) {
         $_SESSION['error'] = "Đặt hàng không thành công";
@@ -126,26 +148,29 @@ if (isset($_POST['submit'])) {
         die();
     }
     $total = $price * $qty;
-    $nameReceive = $_POST['name-receive'];
-    $phoneReceive = $_POST['phone'];
-    $addressReceive = $_POST['address'];
-    //check information of customer
-    if (!($nameReceive == $nameCustomer && $phoneReceive == $phone)) {
-        //update table KhachHang
-        $sql = "UPDATE KhachHang
-                SET HoTenKH = '$nameReceive', SoDienThoai = '$phoneReceive'
-                WHERE MSKH = $codeCustomer";
+
+    //handle address
+    if ($_POST['new-address'] != "") {
+        //handle new address
+        $new_address = $_POST['new-address'];
+        $sql = "INSERT INTO DiaChiKH (
+            DiaChi,
+            MSKH
+        ) VALUES (
+            '$new_address',
+            $codeCustomer
+        )";
         $result = executeSQL($conn, $sql);
         CheckExecuteSQL($result, $codeProduct);
+
+        //get code address
+        $sql = "SELECT MAX(MaDC) AS MaDC FROM `DiaChiKH` WHERE MSKH=3";
+        $code_address = executeSQLResult($conn, $sql);
+        $code_address = $code_address[0]['MaDC'];
+    } else {
+        $code_address = $_POST['address'];
     }
-    if (!($addressReceive == $address)) {
-        //update table DiaChiKH
-        $sql = "UPDATE DiaChiKH
-                SET DiaChi = '$addressReceive'
-                WHERE MaDC = $codeAddress";
-        $result = executeSQL($conn, $sql);
-        CheckExecuteSQL($result, $codeProduct);
-    }
+
     //store table DatHang
     date_default_timezone_set("VietNam/HoChiMinh");
     $date = getdate();
@@ -157,16 +182,20 @@ if (isset($_POST['submit'])) {
     $sql = "INSERT INTO DatHang (
         MSKH,
         NgayDH,
-        TrangThaiDH
+        TrangThaiDH,
+        MaDC
     ) VALUES (
         $codeCustomer,
         '$DayOrder',
-        '$statusOrder'
+        '$statusOrder',
+        $code_address
     )";
+
     //get SoDonDH
     $result = executeSQL($conn, $sql);
     $codeOrder = $conn->insert_id;
     CheckExecuteSQL($result, $codeProduct);
+
     //store table ChiTietDatHang
     $sql = "INSERT INTO ChiTietDatHang (
         SoDonDH,
@@ -182,12 +211,8 @@ if (isset($_POST['submit'])) {
         0
     )";
     $result = executeSQL($conn, $sql);
-    if (!$result) {
-        $_SESSION['error'] = "Đặt hàng không thành công";
-        header('location: ' . URL . 'Customer/order.php?id=' . $codeProduct);
-        unset($_POST['submit'], $_POST['price'], $_POST['qty'], $_POST['name-receive'], $_POST['phone'], $_POST['address']);
-        die();
-    }
+    CheckExecuteSQL($result, $codeProduct);
+
     //update quality products
     $quality = $quality - $qty;
     $sql = "UPDATE HangHoa SET 
@@ -195,12 +220,15 @@ if (isset($_POST['submit'])) {
             WHERE MSHH = $codeProduct";
     $result = executeSQL($conn, $sql);
     CheckExecuteSQL($result, $codeProduct);
+
     //check success
     $_SESSION['status'] = "Đặt hàng thành công";
     header('location: ' . URL . 'Customer/');
     //unset data
     unset($_POST['submit'], $_POST['price'], $_POST['qty'], $_POST['name-receive'], $_POST['phone'], $_POST['address']);
 }
+
 closeConnect($conn);
 include('./layouts/footer.php');
+ob_end_flush();
 ?>
