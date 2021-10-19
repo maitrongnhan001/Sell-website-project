@@ -1,18 +1,101 @@
-<?php 
+<?php
 include('./layouts/header.php');
 ?>
+<!--nofication-->
+<div id="nofication-order" class="nofication hide">
+    <div class="main-nofication">
+        <br><br>
+        <h1 class="text-center">Thông báo</h1>
+        <br>
+        <ul class="list-nofication">
+            <?php
+            //get nofication
+            $conn = connectToDatabase();
+            $status_order = 'Đặt hàng';
+            $sql = "SELECT COUNT(SoDonDH) AS SoLuong FROM DatHang WHERE TrangThaiDH='$status_order'";
+            $result = executeSQLResult($conn, $sql);
+            $amount_new_order = $result[0]['SoLuong'];
+            if ($amount_new_order > 0) {
+            ?>
+                <li><a href="<?php echo URL . 'Admin/manager-order.php?filter=2'; ?>">Có <?php echo $amount_new_order; ?> đơn hàng mới đang chờ bạn giải quyết</a></li>
+            <?php
+            }
+            //get nofication
+            $status_order = 'Đang giao';
+            $sql = "SELECT COUNT(SoDonDH) AS SoLuong FROM DatHang WHERE TrangThaiDH='$status_order'";
+            $result = executeSQLResult($conn, $sql);
+            $amount = $result[0]['SoLuong'];
+            if ($amount > 0) {
+            ?>
+                <li><a href="<?php echo URL . 'Admin/manager-order.php?filter=3'; ?>">Có <?php echo $amount; ?> đơn hàng đang giao</a></li>
+            <?php
+            }
+            //get nofication
+            $status_order = 'Đã giao';
+            $sql = "SELECT COUNT(SoDonDH) AS SoLuong FROM DatHang WHERE TrangThaiDH='$status_order'";
+            $result = executeSQLResult($conn, $sql);
+            $amount = $result[0]['SoLuong'];
+            if ($amount > 0) {
+            ?>
+                <li><a href="<?php echo URL . 'Admin/manager-order.php?filter=4'; ?>">Có <?php echo $amount; ?> đơn hàng đă giao thành công</a></li>
+            <?php
+            }
+            //get nofication
+            $status_order = 'Bị huỷ';
+            $sql = "SELECT COUNT(SoDonDH) AS SoLuong FROM DatHang WHERE TrangThaiDH='$status_order'";
+            $result = executeSQLResult($conn, $sql);
+            $amount = $result[0]['SoLuong'];
+            if ($amount > 0) {
+            ?>
+                <li><a href="<?php echo URL . 'Admin/manager-order.php?filter=5'; ?>">Có <?php echo $amount; ?> đơn hàng bị huỷ</a></li>
+            <?php
+            }
+            ?>
+        </ul>
+        <br><br>
+        <button id="btn-close-notification" class="btn-primary"><span>Quay lại</span></button>
+        <br><br>
+    </div>
+</div>
+<!--end nofication-->
 
 <section class="main text-content">
     <div class="container">
         <h1>Quản lý đơn hàng</h1>
         <br>
+        <div class="group-btn-nofication">
+            <?php
+            if ($amount_new_order > 0) {
+            ?>
+                <div class="on-nofication"></div>
+            <?php
+            }
+            ?>
+            <button id="btn-notification" class="btn-200 btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                </svg>
+                <span>Thông báo</span>
+            </button>
+        </div>
+        <br>
         <div class="menu-filter">
             <ul>
-                <a href=<?php echo URL.'admin/manager-order.php?filter=1'; ?>><li>Tất cả</li></a>
-                <a href=<?php echo URL.'admin/manager-order.php?filter=2'; ?>><li>Đặt hàng</li></a>
-                <a href=<?php echo URL.'admin/manager-order.php?filter=3'; ?>><li>Đang giao</li></a>
-                <a href=<?php echo URL.'admin/manager-order.php?filter=4'; ?>><li>Đã giao</li></a>
-                <a href=<?php echo URL.'admin/manager-order.php?filter=5'; ?>><li>Bị huỷ</li></a>
+                <a href=<?php echo URL . 'admin/manager-order.php?filter=1'; ?>>
+                    <li>Tất cả</li>
+                </a>
+                <a href=<?php echo URL . 'admin/manager-order.php?filter=2'; ?>>
+                    <li>Đặt hàng</li>
+                </a>
+                <a href=<?php echo URL . 'admin/manager-order.php?filter=3'; ?>>
+                    <li>Đang giao</li>
+                </a>
+                <a href=<?php echo URL . 'admin/manager-order.php?filter=4'; ?>>
+                    <li>Đã giao</li>
+                </a>
+                <a href=<?php echo URL . 'admin/manager-order.php?filter=5'; ?>>
+                    <li>Bị huỷ</li>
+                </a>
                 <div class="clearfix"></div>
             </ul>
         </div>
@@ -56,7 +139,6 @@ include('./layouts/header.php');
             filter: 3 filter cancel order
             filter: 4 filter waiting
             */
-            $conn = connectToDatabase();
             switch ($filter) {
                 case 1:
                     $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, G.TenHinh
@@ -108,7 +190,7 @@ include('./layouts/header.php');
                 $noOrder = $listOrder[$i - 1]['SoDonDH'];
                 $nameCustomer = $listOrder[$i - 1]['HoTenKH'];
                 $product = $listOrder[$i - 1]['TenHH'];
-                $pathImage = URL.'images/products/'.$listOrder[$i - 1]['TenHinh'];
+                $pathImage = URL . 'images/products/' . $listOrder[$i - 1]['TenHinh'];
                 $dayOrder = $listOrder[$i - 1]['NgayDH'];
                 $dayShip = $listOrder[$i - 1]['NgayGH'];
                 $statusOrder = $listOrder[$i - 1]['TrangThaiDH'];
@@ -129,8 +211,8 @@ include('./layouts/header.php');
                         <td><?php echo $discount; ?></td>
                         <td><?php echo $total; ?></td>
                         <td>
-                            <a href=<?php echo URL . "admin/update-order.php?noOrder=" . $noOrder . "&filter=".$filter; ?> class="btn-primary">Cập nhật</a>
-                            <a href=<?php echo URL . "admin/cancel-order.php?noOrder=" . $noOrder . "&filter=".$filter; ?> class="btn-danger">Huỷ đơn</a>
+                            <a href=<?php echo URL . "admin/update-order.php?noOrder=" . $noOrder . "&filter=" . $filter; ?> class="btn-primary">Cập nhật</a>
+                            <a href=<?php echo URL . "admin/cancel-order.php?noOrder=" . $noOrder . "&filter=" . $filter; ?> class="btn-danger">Huỷ đơn</a>
                         </td>
                     </tr>
                 <?php
@@ -148,8 +230,8 @@ include('./layouts/header.php');
                         <td><?php echo $discount; ?></td>
                         <td><?php echo $total; ?></td>
                         <td>
-                            <a href=<?php echo URL . "admin/update-order.php?noOrder=" . $noOrder . "&filter=".$filter; ?> class="btn-primary">Cập nhật</a>
-                            <a href=<?php echo URL . "admin/cancel-order.php?noOrder=" . $noOrder . "&filter=".$filter; ?> class="btn-danger">Huỷ đơn</a>
+                            <a href=<?php echo URL . "admin/update-order.php?noOrder=" . $noOrder . "&filter=" . $filter; ?> class="btn-primary">Cập nhật</a>
+                            <a href=<?php echo URL . "admin/cancel-order.php?noOrder=" . $noOrder . "&filter=" . $filter; ?> class="btn-danger">Huỷ đơn</a>
                         </td>
                     </tr>
             <?php

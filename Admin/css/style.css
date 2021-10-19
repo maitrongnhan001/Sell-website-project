@@ -60,6 +60,7 @@ body {
 
 .btn-200 {
     width: 150px;
+    border: 0;
 }
 
 .btn-primary {
@@ -381,4 +382,72 @@ select {
 
 .input-login a:last-child {
     float: right;
+}
+
+/* css for nofication */
+.nofication {
+    background-color: rgba(51, 51, 51, 0.7);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 20;
+}
+
+.main-nofication {
+    background-color: #fff;
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-top: 200px;
+}
+
+.list-nofication {
+    list-style-type: none;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.list-nofication li {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #111;
+    text-align: center;
+}
+
+.list-nofication li:hover {
+   cursor: pointer;
+   background-color: #ececec;
+}
+
+.list-nofication li a {
+    font-size: 18px;
+    color: #111;
+}
+
+.main-nofication button {
+    width: 150px;
+    height: 40px;
+    border: 0;
+    margin: 0 auto;
+}
+
+button span {
+    font-size: 16px;
+}
+
+.on-nofication {
+    width: 17px;
+    height: 17px;
+    border-radius: 17px;
+    background-color: red;
+    border: 2px solid #ececec;
+    position: relative;
+    z-index: 10px;
+    top: 12px;
+    left: 138px;
+}
+
+.hide {
+    display: none;
 }

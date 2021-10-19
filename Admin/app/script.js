@@ -193,4 +193,13 @@ $('document').ready(() => {
             $('#update-order').prop('disabled', 'true');
         }
     });
+
+    //handle click nofication
+    $("#btn-notification").click(() => {
+        $('#nofication-order').removeClass('hide');
+    });
+
+    $("#btn-close-notification").click(() => {
+        $('#nofication-order').addClass('hide');
+    });
 });
