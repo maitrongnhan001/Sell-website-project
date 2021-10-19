@@ -196,10 +196,10 @@ $('document').ready(() => {
 
     //handle click nofication
     $("#btn-notification").click(() => {
-        $('#nofication-order').removeClass('hide');
+        $('#notification-order').removeClass('hide');
     });
 
     $("#btn-close-notification").click(() => {
-        $('#nofication-order').addClass('hide');
+        $('#notification-order').addClass('hide');
     });
 });

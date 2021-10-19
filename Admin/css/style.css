@@ -120,6 +120,10 @@ select {
     border: 0;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 /* css for menu */
 .menu {
     margin: 0;
@@ -385,7 +389,7 @@ select {
 }
 
 /* css for nofication */
-.nofication {
+.notification {
     background-color: rgba(51, 51, 51, 0.7);
     position: fixed;
     width: 100%;
@@ -394,7 +398,7 @@ select {
     z-index: 20;
 }
 
-.main-nofication {
+.main-notification {
     background-color: #fff;
     width: 500px;
     margin: 0 auto;
@@ -402,30 +406,30 @@ select {
     margin-top: 200px;
 }
 
-.list-nofication {
+.list-notification {
     list-style-type: none;
     width: 80%;
     margin: 0 auto;
 }
 
-.list-nofication li {
+.list-notification li {
     height: 50px;
     line-height: 50px;
     border-bottom: 1px solid #111;
     text-align: center;
 }
 
-.list-nofication li:hover {
+.list-notification li:hover {
    cursor: pointer;
    background-color: #ececec;
 }
 
-.list-nofication li a {
+.list-notification li a {
     font-size: 18px;
     color: #111;
 }
 
-.main-nofication button {
+.main-notification button {
     width: 150px;
     height: 40px;
     border: 0;
@@ -436,7 +440,7 @@ button span {
     font-size: 16px;
 }
 
-.on-nofication {
+.on-notification {
     width: 17px;
     height: 17px;
     border-radius: 17px;

@@ -2,14 +2,14 @@
 include('./layouts/header.php');
 ?>
 <!--nofication-->
-<div id="nofication-order" class="nofication hide">
-    <div class="main-nofication">
+<div id="notification-order" class="notification hide">
+    <div class="main-notification">
         <br><br>
         <h1 class="text-center">Thông báo</h1>
         <br>
-        <ul class="list-nofication">
+        <ul class="list-notification">
             <?php
-            //get nofication
+            //get notification
             $conn = connectToDatabase();
             $status_order = 'Đặt hàng';
             $sql = "SELECT COUNT(SoDonDH) AS SoLuong FROM DatHang WHERE TrangThaiDH='$status_order'";
@@ -20,7 +20,7 @@ include('./layouts/header.php');
                 <li><a href="<?php echo URL . 'Admin/manager-order.php?filter=2'; ?>">Có <?php echo $amount_new_order; ?> đơn hàng mới đang chờ bạn giải quyết</a></li>
             <?php
             }
-            //get nofication
+            //get notification
             $status_order = 'Đang giao';
             $sql = "SELECT COUNT(SoDonDH) AS SoLuong FROM DatHang WHERE TrangThaiDH='$status_order'";
             $result = executeSQLResult($conn, $sql);
@@ -30,7 +30,7 @@ include('./layouts/header.php');
                 <li><a href="<?php echo URL . 'Admin/manager-order.php?filter=3'; ?>">Có <?php echo $amount; ?> đơn hàng đang giao</a></li>
             <?php
             }
-            //get nofication
+            //get notification
             $status_order = 'Đã giao';
             $sql = "SELECT COUNT(SoDonDH) AS SoLuong FROM DatHang WHERE TrangThaiDH='$status_order'";
             $result = executeSQLResult($conn, $sql);
@@ -40,7 +40,7 @@ include('./layouts/header.php');
                 <li><a href="<?php echo URL . 'Admin/manager-order.php?filter=4'; ?>">Có <?php echo $amount; ?> đơn hàng đă giao thành công</a></li>
             <?php
             }
-            //get nofication
+            //get notification
             $status_order = 'Bị huỷ';
             $sql = "SELECT COUNT(SoDonDH) AS SoLuong FROM DatHang WHERE TrangThaiDH='$status_order'";
             $result = executeSQLResult($conn, $sql);
@@ -63,11 +63,11 @@ include('./layouts/header.php');
     <div class="container">
         <h1>Quản lý đơn hàng</h1>
         <br>
-        <div class="group-btn-nofication">
+        <div class="group-btn-notification">
             <?php
             if ($amount_new_order > 0) {
             ?>
-                <div class="on-nofication"></div>
+                <div class="on-notification"></div>
             <?php
             }
             ?>
