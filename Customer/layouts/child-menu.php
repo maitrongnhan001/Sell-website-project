@@ -19,11 +19,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href=<?php echo URL . '/Customer/account-details.php'; ?>>
-                        Giỏ hàng
-                    </a>
-                </li>
-                <li>
                     <a href=<?php echo URL . '/Customer/logout.php'; ?>>
                         Đăng xuất
                     </a>
