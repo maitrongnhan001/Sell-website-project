@@ -1,4 +1,17 @@
 <?php include('./layouts/header.php') ?>
+<?php
+//check user is admin
+if (isset($_SESSION['position'])) {
+    if (!($_SESSION['position'] == "Quản lý")) {
+        $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
+        header('location: '.URL.'/admin/manager-admin.php');
+        die();
+    }
+} else {
+    header('location: '.URL.'/admin/login.php');
+    die();
+}
+?>
 
 <section class="main">
     <div class="container">

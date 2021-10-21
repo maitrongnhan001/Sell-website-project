@@ -10,6 +10,21 @@ function deleteItem($type, $id)
     */
     $conn = connectToDatabase();
     if ($type == 1) {
+        //check user is admin
+        if (isset($_SESSION['position'])) {
+            if (!($_SESSION['position'] == "Quản lý")) {
+                $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
+                header('location: ' . URL . '/admin/manager-admin.php');
+                closeConnect($conn);
+                die();
+            }
+        } else {
+            header('location: ' . URL . '/admin/login.php');
+            closeConnect($conn);
+            die();
+        }
+
+        //delete admin
         $sql = "DELETE FROM NhanVien WHERE MSNV = $id";
         $result = executeSQL($conn, $sql);
         closeConnect($conn);
