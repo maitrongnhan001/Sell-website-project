@@ -40,6 +40,18 @@ function deleteItem($type, $id)
         return $result;
     }
     if ($type == 2) {
+        //check user is stocker
+        if (isset($_SESSION['position'])) {
+            if ($_SESSION['position'] == "Bán hàng") {
+                $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
+                header('location: ' . URL . '/admin/manager-categories.php');
+                die();
+            }
+        } else {
+            header('location: ' . URL . '/admin/login.php');
+            die();
+        }
+
         //delete image
         $image = executeSQLResult($conn, "SELECT HinhAnh FROM LoaiHangHoa WHERE MaLoaiHang = $id");
         $image = $image[0]['HinhAnh'];
@@ -68,7 +80,18 @@ function deleteItem($type, $id)
         return $result;
     }
     if ($type == 3) {
-        require('../Debug/Debug.php');
+        //check user is stocker
+        if (isset($_SESSION['position'])) {
+            if ($_SESSION['position'] == "Bán hàng") {
+                $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
+                header('location: ' . URL . '/admin/manager-products.php');
+                die();
+            }
+        } else {
+            header('location: ' . URL . '/admin/login.php');
+            die();
+        }
+
         //delete image
         $sql = "SELECT TenHinh FROM HinhHangHoa WHERE MSHH = $id";
         $listImageName = executeSQLResult($conn, $sql);
