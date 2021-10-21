@@ -1,6 +1,19 @@
 <?php
 ob_start();
 include('./layouts/header.php');
+
+//check user is sale
+if (isset($_SESSION['position'])) {
+    if ($_SESSION['position'] == "Thủ kho") {
+        $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
+        header('location: '.URL.'/admin/manager-order.php?filter=1');
+        die();
+    }
+} else {
+    header('location: '.URL.'/admin/login.php');
+    die();
+}
+
 if (isset($_GET['noOrder'])) {
     $noOrder = $_GET['noOrder'];
     unset($_GET['noOrder']);

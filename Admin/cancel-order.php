@@ -1,5 +1,18 @@
 <?php
 include('../Config/connect.php');
+
+//check user is sale
+if (isset($_SESSION['position'])) {
+    if ($_SESSION['position'] == "Thủ kho") {
+        $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
+        header('location: '.URL.'/admin/manager-order.php?filter=1');
+        die();
+    }
+} else {
+    header('location: '.URL.'/admin/login.php');
+    die();
+}
+
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {

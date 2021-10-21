@@ -78,6 +78,17 @@ include('./layouts/header.php');
                 <span>Thông báo</span>
             </button>
         </div>
+        <?php
+        //show nofication add admin successfully
+        if (isset($_SESSION['status_order'])) {
+            echo ("<br><div class='green'>" . $_SESSION['status_order'] . "</div>");
+            unset($_SESSION['status_order']);
+        }
+        if (isset($_SESSION['error'])) {
+            echo ("<br><div class='red'>" . $_SESSION['error'] . "</div>");
+            unset($_SESSION['error']);
+        }
+        ?>
         <br>
         <div class="menu-filter">
             <ul>
@@ -99,17 +110,6 @@ include('./layouts/header.php');
                 <div class="clearfix"></div>
             </ul>
         </div>
-        <?php
-        //show nofication add admin successfully
-        if (isset($_SESSION['status_order'])) {
-            echo ("<br><div class='green'>" . $_SESSION['status_order'] . "</div>");
-            unset($_SESSION['status_order']);
-        }
-        if (isset($_SESSION['error'])) {
-            echo ("<br><div class='red'>" . $_SESSION['error'] . "</div>");
-            unset($_SESSION['error']);
-        }
-        ?>
         <br><br>
         <table class="tbl-manager">
             <tr>
