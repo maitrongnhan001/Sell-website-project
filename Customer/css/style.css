@@ -357,6 +357,12 @@ fieldset .input-responsive {
     margin-bottom: 20px;
 }
 
+.group-address span {
+    width: 80%;
+    margin-top: 17px;
+    float: left;
+}
+
 .group-address button {
     margin: 10px 0 0 20px
 }
@@ -364,6 +370,7 @@ fieldset .input-responsive {
 .group-address input[type="radio"] {
     margin: 20px 20px 0px 40px;
     transform: scale(1.4);
+    float: left;
 }
 
 /* css for login */

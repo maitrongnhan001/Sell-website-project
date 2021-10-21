@@ -102,7 +102,8 @@ if (isset($_GET['id'])) {
                         $codeAddress = $list_address[$i]['MaDC'];
                     ?>
                         <p>
-                            <input type="radio" name="address" value="<?php echo $codeAddress; ?>" required><?php echo $address; ?>
+                            <input type="radio" name="address" value="<?php echo $codeAddress; ?>" required><span><?php echo $address; ?></span>
+                            <div class="clearfix"></div>
                         </p>
                     <?php
                     }
