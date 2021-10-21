@@ -39,7 +39,7 @@ if (isset($_GET['filter'])) {
                         FROM DatHang AS A, KhachHang AS B, DiaChiKH AS D, ChiTietDatHang AS E, HangHoa AS F, HinhHangHoa as G, LoaiHangHoa AS H
                         WHERE A.MSKH = B.MSKH
                         AND A.SoDonDH = E.SoDonDH
-                        AND A.MSKH = D.MSKH
+                        AND A.MaDC = D.MaDC
                         AND E.MSHH = F.MSHH
                         AND G.MSHH = F.MSHH
                         AND F.MaLoaiHang = H.MaLoaiHang
@@ -53,7 +53,7 @@ if (isset($_GET['filter'])) {
                         WHERE A.MSKH = B.MSKH
                         AND A.MSNV = C.MSNV
                         AND A.SoDonDH = E.SoDonDH
-                        AND A.MSKH = D.MSKH
+                        AND A.MaDC = D.MaDC
                         AND E.MSHH = F.MSHH
                         AND G.MSHH = F.MSHH
                         AND F.MaLoaiHang = H.MaLoaiHang
