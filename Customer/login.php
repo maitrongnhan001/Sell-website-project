@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
     $userName = executeSQLResult($conn, $sql);
     if (count($userName) == 1) {
         $userName = $userName[0]['UserName'];
-        $_SESSION['username'] = $userName;
+        $_SESSION['username_customer'] = $userName;
         header('location: '.URL.'Customer');
     } else {
         $_SESSION['error'] = "Tài khoản hoặc mật khẩu không đúng.";

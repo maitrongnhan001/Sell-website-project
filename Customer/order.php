@@ -2,8 +2,8 @@
 ob_start();
 include('./layouts/header.php');
 include('../Debug/Debug.php');
-if (isset($_SESSION['username'])) {
-    $userName = $_SESSION['username'];
+if (isset($_SESSION['username_customer'])) {
+    $userName = $_SESSION['username_customer'];
 } else {
     $userName = $_SESSION['status'] = 'Vui lòng đăng nhập để sử dụng tính năng này.';
     header('location: ' . URL . 'Customer/login.php');

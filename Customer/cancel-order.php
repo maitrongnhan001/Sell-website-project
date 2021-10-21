@@ -1,7 +1,7 @@
 <?php
 include('../Config/connect.php');
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
+if (isset($_SESSION['username_customer'])) {
+    $username = $_SESSION['username_customer'];
 } else {
     header('Location: '.URL.'/Customer/login.php');
     die();

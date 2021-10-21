@@ -29,7 +29,7 @@ include('../Config/connect.php');
                     <li><a href=<?php echo URL . 'Customer/products.php'; ?>>Sản Phẩm</a></li>
                     <li>
                         <?php
-                        if (isset($_SESSION['username'])) {
+                        if (isset($_SESSION['username_customer'])) {
                         ?>
 
                             <a href=<?php echo URL . 'Customer/account-details.php'; ?>>Tài khoản</a>
