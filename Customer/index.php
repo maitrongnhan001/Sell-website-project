@@ -2,7 +2,7 @@
 include('./layouts/header.php');
 include('./layouts/search.php');
 if (isset($_SESSION['status'])) {
-    echo "<h3 class='green text-center'>".$_SESSION['status']."</h3>";
+    echo "<h3 class='green text-center'>" . $_SESSION['status'] . "</h3>";
     unset($_SESSION['status']);
 }
 ?>
@@ -22,7 +22,7 @@ if (isset($_SESSION['status'])) {
                 $nameCategory = $listCategories[$i]['TenLoaiHang'];
                 $pathImageCategory = URL . 'images/categories/' . $listCategories[$i]['HinhAnh'];
             ?>
-                <a href=<?php echo URL . '/Customer/category-products.php?codeCategory='.$codeCategory; ?>>
+                <a href=<?php echo URL . '/Customer/category-products.php?codeCategory=' . $codeCategory; ?>>
                     <div class="box-3 float-container">
 
                         <img src=<?php echo $pathImageCategory; ?> width="330px" height="330px" alt="<?php echo $nameCategory; ?>" class="img-curve">
@@ -40,7 +40,7 @@ if (isset($_SESSION['status'])) {
 
 
 <!-- fOOD MEnu Section Starts Here -->
-<section class="product-menu">
+<section id="list-product-menu" class="product-menu">
     <div class="container">
         <h2 class="text-center">Sản Phẩm</h2>
         <?php
@@ -57,63 +57,28 @@ if (isset($_SESSION['status'])) {
             $price = $listProducts[$i]['Gia'];
             $description = $listProducts[$i]['QuyCach'];
             $pathImageProduct = URL . 'images/products/' . $listProducts[$i]['TenHinh'];
-            //start in odd
-            if ($i % 2 == 0) {
         ?>
-                <div class="row">
-                    <div class="product-menu-box">
-                        <div class="product-menu-img">
-                            <img src=<?php echo $pathImageProduct; ?> alt="<?php $nameProduct; ?>" class="img-responsive img-curve">
-                        </div>
-                        <div class="product-menu-desc">
-                            <h4><?php echo $nameProduct; ?></h4>
-                            <p class="product-price"><?php echo $price; ?></p>
-                            <p class="product-detail"><?php echo $description; ?></p>
-                            <br>
-
-                            <a href=<?php echo URL.'Customer/order.php?id='.$codeProduct; ?> class="btn btn-primary">Mua ngay</a>
-                        </div>
-                    </div>
-                    <?php
-                    if ($i == count($listProducts) - 1) {
-                    ?>
-                        <div class="clearfix"></div>
-
-                </div>
-            <?php
-                    }
-                }
-                if ($i % 2 != 0) {
-            ?>
             <div class="product-menu-box">
                 <div class="product-menu-img">
                     <img src=<?php echo $pathImageProduct; ?> alt="<?php $nameProduct; ?>" class="img-responsive img-curve">
                 </div>
                 <div class="product-menu-desc">
                     <h4><?php echo $nameProduct; ?></h4>
-                    <p class="product-price"><?php echo $price ?></p>
+                    <p class="product-price"><?php echo $price; ?></p>
                     <p class="product-detail"><?php echo $description; ?></p>
                     <br>
 
-                    <a href=<?php echo URL.'Customer/order.php?id='.$codeProduct; ?> class="btn btn-primary">Mua ngay</a>
+                    <a href=<?php echo URL . 'Customer/order.php?id=' . $codeProduct; ?> class="btn btn-primary">Mua ngay</a>
                 </div>
             </div>
-
-            <div class="clearfix"></div>
-
-    </div>
-
-<?php
-                }
-            }
-?>
-
-<p class="text-center">
-    <a href="#" class="pink">Xem thêm sản phẩm</a>
-</p>
+        <?php
+        }
+        ?>
+        <div id="clearfix-load" class="clearfix"></div>
+        <p id="load-product" class="text-center pink">Xem thêm sản phẩm</p>
 
 </section>
-<?php 
+<?php
 closeConnect($conn);
-include('./layouts/footer.php'); 
+include('./layouts/footer.php');
 ?>
