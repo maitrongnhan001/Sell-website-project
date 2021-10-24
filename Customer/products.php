@@ -4,7 +4,7 @@ include('./layouts/search.php');
 ?>
 
 <!-- fOOD MEnu Section Starts Here -->
-<section class="product-menu">
+<section id="list-product-menu" class="product-menu">
     <div class="container">
         <h2 class="text-center">Sản Phẩm</h2>
         <?php
@@ -23,33 +23,7 @@ include('./layouts/search.php');
             $description = $listProducts[$i]['QuyCach'];
             $pathImageProduct = URL . 'images/products/' . $listProducts[$i]['TenHinh'];
             //start in odd
-            if ($i % 2 == 0) {
         ?>
-                <div class="row">
-                    <div class="product-menu-box">
-                        <div class="product-menu-img">
-                            <img src=<?php echo $pathImageProduct; ?> alt="<?php $nameProduct; ?>" class="img-responsive img-curve">
-                        </div>
-                        <div class="product-menu-desc">
-                            <h4><?php echo $nameProduct; ?></h4>
-                            <p class="product-price"><?php echo $price ?></p>
-                            <p class="product-detail"><?php echo $description; ?></p>
-                            <br>
-
-                            <a href=<?php echo URL.'Customer/order.php?id='.$codeProduct; ?> class="btn btn-primary">Mua ngay</a>
-                        </div>
-                    </div>
-                    <?php
-                    if ($i == count($listProducts) - 1) {
-                    ?>
-                        <div class="clearfix"></div>
-
-                </div>
-            <?php
-                    }
-                }
-                if ($i % 2 != 0) {
-            ?>
             <div class="product-menu-box">
                 <div class="product-menu-img">
                     <img src=<?php echo $pathImageProduct; ?> alt="<?php $nameProduct; ?>" class="img-responsive img-curve">
@@ -60,26 +34,19 @@ include('./layouts/search.php');
                     <p class="product-detail"><?php echo $description; ?></p>
                     <br>
 
-                    <a href=<?php echo URL.'Customer/order.php?id='.$codeProduct; ?> class="btn btn-primary">Mua ngay</a>
+                    <a href=<?php echo URL . 'Customer/order.php?id=' . $codeProduct; ?> class="btn btn-primary">Mua ngay</a>
                 </div>
             </div>
-
-            <div class="clearfix"></div>
-
+        <?php
+        }
+        ?>
+        <div id="clearfix-load" class="clearfix"></div>
+        <p id="load-product" class="text-center pink">Xem thêm sản phẩm</p>
     </div>
-
-<?php
-                }
-            }
-?>
-
-<p class="text-center">
-    <a href="#" class="pink">Xem thêm sản phẩm</a>
-</p>
 
 </section>
 
-<?php 
+<?php
 closeConnect($conn);
-include('./layouts/footer.php'); 
+include('./layouts/footer.php');
 ?>

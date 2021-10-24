@@ -76,7 +76,7 @@ if (isset($_SESSION['status'])) {
         ?>
         <div id="clearfix-load" class="clearfix"></div>
         <p id="load-product" class="text-center pink">Xem thêm sản phẩm</p>
-
+    </div>
 </section>
 <?php
 closeConnect($conn);

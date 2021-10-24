@@ -267,12 +267,17 @@ nav .line {
 }
 .product-menu-box{
     width: 43%;
-    height: 160px;
+    height: 170px;
     margin: 1%;
     padding: 2%;
     float: left;
     background-color: white;
     border-radius: 15px;
+}
+
+.product-menu-box h4 {
+    max-height: 35px;
+    overflow: hidden;
 }
 
 .product-menu-img{
