@@ -115,6 +115,7 @@ a{
 .row {
     display: flex;
 }
+
 h2{
     color: #2f3542;
     font-size: 2rem;
@@ -266,6 +267,7 @@ nav .line {
 }
 .product-menu-box{
     width: 43%;
+    height: 160px;
     margin: 1%;
     padding: 2%;
     float: left;
@@ -275,6 +277,8 @@ nav .line {
 
 .product-menu-img{
     width: 20%;
+    height: 100%;
+    overflow: hidden;
     float: left;
 }
 
@@ -512,4 +516,8 @@ menu-filter ul{
 
 .white-row {
     background-color: white;
+}
+/* css load product */
+#load-product:hover {
+    cursor: pointer;
 }
