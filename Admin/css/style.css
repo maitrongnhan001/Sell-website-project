@@ -308,6 +308,11 @@ button:hover {
     text-align: justify;
 }
 
+.limit-height {
+    max-height: 109px;
+    overflow: hidden;
+}
+
 .name-product {
     width: 150px;
 }

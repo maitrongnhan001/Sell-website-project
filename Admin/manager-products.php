@@ -48,7 +48,7 @@
                     <tr class="text-center">
                         <td><?php echo $i; ?></td>
                         <td class="name-product"><?php echo $nameProduct; ?></td>
-                        <td class="description"><?php echo $description; ?></td>
+                        <td class="description"><div class="limit-height"><?php echo $description; ?></div></td>
                         <td>VNĐ: <?php echo $price; ?></td>
                         <td><?php echo $quality; ?></td>
                         <td><?php echo $category; ?></td>
@@ -65,7 +65,7 @@
                     <tr class="white text-center">
                         <td><?php echo $i; ?></td>
                         <td class="name-product"><?php echo $nameProduct; ?></td>
-                        <td class="description"><?php echo $description; ?></td>
+                        <td class="description"><div class="limit-height"><?php echo $description; ?></div></td>
                         <td>VNĐ: <?php echo $price; ?></td>
                         <td><?php echo $quality; ?></td>
                         <td><?php echo $category; ?></td>
