@@ -13,7 +13,7 @@ include('./layouts/search.php');
         $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, TenLoaiHang, TenHinh 
                 FROM HangHoa, LoaiHangHoa, HinhHangHoa 
                 WHERE HangHoa.MaLoaiHang = LoaiHangHoa.MaLoaiHang
-                        AND HangHoa.MSHH = HinhHangHoa.MSHH LIMIT 6";
+                        AND HangHoa.MSHH = HinhHangHoa.MSHH LIMIT 12";
         $listProducts = executeSQLResult($conn, $sql);
         //render to display
         for ($i = 0; $i < count($listProducts); $i++) {

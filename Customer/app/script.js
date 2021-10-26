@@ -147,11 +147,52 @@ $('document').ready(() => {
     });
 
     //load product
-    var limit = 6;
+    $('#list-product-menu .container').on('click', '#load-product-index', () => {
+        //count element product
+        var position = $('.product-menu-box').length;
+        $.get(`http://localhost/B1805899_MTNhan/Customer/API/handle-api-product.php?position=${position}&limit=6`,
+            (data, status, xhr) => {
+                //render to display
+
+                const list_product = JSON.parse(data);
+                if (list_product.length > 0) {
+                    $('#clearfix-load').remove();
+                    $('#load-product-index').remove();
+                } else {
+                    $('#load-product').remove();
+                    $('#list-product-menu .container').append('<p id="load-product" class="text-center">Đã hết sản phẩm</p>');
+                    return;
+                }
+
+                for (let i = 0; i < list_product.length; i++) {
+                    $('#list-product-menu .container').append(
+                        `<div class="product-menu-box">
+                            <div class="product-menu-img">
+                                <img src='http://localhost/B1805899_MTNhan/images/products/${list_product[i].image_name}' alt="${list_product[i].food_name}" class="img-responsive img-curve">
+                            </div>
+                            <div class="product-menu-desc">
+                                <h4>${list_product[i].name_product}</h4>
+                                <p class="product-price">${list_product[i].price}</p>
+                                <p class="product-detail">${list_product[i].description}</p>
+                                <br>
+
+                                <a href='http://localhost/B1805899_MTNhan/Customer/order.php?id=${list_product[i].id}' class="btn btn-primary">Mua ngay</a>
+                            </div>
+                        </div>`
+                    );
+                }
+
+                $('#list-product-menu .container').append('<div id="clearfix-load" class="clearfix"></div>');
+                $('#list-product-menu .container').append('<p id="load-product-index" class="text-center pink">Xem thêm sản phẩm</p>');
+            }
+        );
+    });
+
+    //load product
     $('#list-product-menu .container').on('click', '#load-product', () => {
         //count element product
         var position = $('.product-menu-box').length;
-        $.get(`http://localhost/B1805899_MTNhan/Customer/API/handle-api-product.php?position=${position}&limit=${limit}`,
+        $.get(`http://localhost/B1805899_MTNhan/Customer/API/handle-api-product.php?position=${position}&limit=12`,
             (data, status, xhr) => {
                 //render to display
 

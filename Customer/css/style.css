@@ -526,3 +526,7 @@ menu-filter ul{
 #load-product:hover {
     cursor: pointer;
 }
+
+#load-product-index:hover {
+    cursor: pointer;
+}
