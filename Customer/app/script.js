@@ -148,6 +148,7 @@ $('document').ready(() => {
 
     //load product
     $('#list-product-menu .container').on('click', '#load-product-index', () => {
+        //because if user $("#load-product-index").click then dont't click element in following times
         //count element product
         var position = $('.product-menu-box').length;
         $.get(`http://localhost/B1805899_MTNhan/Customer/API/handle-api-product.php?position=${position}&limit=6`,
@@ -188,8 +189,8 @@ $('document').ready(() => {
         );
     });
 
-    //load product
     $('#list-product-menu .container').on('click', '#load-product', () => {
+        //because if user $("#load-product").click then dont't click element in following times
         //count element product
         var position = $('.product-menu-box').length;
         $.get(`http://localhost/B1805899_MTNhan/Customer/API/handle-api-product.php?position=${position}&limit=12`,
@@ -226,6 +227,42 @@ $('document').ready(() => {
 
                 $('#list-product-menu .container').append('<div id="clearfix-load" class="clearfix"></div>');
                 $('#list-product-menu .container').append('<p id="load-product" class="text-center pink">Xem thêm sản phẩm</p>');
+            }
+        );
+    });
+
+    //load category
+    $('#list-categories .container').on('click', '#load-categories', () => {
+        //because if user $("#load-product").click then dont't click element in following times
+        //count element product
+        var position = $('.box-3').length;
+        $.get(`http://localhost/B1805899_MTNhan/Customer/API/handle-api-category.php?position=${position}&limit=12`,
+            (data, status, xhr) => {
+                //render to display
+                const list_categories = JSON.parse(data);
+                if (list_categories.length > 0) {
+                    $('#clearfix-load').remove();
+                    $('#load-categories').remove();
+                } else {
+                    $('#load-categories').remove();
+                    $('#list-categories .container .container-category-center').append('<p id="load-categories" class="text-center">Đã hết sản phẩm</p>');
+                    return;
+                }
+
+                for (let i = 0; i < list_categories.length; i++) {
+                    $('#list-categories .container .container-category-center').append(
+                        `<a href="">
+                            <div class="box-3 float-container">
+    
+                                <img src='http://localhost/B1805899_MTNhan/images/categories/${list_categories[i].image_name}'' width="330px" height="330px" alt="${list_categories[i].name_category}" class="img-curve">
+                                <h3 class="float-text white">${list_categories[i].name_category}</h3>
+                            </div>
+                        </a>`
+                    );
+                }
+
+                $('#list-categories .container .container-category-center').append('<div id="clearfix-load" class="clearfix"></div>');
+                $('#list-categories .container .container-category-center').append('<p id="load-product" class="text-center pink">Xem thêm sản phẩm</p>');
             }
         );
     });

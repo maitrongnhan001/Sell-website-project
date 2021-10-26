@@ -4,14 +4,14 @@ include('./layouts/search.php');
 ?>
 
 <!-- Categories Section Starts Here -->
-<section class="categories">
+<section id="list-categories" class="categories">
     <div class="container">
         <h2 class="text-center">Danh Mục</h2>
         <div class="container-category-center">
             <?php
             //get data categories
             $conn = connectToDatabase();
-            $sql = "SELECT * FROM LoaiHangHoa";
+            $sql = "SELECT * FROM LoaiHangHoa LIMIT 6";
             $listCategories = executeSQLResult($conn, $sql);
             //render to display
             for ($i = 0; $i < count($listCategories); $i++) {
@@ -29,10 +29,8 @@ include('./layouts/search.php');
             <?php
             }
             ?>
-            <div class="clearfix"></div>
-            <p class="text-center">
-                <a href="#" class="pink">Xem thêm sản phẩm</a>
-            </p>
+            <div id="clearfix-load" class="clearfix"></div>
+            <p class="text-center pink" id="load-categories">Xem thêm danh mục</p>
         </div>
     </div>
 </section>

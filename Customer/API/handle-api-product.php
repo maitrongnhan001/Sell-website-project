@@ -10,13 +10,6 @@ if (isset($_GET['position']) && isset($_GET['limit'])) {
                 WHERE HangHoa.MaLoaiHang = LoaiHangHoa.MaLoaiHang
                 AND HangHoa.MSHH = HinhHangHoa.MSHH LIMIT $limit OFFSET $position";
     $result = executeSQLResult($conn, $sql);
-    $product0 = array(
-        'id' => $result[0]['MSHH'],
-        'name_product' => $result[0]['TenHH'],
-        'price' => $result[0]['Gia'],
-        'category' => $result[0]['TenLoaiHang'],
-        'image_name' => $result[0]['TenHinh']
-    );
     $list_product = array();
     for ($i = 0; $i < count($result); $i++) {
         //convert to json
@@ -32,4 +25,5 @@ if (isset($_GET['position']) && isset($_GET['limit'])) {
         $list_product[$i] = $product;
     }
     echo json_encode($list_product, JSON_UNESCAPED_UNICODE);
+    closeConnect($conn);
 }
