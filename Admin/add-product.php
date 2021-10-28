@@ -72,7 +72,7 @@ if (isset($_SESSION['position'])) {
                     </div>
                     <br>
                     <label for="image-upload" class="input-file btn-secondary">
-                        <input type="file" name="Image-Product" id="image-upload" multiple required placeholder="Thêm hình ảnh">
+                        <input type="file" name="Image-Product[]" id="image-upload" multiple="multiple" required placeholder="Thêm hình ảnh">
                         Chọn ảnh
                     </label>
                     <p id="nofi-5" class="red"></p>
@@ -94,26 +94,8 @@ if (isset($_POST['submit'])) {
     $price = $_POST['Price'];
     $quality = $_POST['Quality'];
     $category = $_POST['Category'];
-    $imageName = $_FILES['Image-Product']['name'];
-    //store image
-    if ($imageName != "") {
-        //random name product
-        $extension = end(explode('.', $imageName));
-        $imageName = 'product_' . rand(0000, 9999) . '.' . $extension;
-        //store image
-        $sourceFile = $_FILES['Image-Product']['tmp_name'];
-        $pathImage = "../images/products/$imageName";
-        $upload = move_uploaded_file($sourceFile, $pathImage);
-        //check store success?
-        if (!$upload) {
-            unset($_POST['submit'], $_POST['Name-Product'], $_POST['Description'], $_POST['Price'], $_POST['Quality'], $_POST['Category'], $_FILES['Image-Product']['name']);
-            $_SESSION['status_product'] = 'Thêm sản phẩm thất bại';
-            header('Location: ' . URL . 'Admin/add-product.php');
-            die();
-        }
-    } else {
-        $imageName = "";
-    }
+    $list_image = $_FILES['Image-Product'];
+
     //insert data to table HangHoa
     $sql = "INSERT INTO HangHoa (
         TenHH,
@@ -129,19 +111,56 @@ if (isset($_POST['submit'])) {
         $category
     )";
     $result = executeSQL($conn, $sql);
-    //insert data to table HinhHangHoa
+
+    //check store success?
+    if (!$result) {
+        unset($_POST['submit'], $_POST['Name-Product'], $_POST['Description'], $_POST['Price'], $_POST['Quality'], $_POST['Category'], $_FILES['Image-Product']['name']);
+        $_SESSION['status_product'] = 'Thêm sản phẩm thất bại';
+        header('Location: ' . URL . 'Admin/add-product.php');
+        die();
+    }
+
+    //get MSHH for store image to database
     $MSHH = executeSQLResult($conn, "SELECT MSHH FROM HangHoa ORDER BY MSHH DESC LIMIT 1");
     $MSHH = $MSHH[0]['MSHH'];
-    $sql = "INSERT INTO HinhHangHoa (
-        TenHinh,
-        MSHH
-    ) VALUES (
-        '$imageName',
-        '$MSHH'
-    )";
-    $result = $result && executeSQL($conn, $sql);
+
+    //store image
+    $total_image = count($list_image['name']);
+
+    for ($i = 0; $i < $total_image; $i++) {
+        //get image name
+        $imageName = $list_image['name'][$i];
+
+        //random name product
+        $extension = end(explode('.', $imageName));
+        $imageName = 'product_' . rand(0000, 9999) . '.' . $extension;
+
+        //store image
+        $sourceFile = $list_image['tmp_name'][$i];
+        $pathImage = "../images/products/$imageName";
+        $upload = move_uploaded_file($sourceFile, $pathImage);
+
+        //check store success?
+        if (!$upload) {
+            unset($_POST['submit'], $_POST['Name-Product'], $_POST['Description'], $_POST['Price'], $_POST['Quality'], $_POST['Category'], $_FILES['Image-Product']['name']);
+            $_SESSION['status_product'] = 'Thêm sản phẩm thất bại';
+            header('Location: ' . URL . 'Admin/add-product.php');
+            die();
+        }
+
+        //insert data to table HinhHangHoa
+        $sql = "INSERT INTO HinhHangHoa (
+                                TenHinh,
+                                MSHH
+                            ) VALUES (
+                                '$imageName',
+                                '$MSHH'
+                            )";
+        $result = $result && executeSQL($conn, $sql);
+    }
     //unset
-    unset($_POST['submit'], $_POST['Name-Product'], $_POST['Description'], $_POST['Price'], $_POST['Quality'], $_POST['Category'], $_FILES['Image-Product']['name']);
+    unset($_POST['submit'], $_POST['Name-Product'], $_POST['Description'], $_POST['Price'], $_POST['Quality'], $_POST['Category'], $_FILES['Image-Product']);
+
     //check insert data
     if ($result) {
         $_SESSION['status_product'] = 'Thêm sản phẩm thành công';
