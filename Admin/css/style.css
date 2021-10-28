@@ -66,6 +66,7 @@ body {
 .btn-primary {
     background-color: #1e90ff;
     padding: 1%;
+    border: 0;
     border-radius: 5px;
     color: white;
     text-decoration: none;
@@ -315,6 +316,58 @@ button:hover {
 
 .name-product {
     width: 150px;
+}
+
+/* css for add product */
+.main .add-product {
+    width: 1000px;
+}
+
+.add-product .col-info-product {
+    width: 45%;
+    padding: 2.5%;
+    margin: 0 auto;
+    float: left;
+}
+
+.slider-content {
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 10px;
+}
+
+.my-slides {
+    transition: 0.3s all;
+}
+
+.hide {
+    display: none;
+}
+
+.slider-control {
+    position: relative;
+    bottom: 80px;
+    text-align: center;
+}
+
+.btn-slider-small {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    border: 1px solid #ff4758;
+    display: inline-block;
+    margin: 6px;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.btn-slider-small:hover {
+    transform: scale(1.2);
+}
+
+.forcus {
+    background-color: #ff4758;
 }
 
 /* css for manager order */

@@ -134,15 +134,196 @@ $('document').ready(() => {
         CheckSubmit();
     });
 
-    //review image before upload
-    $('#image-upload').change(() => {
-        $('#text-review-img').remove();
-        $('#img-show').remove();
-        var File = new FileReader();
-        File.readAsDataURL($('#image-upload').prop('files')[0]);
-        File.onload = (e) => {
-            $('#img-review').append("<img class='format-img-review img-category' width=300px height=300px src='" + e.target.result + "' >")
+    $("#group-input-img").on('change', '#image-upload', (e) => {
+
+        //because if user  $('#image-upload').change() then dont't click element in following times
+        const number_image = e.target.files.length;
+        if (number_image <= 6) {
+            //clear element
+            $("#img-review").empty();
+            $("#nofi-5").text("");
+            $('#text-review-img').remove();
+
+            //render list image to screen
+            $("#img-review").append(
+                `<div class="slider-content">
+                    <div id='slider-img-review'></div>
+                    <div class="slider-control" id="list-btn-slides"></div
+                 </div>`
+            );
+
+            //render btn
+            const array_img = Object.keys( e.target.files);
+            array_img.forEach((element, i) => {
+                File = new FileReader();
+                File.readAsDataURL($('#image-upload').prop('files')[i]);
+
+                //add button slide
+                if (i == 0) {
+                    //first image is select
+                    //add image
+                    File.onload = (e) => {
+                        $('#slider-img-review').append(
+                            `<img class="my-slides" width=470px height=310px id="img-${i + 1}" src="${e.target.result}">`
+                        );
+                    }
+
+                    //add button silde
+                    $("#list-btn-slides").append(
+                        `<span class="btn-slider-small forcus" id="btn-${i + 1}"></span>`
+                    );
+                }else {
+                    //add image
+                    File.onload = (e) => {
+                        $('#slider-img-review').append(
+                            `<img class="my-slides hide" width=470px height=310px id="img-${i + 1}" src="${e.target.result}">`
+                        );
+                    }
+
+                    //add button silde
+                    $("#list-btn-slides").append(
+                        `<span class="btn-slider-small" id="btn-${i + 1}"></span>`
+                    );
+                }
+            });
+            $("#list-btn-slides").append("<div class='clearfix'></div>")
+            
+            //listening btn slides
+            //listening click button sildes
+            $(`#btn-1`).click(() => {
+                const id_element = $(`#btn-1`).attr("id");
+                const current_forcus_element = $('.slider-control').find('.forcus');
+                current_forcus_element.removeClass('forcus');
+                $(`#${id_element}`).addClass('forcus');
+        
+                //hide all img
+                $(".my-slides").addClass('hide');
+        
+                //show image choose
+                const position_img_element = id_element[id_element.length - 1];
+                const id_img = `img-${position_img_element}`;
+                $(`#${id_img}`).removeClass("hide");
+            });
+            $(`#btn-2`).click(() => {
+                const id_element = $(`#btn-2`).attr("id");
+                const current_forcus_element = $('.slider-control').find('.forcus');
+                current_forcus_element.removeClass('forcus');
+                $(`#${id_element}`).addClass('forcus');
+        
+                //hide all img
+                $(".my-slides").addClass('hide');
+        
+                //show image choose
+                const position_img_element = id_element[id_element.length - 1];
+                const id_img = `img-${position_img_element}`;
+                $(`#${id_img}`).removeClass("hide");
+            });
+            $(`#btn-3`).click(() => {
+                const id_element = $(`#btn-3`).attr("id");
+                const current_forcus_element = $('.slider-control').find('.forcus');
+                current_forcus_element.removeClass('forcus');
+                $(`#${id_element}`).addClass('forcus');
+        
+                //hide all img
+                $(".my-slides").addClass('hide');
+        
+                //show image choose
+                const position_img_element = id_element[id_element.length - 1];
+                const id_img = `img-${position_img_element}`;
+                $(`#${id_img}`).removeClass("hide");
+            });
+            $(`#btn-4`).click(() => {
+                const id_element = $(`#btn-4`).attr("id");
+                const current_forcus_element = $('.slider-control').find('.forcus');
+                current_forcus_element.removeClass('forcus');
+                $(`#${id_element}`).addClass('forcus');
+        
+                //hide all img
+                $(".my-slides").addClass('hide');
+        
+                //show image choose
+                const position_img_element = id_element[id_element.length - 1];
+                const id_img = `img-${position_img_element}`;
+                $(`#${id_img}`).removeClass("hide");
+            });
+            $(`#btn-5`).click(() => {
+                const id_element = $(`#btn-5`).attr("id");
+                const current_forcus_element = $('.slider-control').find('.forcus');
+                current_forcus_element.removeClass('forcus');
+                $(`#${id_element}`).addClass('forcus');
+        
+                //hide all img
+                $(".my-slides").addClass('hide');
+        
+                //show image choose
+                const position_img_element = id_element[id_element.length - 1];
+                const id_img = `img-${position_img_element}`;
+                $(`#${id_img}`).removeClass("hide");
+            });
+            $(`#btn-6`).click(() => {
+                const id_element = $(`#btn-6`).attr("id");
+                const current_forcus_element = $('.slider-control').find('.forcus');
+                current_forcus_element.removeClass('forcus');
+                $(`#${id_element}`).addClass('forcus');
+        
+                //hide all img
+                $(".my-slides").addClass('hide');
+        
+                //show image choose
+                const position_img_element = id_element[id_element.length - 1];
+                const id_img = `img-${position_img_element}`;
+                $(`#${id_img}`).removeClass("hide");
+            });
+        } else {
+            //notification error
+            $("#nofi-5").text("Số lượng hình ảnh không được nhiều hơn 6");
         }
+    });
+
+    //slides
+    $("#btn-1").click(() => {
+        const id_element = $("#btn-1").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+        //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
+    });
+
+    $("#btn-2").click(() => {
+        const id_element = $("#btn-2").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+         //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
+    });
+
+    $("#btn-3").click(() => {
+        const id_element = $("#btn-3").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+         //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
     });
 
     //check price and quality
