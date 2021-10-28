@@ -523,10 +523,14 @@ menu-filter ul{
     background-color: white;
 }
 /* css load product */
-#load-product:hover {
+#load-product {
     cursor: pointer;
 }
 
 #load-product-index:hover {
+    cursor: pointer;
+}
+
+#load-categories {
     cursor: pointer;
 }

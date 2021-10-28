@@ -160,8 +160,8 @@ $('document').ready(() => {
                     $('#clearfix-load').remove();
                     $('#load-product-index').remove();
                 } else {
-                    $('#load-product').remove();
-                    $('#list-product-menu .container').append('<p id="load-product" class="text-center">Đã hết sản phẩm</p>');
+                    $('#load-product-index').remove();
+                    $('#list-product-menu .container').append('<p class="text-center">Đã hết sản phẩm</p>');
                     return;
                 }
 
@@ -245,7 +245,7 @@ $('document').ready(() => {
                     $('#load-categories').remove();
                 } else {
                     $('#load-categories').remove();
-                    $('#list-categories .container .container-category-center').append('<p id="load-categories" class="text-center">Đã hết sản phẩm</p>');
+                    $('#list-categories .container .container-category-center').append('<p class="text-center">Đã hết sản phẩm</p>');
                     return;
                 }
 
@@ -262,7 +262,7 @@ $('document').ready(() => {
                 }
 
                 $('#list-categories .container .container-category-center').append('<div id="clearfix-load" class="clearfix"></div>');
-                $('#list-categories .container .container-category-center').append('<p id="load-product" class="text-center pink">Xem thêm sản phẩm</p>');
+                $('#list-categories .container .container-category-center').append('<p id="load-categories" class="text-center pink">Xem thêm danh mục</p>');
             }
         );
     });
