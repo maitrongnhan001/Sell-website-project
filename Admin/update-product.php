@@ -1,15 +1,15 @@
-<?php 
+<?php
 include('./layouts/header.php');
 
 //check user is stocker
 if (isset($_SESSION['position'])) {
     if ($_SESSION['position'] == "Bán hàng") {
         $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
-        header('location: '.URL.'/admin/manager-products.php');
+        header('location: ' . URL . '/admin/manager-products.php');
         die();
     }
 } else {
-    header('location: '.URL.'/admin/login.php');
+    header('location: ' . URL . '/admin/login.php');
     die();
 }
 ?>
@@ -18,7 +18,7 @@ if (isset($_SESSION['position'])) {
     <div class="container">
         <h1 class="text-center">Cập nhật sản phẩm</h1>
         <br>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data" class="add-product">
             <?php
             //show nofication add admin error
             if (isset($_SESSION['status_product'])) {
@@ -46,60 +46,64 @@ if (isset($_SESSION['position'])) {
             $codeImage = $products[0]['MaHinh'];
             $pathImage = URL . 'images/products/' . $products[0]['TenHinh'];
             ?>
-
-            <div class="group-input">
-                <p><b>Tên sản phẩm</b></p>
-                <input type="text" name="Name-Product" value="<?php echo $nameProduct; ?>" required placeholder="Tên sản phẩm *" class="format-ip">
-                <p id="nofi-1"></p>
-            </div>
-            <div class="group-input">
-                <p><b>Quy cách</b></p>
-                <textarea name="Description" id="" cols="30" rows="10" require placeholder="Quy cách *"><?php echo $description; ?></textarea>
-            </div>
-            <div class="group-input">
-                <p><b>Giá</b></p>
-                <input type="number" name="Price" id="price" value="<?php echo $price; ?>" required placeholder="Giá *" class="format-ip">
-                <p id="nofi-2" class="red"></p>
-            </div>
-            <div class="group-input">
-                <p><b>Số lượng</b></p>
-                <input type="number" name="Quality" id="quality" value="<?php echo $quality; ?>" required placeholder="Số lượng *" class="format-ip">
-                <p id="nofi-3" class="red"></p>
-            </div>
-            <div class="group-input">
-                <p><b>Danh mục</b></p>
-                <select name="Category" class="format-ip">
-                    <?php
-                    //get list category
-                    $sql = "SELECT MaLoaiHang, TenLoaiHang FROM LoaiHangHoa";
-                    $listCategories = executeSQLResult($conn, $sql);
-                    //display list category to screen
-                    for ($i = 0; $i < count($listCategories); $i++) {
-                        $codeCategory = $listCategories[$i]['MaLoaiHang'];
-                        $nameCategory = $listCategories[$i]['TenLoaiHang'];
-                        //check category is select
-                        if ($codeCategory == $category) {
-                            echo "<option value='$codeCategory' selected>$nameCategory</option>";
-                        } else {
-                            echo "<option value='$codeCategory'>$nameCategory</option>";
-                        }
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="group-input">
-                <p><b>Hình ảnh</b></p>
-                <br>
-                <div id="img-review">
-                    <img id='img-show' class='format-img-review img-category' width=300px height=300px src=<?php echo $pathImage; ?>>
+            <div class="col-info-product">
+                <div class="group-input">
+                    <p><b>Tên sản phẩm</b></p>
+                    <input type="text" name="Name-Product" value="<?php echo $nameProduct; ?>" required placeholder="Tên sản phẩm *" class="format-ip">
+                    <p id="nofi-1"></p>
                 </div>
-                <br>
-                <label for="image-upload" class="input-file btn-secondary">
-                    <input type="file" name="Image-Product" id="image-upload" required placeholder="Thêm hình ảnh">
-                    Chọn ảnh
-                </label>
-                <p id="nofi-5"></p>
+                <div class="group-input">
+                    <p><b>Quy cách</b></p>
+                    <textarea name="Description" id="" cols="30" rows="10" require placeholder="Quy cách *"><?php echo $description; ?></textarea>
+                </div>
+                <div class="group-input">
+                    <p><b>Giá</b></p>
+                    <input type="number" name="Price" id="price" value="<?php echo $price; ?>" required placeholder="Giá *" class="format-ip">
+                    <p id="nofi-2" class="red"></p>
+                </div>
+                <div class="group-input">
+                    <p><b>Số lượng</b></p>
+                    <input type="number" name="Quality" id="quality" value="<?php echo $quality; ?>" required placeholder="Số lượng *" class="format-ip">
+                    <p id="nofi-3" class="red"></p>
+                </div>
             </div>
+            <div class="col-info-product">
+                <div class="group-input">
+                    <p><b>Danh mục</b></p>
+                    <select name="Category" class="format-ip">
+                        <?php
+                        //get list category
+                        $sql = "SELECT MaLoaiHang, TenLoaiHang FROM LoaiHangHoa";
+                        $listCategories = executeSQLResult($conn, $sql);
+                        //display list category to screen
+                        for ($i = 0; $i < count($listCategories); $i++) {
+                            $codeCategory = $listCategories[$i]['MaLoaiHang'];
+                            $nameCategory = $listCategories[$i]['TenLoaiHang'];
+                            //check category is select
+                            if ($codeCategory == $category) {
+                                echo "<option value='$codeCategory' selected>$nameCategory</option>";
+                            } else {
+                                echo "<option value='$codeCategory'>$nameCategory</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="group-input">
+                    <p><b>Hình ảnh</b></p>
+                    <br>
+                    <div id="img-review">
+                        <img id='img-show' class='format-img-review img-category' width=300px height=300px src=<?php echo $pathImage; ?>>
+                    </div>
+                    <br>
+                    <label for="image-upload" class="input-file btn-secondary">
+                        <input type="file" name="Image-Product" id="image-upload" required placeholder="Thêm hình ảnh">
+                        Cập nhật
+                    </label>
+                    <p id="nofi-5"></p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
             <div class="group-input">
                 <input type="submit" id="register" value="Cập nhật sản phẩm" name="submit" class="btn-primary">
             </div>
@@ -122,7 +126,7 @@ if (isset($_POST['submit'])) {
         $extension = end(explode('.', $imageName));
         $imageName = 'product_' . rand(0000, 9999) . '.' . $extension;
         //delete image
-        $delete = unlink('../images/products/'.$products[0]['TenHinh']);
+        $delete = unlink('../images/products/' . $products[0]['TenHinh']);
         if (!$delete) {
             unset($_POST['submit'], $_POST['Name-Product'], $_POST['Description'], $_POST['Price'], $_POST['Quality'], $_POST['Category'], $_FILES['Image-Product']['name']);
             $_SESSION['status_product'] = 'Cập nhật sản phẩm thất bại';
@@ -168,7 +172,7 @@ if (isset($_POST['submit'])) {
         header('Location: ' . URL . 'Admin/manager-products.php');
     } else {
         $_SESSION['status_product'] = 'Cập nhật phẩm thất bại';
-        header('Location: ' . URL . 'Admin/update-product.php?id='.$id);
+        header('Location: ' . URL . 'Admin/update-product.php?id=' . $id);
     }
 }
 ?>
