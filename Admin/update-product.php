@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('./layouts/header.php');
 
 //check user is stocker
@@ -44,7 +45,6 @@ if (isset($_SESSION['position'])) {
             $quality = $products[0]['SoLuongHang'];
             $category = $products[0]['MaloaiHang'];
             $codeImage = $products[0]['MaHinh'];
-            $pathImage = URL . 'images/products/' . $products[0]['TenHinh'];
             ?>
             <div class="col-info-product">
                 <div class="group-input">
@@ -89,18 +89,47 @@ if (isset($_SESSION['position'])) {
                         ?>
                     </select>
                 </div>
-                <div class="group-input">
+                <div class="group-input" id="group-input-img">
                     <p><b>Hình ảnh</b></p>
                     <br>
                     <div id="img-review">
-                        <img id='img-show' class='format-img-review img-category' width=300px height=300px src=<?php echo $pathImage; ?>>
+                        <div class="slider-content">
+                            <div id='slider-img-review'>
+                                <?php
+                                for ($i = 0; $i < count($products); $i++) {
+                                    $pathImage = URL . 'images/products/' . $products[$i]['TenHinh'];
+                                    if ($i == 0) {
+                                ?>
+                                        <img class="my-slides" width=470px height=310px id="img-<?php echo $i + 1; ?>" src="<?php echo $pathImage; ?>">
+                                    <?php
+                                        continue;
+                                    }
+                                    ?>
+                                    <img class="my-slides hide" width=470px height=310px id="img-<?php echo $i + 1; ?>" src="<?php echo $pathImage; ?>">
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <div class="slider-control" id="list-btn-slides">
+                                <?php
+                                for ($i = 0; $i < count($products); $i++) {
+                                    $pathImage = URL . 'images/products/' . $products[$i]['TenHinh'];
+                                    if ($i == 0) {
+                                ?>
+                                        <span class="btn-slider-small forcus" id="btn-<?php echo $i + 1; ?>"></span>
+                                    <?php
+                                        continue;
+                                    }
+                                    ?>
+                                    <span class="btn-slider-small" id="btn-<?php echo $i + 1; ?>"></span>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
                     </div>
                     <br>
-                    <label for="image-upload" class="input-file btn-secondary">
-                        <input type="file" name="Image-Product" id="image-upload" required placeholder="Thêm hình ảnh">
-                        Cập nhật
-                    </label>
-                    <p id="nofi-5"></p>
+                    <a href="<?php echo URL.'admin/update-image.php' ?>" class="btn-secondary" id="btn-update-image">Cập nhật hình</a>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -119,34 +148,7 @@ if (isset($_POST['submit'])) {
     $price = $_POST['Price'];
     $quality = $_POST['Quality'];
     $category = $_POST['Category'];
-    $imageName = $_FILES['Image-Product']['name'];
-    //store image
-    if ($imageName != "") {
-        //random name product
-        $extension = end(explode('.', $imageName));
-        $imageName = 'product_' . rand(0000, 9999) . '.' . $extension;
-        //delete image
-        $delete = unlink('../images/products/' . $products[0]['TenHinh']);
-        if (!$delete) {
-            unset($_POST['submit'], $_POST['Name-Product'], $_POST['Description'], $_POST['Price'], $_POST['Quality'], $_POST['Category'], $_FILES['Image-Product']['name']);
-            $_SESSION['status_product'] = 'Cập nhật sản phẩm thất bại';
-            header('Location: ' . URL . 'Admin/update-product.php?id=' . $id);
-            die();
-        }
-        //store image
-        $sourceFile = $_FILES['Image-Product']['tmp_name'];
-        $pathImage = "../images/products/$imageName";
-        $upload = move_uploaded_file($sourceFile, $pathImage);
-        //check store success?
-        if (!$upload) {
-            unset($_POST['submit'], $_POST['Name-Product'], $_POST['Description'], $_POST['Price'], $_POST['Quality'], $_POST['Category'], $_FILES['Image-Product']['name']);
-            $_SESSION['status_product'] = 'Cập nhật sản phẩm thất bại';
-            header('Location: ' . URL . 'Admin/update-product.php?id=' . $id);
-            die();
-        }
-    } else {
-        $imageName = "";
-    }
+    
     //insert data to table HangHoa
     $sql = "UPDATE HangHoa SET
                 TenHH = '$nameProduct',
@@ -156,14 +158,6 @@ if (isset($_POST['submit'])) {
                 MaLoaiHang = $codeCategory
             WHERE MSHH = $id";
     $result = executeSQL($conn, $sql);
-    //insert data to table HinhHangHoa
-    if ($imageName != "") {
-        $sql = "UPDATE HinhHangHoa SET
-                    TenHinh = '$imageName',
-                    MSHH = '$category'
-                WHERE MaHinh = $codeImage";
-        $result = $result && executeSQL($conn, $sql);
-    }
     //unset
     unset($_POST['submit'], $_POST['Name-Product'], $_POST['Description'], $_POST['Price'], $_POST['Quality'], $_POST['Category'], $_FILES['Image-Product']['name']);
     //check insert data
@@ -178,4 +172,6 @@ if (isset($_POST['submit'])) {
 ?>
 <?php
 closeConnect($conn);
-include('./layouts/footer.php') ?>
+include('./layouts/footer.php');
+ob_end_flush();
+?>

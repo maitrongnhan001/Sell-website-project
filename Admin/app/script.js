@@ -148,7 +148,7 @@ $('document').ready(() => {
             $("#img-review").append(
                 `<div class="slider-content">
                     <div id='slider-img-review'></div>
-                    <div class="slider-control" id="list-btn-slides"></div
+                    <div class="slider-control" id="list-btn-slides"></div>
                  </div>`
             );
 
