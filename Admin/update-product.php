@@ -129,7 +129,7 @@ if (isset($_SESSION['position'])) {
                         </div>
                     </div>
                     <br>
-                    <a href="<?php echo URL.'admin/update-image.php' ?>" class="btn-secondary" id="btn-update-image">Cập nhật hình</a>
+                    <a href="<?php echo URL.'admin/manager-image.php?id='.$id; ?>" class="btn-secondary" id="btn-update-image">Cập nhật hình</a>
                 </div>
             </div>
             <div class="clearfix"></div>

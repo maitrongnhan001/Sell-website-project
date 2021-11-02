@@ -94,4 +94,6 @@
 </section>
 
 <?php
-include('./layouts/footer.php') ?>
+closeConnect($conn);
+include('./layouts/footer.php');
+?>

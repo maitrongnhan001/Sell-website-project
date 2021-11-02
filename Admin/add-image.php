@@ -36,4 +36,7 @@
     //             WHERE MaHinh = $codeImage";
     //     $result = $result && executeSQL($conn, $sql);
     // }
+
+
+
 ?>

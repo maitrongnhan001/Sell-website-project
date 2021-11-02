@@ -250,4 +250,6 @@ include('./layouts/header.php');
 </section>
 
 <?php
-include('./layouts/footer.php') ?>
+closeConnect($conn);
+include('./layouts/footer.php');
+?>
