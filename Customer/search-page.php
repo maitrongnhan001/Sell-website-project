@@ -53,60 +53,34 @@ if (isset($_GET['search'])) {
             $description = $listProducts[$index]['QuyCach'];
             $pathImageProduct = URL . 'images/products/' . $listProducts[$index]['TenHinh'];
             //start in odd
-            if ($i % 2 == 0) {
+            if ($codeProduct != $listProducts[$i - 1]['MSHH']) {
+
         ?>
-                <div class="row">
-                    <div class="product-menu-box">
-                        <div class="product-menu-img">
-                            <img src=<?php echo $pathImageProduct; ?> alt="<?php $nameProduct; ?>" class="img-responsive img-curve">
-                        </div>
-                        <div class="product-menu-desc">
-                            <h4><?php echo $nameProduct; ?></h4>
-                            <p class="product-price"><?php echo $price ?></p>
-                            <p class="product-detail"><?php echo $description; ?></p>
-                            <br>
-
-                            <a href=<?php echo URL.'Customer/order.php?id='.$codeProduct; ?> class="btn btn-primary">Mua ngay</a>
-                        </div>
+                <div class="product-menu-box">
+                    <div class="product-menu-img">
+                        <img src=<?php echo $pathImageProduct; ?> alt="<?php $nameProduct; ?>" class="img-responsive img-curve">
                     </div>
-                    <?php
-                    if ($i == count($listProducts) - 1) {
-                    ?>
-                        <div class="clearfix"></div>
+                    <div class="product-menu-desc">
+                        <h4><?php echo $nameProduct; ?></h4>
+                        <p class="product-price"><?php echo $price; ?></p>
+                        <p class="product-detail"><?php echo $description; ?></p>
+                        <br>
 
+                        <a href=<?php echo URL . 'Customer/order.php?id=' . $codeProduct; ?> class="btn btn-primary">Mua ngay</a>
+                    </div>
                 </div>
-            <?php
-                    }
-                }
-                if ($i % 2 != 0) {
-            ?>
-            <div class="product-menu-box">
-                <div class="product-menu-img">
-                    <img src=<?php echo $pathImageProduct; ?> alt="<?php $nameProduct; ?>" class="img-responsive img-curve">
-                </div>
-                <div class="product-menu-desc">
-                    <h4><?php echo $nameProduct; ?></h4>
-                    <p class="product-price"><?php echo $price ?></p>
-                    <p class="product-detail"><?php echo $description; ?></p>
-                    <br>
-
-                    <a href=<?php echo URL.'Customer/order.php?id='.$codeProduct; ?> class="btn btn-primary">Mua ngay</a>
-                </div>
-            </div>
-
-            <div class="clearfix"></div>
+        <?php
+            }
+        }
+        ?>
 
     </div>
+    <div class="clearfix"></div>
+    </div>
 
-<?php
-                }
-            }
-?>
-</div>
-
-<p class="text-center">
-    <a href="#" class="pink">See All Foods</a>
-</p>
+    <p class="text-center">
+        <a href="#" class="pink">See All Foods</a>
+    </p>
 
 </section>
 

@@ -23,21 +23,24 @@ include('./layouts/search.php');
             $description = $listProducts[$i]['QuyCach'];
             $pathImageProduct = URL . 'images/products/' . $listProducts[$i]['TenHinh'];
             //start in odd
-        ?>
-            <div class="product-menu-box">
-                <div class="product-menu-img">
-                    <img src=<?php echo $pathImageProduct; ?> alt="<?php $nameProduct; ?>" class="img-responsive img-curve">
-                </div>
-                <div class="product-menu-desc">
-                    <h4><?php echo $nameProduct; ?></h4>
-                    <p class="product-price"><?php echo $price ?></p>
-                    <p class="product-detail"><?php echo $description; ?></p>
-                    <br>
+            if ($codeProduct != $listProducts[$i - 1]['MSHH']) {
 
-                    <a href=<?php echo URL . 'Customer/order.php?id=' . $codeProduct; ?> class="btn btn-primary">Mua ngay</a>
+        ?>
+                <div class="product-menu-box">
+                    <div class="product-menu-img">
+                        <img src=<?php echo $pathImageProduct; ?> alt="<?php $nameProduct; ?>" class="img-responsive img-curve">
+                    </div>
+                    <div class="product-menu-desc">
+                        <h4><?php echo $nameProduct; ?></h4>
+                        <p class="product-price"><?php echo $price; ?></p>
+                        <p class="product-detail"><?php echo $description; ?></p>
+                        <br>
+
+                        <a href=<?php echo URL . 'Customer/order.php?id=' . $codeProduct; ?> class="btn btn-primary">Mua ngay</a>
+                    </div>
                 </div>
-            </div>
         <?php
+            }
         }
         ?>
         <div id="clearfix-load" class="clearfix"></div>

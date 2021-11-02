@@ -251,7 +251,7 @@ $('document').ready(() => {
 
                 for (let i = 0; i < list_categories.length; i++) {
                     $('#list-categories .container .container-category-center').append(
-                        `<a href="">
+                        `<a href="http://localhost/B1805899_MTNhan/Customer/category-products.php?codeCategory=${list_categories[i].id}">
                             <div class="box-3 float-container">
     
                                 <img src='http://localhost/B1805899_MTNhan/images/categories/${list_categories[i].image_name}'' width="330px" height="330px" alt="${list_categories[i].name_category}" class="img-curve">
