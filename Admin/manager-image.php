@@ -1,17 +1,25 @@
 <?php 
 ob_start();
-include('./layouts/header.php') 
+include('./layouts/header.php');
+//get id
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    unset($_GET['id']);
+} else {
+    $_SESSION['error'] = 'Không lấy được dữ liệu';
+    header('Location: ' . URL . 'Admin/manager-products.php');
+}
 ?>
 
 <section class="main text-content">
     <div class="container">
         <h1>Quản lý sản phẩm</h1>
         <br>
-        <a href=<?php echo URL . "admin/add-image.php"; ?> class="btn-200 btn-primary">Thêm hình</a>
+        <a href=<?php echo URL . "admin/add-image.php?id=$id"; ?> class="btn-200 btn-primary">Thêm hình</a>
         <?php
         //show nofication add admin successfully
-        if (isset($_SESSION['status_product'])) {
-            echo ("<br><div class='green'>" . $_SESSION['status_product'] . "</div>");
+        if (isset($_SESSION['status-image'])) {
+            echo ("<br><div class='green'>" . $_SESSION['status-image'] . "</div>");
             unset($_SESSION['status_product']);
         }
         if (isset($_SESSION['error'])) {
@@ -28,13 +36,6 @@ include('./layouts/header.php')
                 <th>Quản lý</th>
             </tr>
             <?php
-            //get id
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-            } else {
-                $_SESSION['error'] = 'Không có dữ liệu';
-                header('Location: ' . URL . 'Admin/manager-products.php');
-            }
             //get list images
             $conn = connectToDatabase();
             $sql = "SELECT * FROM `HinhHangHoa` WHERE MSHH=$id";
