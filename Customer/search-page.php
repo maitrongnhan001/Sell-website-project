@@ -5,10 +5,9 @@ if (isset($_GET['search'])) {
     $valueSearch = $_GET['search'];
     //search from database
     $conn = connectToDatabase();
-    $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, TenLoaiHang, TenHinh 
-                FROM HangHoa, LoaiHangHoa, HinhHangHoa 
-                WHERE HangHoa.MaLoaiHang = LoaiHangHoa.MaLoaiHang
-                AND HangHoa.MSHH = HinhHangHoa.MSHH";
+    $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, TenLoaiHang 
+                FROM HangHoa, LoaiHangHoa 
+                WHERE HangHoa.MaLoaiHang = LoaiHangHoa.MaLoaiHang";
     $listProducts = executeSQLResult($conn, $sql);
     /*
     listProductSearch is all result search
@@ -51,10 +50,12 @@ if (isset($_GET['search'])) {
             $nameProduct = $listProducts[$index]['TenHH'];
             $price = $listProducts[$index]['Gia'];
             $description = $listProducts[$index]['QuyCach'];
-            $pathImageProduct = URL . 'images/products/' . $listProducts[$index]['TenHinh'];
-            //start in odd
-            if ($codeProduct != $listProducts[$i - 1]['MSHH']) {
 
+            //get image
+            $sql = "SELECT * FROM HinhHangHoa WHERE MSHH = $codeProduct LIMIT 1";
+            $result_image = executeSQLResult($conn, $sql);
+            $image_name = $result_image[0]['TenHinh'];
+            $pathImageProduct = URL . 'images/products/' . $image_name;
         ?>
                 <div class="product-menu-box">
                     <div class="product-menu-img">
@@ -70,7 +71,6 @@ if (isset($_GET['search'])) {
                     </div>
                 </div>
         <?php
-            }
         }
         ?>
 

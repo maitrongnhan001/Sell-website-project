@@ -13,16 +13,20 @@ if (isset($_GET['id'])) {
     $codeProduct = $_GET['id'];
     //get data product
     $conn = connectToDatabase();
-    $sql = "SELECT TenHH, Gia, SoLuongHang, TenHinh 
-            FROM HangHoa, LoaiHangHoa, HinhHangHoa 
+    $sql = "SELECT TenHH, Gia, SoLuongHang 
+            FROM HangHoa, LoaiHangHoa 
             WHERE HangHoa.MaLoaiHang = LoaiHangHoa.MaLoaiHang
-            AND HangHoa.MSHH = HinhHangHoa.MSHH
             AND HangHoa.MSHH = $codeProduct";
     $product = executeSQLResult($conn, $sql);
     $nameProduct = $product[0]['TenHH'];
     $price = $product[0]['Gia'];
     $quality = $product[0]['SoLuongHang'];
-    $pathImage = URL . 'images/products/' . $product[0]['TenHinh'];
+
+    //get image
+    $sql = "SELECT * FROM HinhHangHoa WHERE MSHH = $codeProduct LIMIT 1";
+    $result_image = executeSQLResult($conn, $sql);
+    $image_name = $result_image[0]['TenHinh'];
+    $pathImage = URL . 'images/products/' . $image_name;
 }
 ?>
 
@@ -103,7 +107,7 @@ if (isset($_GET['id'])) {
                     ?>
                         <p>
                             <input type="radio" name="address" value="<?php echo $codeAddress; ?>" required><span><?php echo $address; ?></span>
-                            <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                         </p>
                     <?php
                     }
