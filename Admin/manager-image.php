@@ -51,8 +51,8 @@ if (isset($_GET['id'])) {
                             <td class="name-product"><?php echo $image_name; ?></td>
                             <td><a href=<?php echo $path_image; ?>><img src=<?php echo $path_image; ?> width="400px" alt="No image" class="img-category"></a></td>
                             <td>
-                                <a href=<?php echo URL . "admin/update-image-product.php?id=" . $id; ?> class="btn-primary">Cập nhật</a>
-                                <a href=<?php echo URL . "admin/delete-item.php?id=" . $id . "&type=3"; ?> class="btn-danger">Xoá</a>
+                                <a href=<?php echo URL . "admin/update-image-product.php?id=" . $id_image; ?> class="btn-primary">Cập nhật</a>
+                                <a href=<?php echo URL . "admin/delete-item.php?id=" . $id_image . "&type=4"; ?> class="btn-danger">Xoá</a>
                                 <div class="clear-fix"></div>
                             </td>
                         </tr>
@@ -64,8 +64,8 @@ if (isset($_GET['id'])) {
                             <td class="name-product"><?php echo $image_name; ?></td>
                             <td><a href=<?php echo $path_image; ?>><img src=<?php echo $path_image; ?> width="400px" alt="No image" class="img-category"></a></td>
                             <td>
-                                <a href=<?php echo URL . "admin/update-image-product.php?id=" . $id; ?> class="btn-primary">Cập nhật</a>
-                                <a href=<?php echo URL . "admin/delete-item.php?id=" . $id . "&type=3"; ?> class="btn-danger">Xoá</a>
+                                <a href=<?php echo URL . "admin/update-image-product.php?id=" . $id_image; ?> class="btn-primary">Cập nhật</a>
+                                <a href=<?php echo URL . "admin/delete-item.php?id=" . $id_image . "&type=4"; ?> class="btn-danger">Xoá</a>
                                 <div class="clear-fix"></div>
                             </td>
                         </tr>

@@ -1,4 +1,6 @@
 <?php
+ob_start();
+
 include('../Config/connect.php');
 function deleteItem($type, $id)
 {
@@ -7,6 +9,7 @@ function deleteItem($type, $id)
             1 delete admin
             2 delete categogy
             3 delete product
+            4 delete image
     */
     $conn = connectToDatabase();
     if ($type == 1) {
@@ -124,11 +127,60 @@ function deleteItem($type, $id)
         }
         return $result;
     }
+
+    if ($type == 4) {
+        //delete image
+        $sql = "SELECT * FROM HinhHangHoa WHERE MaHinh = $id";
+        $listImageName = executeSQLResult($conn, $sql);
+        $pathImage = '../images/products/' . $listImageName[0]['TenHinh'];
+        $id_product = $listImageName[0]['MSHH'];
+        
+        //check amount image > 1
+        $sql = "SELECT COUNT(MaHinh) as SoLuongHinh FROM HinhHangHoa WHERE MSHH = $id_product";
+       
+        $amount_image = executeSQLResult($conn, $sql);
+        if ($amount_image[0]['SoLuongHinh'] <= 1) {
+             //delete error
+             $_SESSION['error'] = 'chỉ còn một hình, không thể xoá.';
+             header('Location: ' . URL . '/Admin/manager-image.php?id='.$id_product);
+             closeConnect($conn);
+             return;
+        }
+
+        $delete  = unlink($pathImage);
+        if (!$delete) {
+            //delete error
+            $_SESSION['error'] = 'Xoá sản phẩm không thành công.';
+            header('Location: ' . URL . '/Admin/manager-image.php?id='.$id_product);
+            closeConnect($conn);
+            return;
+        }
+
+        //delete table HinhHanHoa
+        $sql = "DELETE FROM HinhHangHoa WHERE MaHinh = $id";
+        $result = executeSQL($conn, $sql);
+
+        closeConnect($conn);
+        
+        if ($result) {
+            //delete successfully
+            $_SESSION['status-image'] = 'Xoá hình ảnh thành công.';
+            header('Location: ' . URL . '/Admin/manager-image.php?id='.$id_product);
+        } else {
+            //delete error
+            $_SESSION['error'] = 'Xoá sản phẩm không thành công.';
+            header('Location: ' . URL . '/Admin/manager-image.php?id='.$id_product);
+        }
+        return $result;
+    }
 }
 
+//check id
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $type = $_GET['type'];
     unset($_GET['id'], $_GET['type']);
     deleteItem($type, $id);
 }
+
+ob_end_flush();
