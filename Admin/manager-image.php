@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
         //show nofication add admin successfully
         if (isset($_SESSION['status-image'])) {
             echo ("<br><div class='green'>" . $_SESSION['status-image'] . "</div>");
-            unset($_SESSION['status_product']);
+            unset($_SESSION['status-image']);
         }
         if (isset($_SESSION['error'])) {
             echo ("<br><div class='red'>" . $_SESSION['error'] . "</div>");

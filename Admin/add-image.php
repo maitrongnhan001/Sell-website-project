@@ -58,6 +58,9 @@ if (isset($_POST['submit'])) {
     if ($amount_image + $total_image >= 6 ) {
         $_SESSION['error'] = 'Số lượng hình ảnh không được lớn hơn 6';
         header('Location: '.URL.'admin/manager-image.php?id='.$MSHH);
+        unset($_POST['submit'], $_FILES['Image-Product']);
+        closeConnect($conn);
+        die();
     }
 
     for ($i = 0; $i < $total_image; $i++) {
