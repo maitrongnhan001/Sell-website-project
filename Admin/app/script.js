@@ -326,6 +326,51 @@ $('document').ready(() => {
         $(`#${id_img}`).removeClass("hide");
     });
 
+    $("#btn-4").click(() => {
+        const id_element = $("#btn-4").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+         //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
+    });
+
+    $("#btn-5").click(() => {
+        const id_element = $("#btn-5").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+         //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
+    });
+
+    $("#btn-6").click(() => {
+        const id_element = $("#btn-6").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+         //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
+    });
+
     //check price and quality
     $('#price').change(() => {
         const price = $('#price').val();

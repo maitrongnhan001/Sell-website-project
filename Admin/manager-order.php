@@ -141,67 +141,68 @@ include('./layouts/header.php');
             */
             switch ($filter) {
                 case 1:
-                    $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, G.TenHinh
-                    FROM DatHang AS A, KhachHang AS B, ChiTietDatHang AS E, HangHoa AS F, HinhHangHoa as G
+                    $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, F.MSHH
+                    FROM DatHang AS A, KhachHang AS B, ChiTietDatHang AS E, HangHoa AS F
                     WHERE A.MSKH = B.MSKH
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
-                        AND G.MSHH = F.MSHH
                         ORDER BY A.SoDonDH DESC";
                     break;
                 case 2:
-                    $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, G.TenHinh
-                    FROM DatHang AS A, KhachHang AS B, ChiTietDatHang AS E, HangHoa AS F, HinhHangHoa as G
+                    $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, F.MSHH
+                    FROM DatHang AS A, KhachHang AS B, ChiTietDatHang AS E, HangHoa AS F
                     WHERE A.MSKH = B.MSKH
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
-                        AND G.MSHH = F.MSHH
                         AND A.TrangThaiDH = 'Đặt hàng'
                         ORDER BY A.SoDonDH DESC";
                     break;
                 case 3:
-                    $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, G.TenHinh
-                    FROM DatHang AS A, KhachHang AS B, ChiTietDatHang AS E, HangHoa AS F, HinhHangHoa as G
+                    $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, F.MSHH
+                    FROM DatHang AS A, KhachHang AS B, ChiTietDatHang AS E, HangHoa AS F
                     WHERE A.MSKH = B.MSKH
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
-                        AND G.MSHH = F.MSHH
                         AND A.TrangThaiDH = 'Đang giao'
                         ORDER BY A.SoDonDH DESC";
                     break;
                 case 4:
-                    $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, G.TenHinh
-                    FROM DatHang AS A, KhachHang AS B, ChiTietDatHang AS E, HangHoa AS F, HinhHangHoa as G
+                    $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, F.MSHH
+                    FROM DatHang AS A, KhachHang AS B, ChiTietDatHang AS E, HangHoa AS F
                     WHERE A.MSKH = B.MSKH
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
-                        AND G.MSHH = F.MSHH
                         AND A.TrangThaiDH = 'Đã giao'
                         ORDER BY A.SoDonDH DESC";
                     break;
                 case 5:
-                    $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, G.TenHinh
-                    FROM DatHang AS A, KhachHang AS B, ChiTietDatHang AS E, HangHoa AS F, HinhHangHoa as G
+                    $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, F.MSHH
+                    FROM DatHang AS A, KhachHang AS B, ChiTietDatHang AS E, HangHoa AS F
                     WHERE A.MSKH = B.MSKH
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
-                        AND G.MSHH = F.MSHH
                         AND A.TrangThaiDH = 'Bị huỷ'
                         ORDER BY A.SoDonDH DESC";
                     break;
             }
             $listOrder = executeSQLResult($conn, $sql);
             for ($i = 1; $i <= count($listOrder); $i++) {
+                $codeProduct = $listOrder[$i - 1]['MSHH'];
                 $noOrder = $listOrder[$i - 1]['SoDonDH'];
                 $nameCustomer = $listOrder[$i - 1]['HoTenKH'];
                 $product = $listOrder[$i - 1]['TenHH'];
-                $pathImage = URL . 'images/products/' . $listOrder[$i - 1]['TenHinh'];
                 $dayOrder = $listOrder[$i - 1]['NgayDH'];
                 $dayShip = $listOrder[$i - 1]['NgayGH'];
                 $statusOrder = $listOrder[$i - 1]['TrangThaiDH'];
                 $quality = $listOrder[$i - 1]['SoLuong'];
                 $discount = $listOrder[$i - 1]['GiamGia'];
                 $total = $listOrder[$i - 1]['GiaDatHang'];
+
+                //get image
+                $sql = "SELECT * FROM HinhHangHoa WHERE MSHH = $codeProduct LIMIT 1";
+                $result_image = executeSQLResult($conn, $sql);
+                $image_name = $result_image[0]['TenHinh'];
+                $pathImage = URL . 'images/products/' . $image_name;
                 if ($i % 2 == 0) {
             ?>
                     <tr class="text-center">

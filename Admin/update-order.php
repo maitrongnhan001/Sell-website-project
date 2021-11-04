@@ -48,27 +48,25 @@ if (isset($_GET['filter'])) {
             $codeAdmin = executeSQLResult($conn, $sql);
             $codeAdmin = $codeAdmin[0]['MSNV'];
             if ($codeAdmin == null) {
-                $sql = "SELECT A.SoDonDH, B.HoTenKH, B.SoDienThoai, B.TenCongTy, B.SoFax, D.DiaChi, F.MSHH, F.TenHH , G.TenHinh, F.Gia, H.TenLoaiHang, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang
-                        FROM DatHang AS A, KhachHang AS B, DiaChiKH AS D, ChiTietDatHang AS E, HangHoa AS F, HinhHangHoa as G, LoaiHangHoa AS H
+                $sql = "SELECT A.SoDonDH, B.HoTenKH, B.SoDienThoai, B.TenCongTy, B.SoFax, D.DiaChi, F.MSHH, F.TenHH, F.Gia, H.TenLoaiHang, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang
+                        FROM DatHang AS A, KhachHang AS B, DiaChiKH AS D, ChiTietDatHang AS E, HangHoa AS F, LoaiHangHoa AS H
                         WHERE A.MSKH = B.MSKH
                         AND A.SoDonDH = E.SoDonDH
                         AND A.MaDC = D.MaDC
                         AND E.MSHH = F.MSHH
-                        AND G.MSHH = F.MSHH
                         AND F.MaLoaiHang = H.MaLoaiHang
                         AND A.SoDonDH = $noOrder";
                 $order = executeSQLResult($conn, $sql);
 
                 $adminUpdate = "Chưa cập nhật";
             } else {
-                $sql = "SELECT A.SoDonDH, B.HoTenKH, B.SoDienThoai, B.TenCongTy, B.SoFax, D.DiaChi, F.MSHH, F.TenHH , G.TenHinh, F.Gia, H.TenLoaiHang, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, C.HoTenNV
-                        FROM DatHang AS A, KhachHang AS B, NhanVien AS C, DiaChiKH AS D, ChiTietDatHang AS E, HangHoa AS F, HinhHangHoa as G, LoaiHangHoa AS H
+                $sql = "SELECT A.SoDonDH, B.HoTenKH, B.SoDienThoai, B.TenCongTy, B.SoFax, D.DiaChi, F.MSHH, F.TenHH, F.Gia, H.TenLoaiHang, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, C.HoTenNV
+                        FROM DatHang AS A, KhachHang AS B, NhanVien AS C, DiaChiKH AS D, ChiTietDatHang AS E, HangHoa AS F, LoaiHangHoa AS H
                         WHERE A.MSKH = B.MSKH
                         AND A.MSNV = C.MSNV
                         AND A.SoDonDH = E.SoDonDH
                         AND A.MaDC = D.MaDC
                         AND E.MSHH = F.MSHH
-                        AND G.MSHH = F.MSHH
                         AND F.MaLoaiHang = H.MaLoaiHang
                         AND A.SoDonDH = $noOrder";
                 $order = executeSQLResult($conn, $sql);
@@ -84,7 +82,6 @@ if (isset($_GET['filter'])) {
 
             $codeProduct = $order[0]['MSHH'];
             $nameProduct = $order[0]['TenHH'];
-            $pathImage = URL . 'images/products/' . $order[0]['TenHinh'];
             $price = $order[0]['Gia'];
             $category = $order[0]['TenLoaiHang'];
 
@@ -95,6 +92,12 @@ if (isset($_GET['filter'])) {
 
             $quality = $order[0]['SoLuong'];
             $total = $order[0]['GiaDatHang'];
+
+            //get image
+            $sql = "SELECT * FROM HinhHangHoa WHERE MSHH = $codeProduct LIMIT 1";
+            $result_image = executeSQLResult($conn, $sql);
+            $image_name = $result_image[0]['TenHinh'];
+            $pathImage = URL . 'images/products/' . $image_name;
             ?>
             <div class="statis-info">
                 <h4>Thông tin khách hàng:</h4>

@@ -29,6 +29,7 @@ if (isset($_SESSION['position'])) {
             //get id
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
+                unset($_GET['id']);
             } else {
                 $_SESSION['error'] = 'Không có dữ liệu';
                 header('Location: ' . URL . 'Admin/manager-products.php');
@@ -36,8 +37,9 @@ if (isset($_SESSION['position'])) {
             //get data for product
             $conn = connectToDatabase();
             $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, SoLuongHang, HangHoa.MaloaiHang, MaHinh, TenHinh 
-                    FROM HangHoa, HinhHangHoa, LoaiHangHoa 
-                    WHERE HangHoa.MSHH = HinhHangHoa.MSHH AND LoaiHangHoa.MaLoaiHang = HangHoa.MaLoaiHang AND HangHoa.MSHH = $id;";
+                    FROM (HangHoa LEFT JOIN HinhHangHoa ON HangHoa.MSHH = HinhHangHoa.MSHH ), LoaiHangHoa 
+                    WHERE HangHoa.MaLoaiHang = LoaiHangHoa.MaLoaiHang
+                    AND HangHoa.MSHH = $id";
             $products = executeSQLResult($conn, $sql);
             $nameProduct = $products[0]['TenHH'];
             $description = $products[0]['QuyCach'];

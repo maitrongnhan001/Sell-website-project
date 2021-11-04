@@ -31,9 +31,9 @@
             <?php
             //get list products
             $conn = connectToDatabase();
-            $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, SoLuongHang, TenLoaiHang, TenHinh 
-                    FROM HangHoa, HinhHangHoa, LoaiHangHoa 
-                    WHERE HangHoa.MSHH = HinhHangHoa.MSHH AND LoaiHangHoa.MaLoaiHang = HangHoa.MaLoaiHang;";
+            $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, SoLuongHang, TenLoaiHang 
+                    FROM HangHoa, LoaiHangHoa 
+                    WHERE LoaiHangHoa.MaLoaiHang = HangHoa.MaLoaiHang;";
             $listProducts = executeSQLResult($conn, $sql);
             for ($i = 1; $i <= count($listProducts); $i++) {
                 $id = $listProducts[$i - 1]['MSHH'];
@@ -45,7 +45,12 @@
                     $price = $listProducts[$i - 1]['Gia'];
                     $quality = $listProducts[$i - 1]['SoLuongHang'];
                     $category = $listProducts[$i - 1]['TenLoaiHang'];
-                    $pathImage = URL . 'images/products/' . $listProducts[$i - 1]['TenHinh'];
+
+                    //get image
+                    $sql = "SELECT * FROM HinhHangHoa WHERE MSHH = $id LIMIT 1";
+                    $result_image = executeSQLResult($conn, $sql);
+                    $image_name = $result_image[0]['TenHinh'];
+                    $pathImage = URL . 'images/products/' . $image_name;
                     if ($i % 2 == 0) {
             ?>
                         <tr class="text-center">
