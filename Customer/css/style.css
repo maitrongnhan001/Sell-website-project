@@ -534,3 +534,93 @@ menu-filter ul{
 #load-categories {
     cursor: pointer;
 }
+
+/* css product details */
+
+.main {
+    width: 100%;
+    margin: 0;
+    padding: 20px 0 20px 0;
+    background-color: #ececec;
+}
+
+.img-details {
+    float: left;
+    width: 50%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.info-product-details {
+    float: left;
+    width: 50%;
+}
+
+.info-product-details p {
+    font-size: 20px;
+    padding: 10px;
+    padding-left: 20%;
+}
+
+.info-product-details .btn {
+    font-size: 20px;
+    padding: 10px;
+}
+
+/* css silde img */
+.slider-content {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+}
+
+#slider-img-review {
+    width: 100%;
+}
+
+.my-slides {
+    display: block;
+    height: 310px;
+    transition: 0.3s all;
+    margin: 0 auto;
+}
+
+.hide {
+    display: none;
+}
+
+.slider-control {
+    position: relative;
+    bottom: 80px;
+    text-align: center;
+}
+
+.btn-slider-small {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    border: 1px solid #ff4758;
+    display: inline-block;
+    margin: 6px;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.btn-slider-small:hover {
+    transform: scale(1.2);
+}
+
+.forcus {
+    background-color: #ff4758;
+}
+
+.info-product-description {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.info-product-description p {
+    font-size: 20px;
+    text-align: justify;
+}

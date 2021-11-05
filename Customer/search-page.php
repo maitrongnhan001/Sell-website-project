@@ -67,7 +67,7 @@ if (isset($_GET['search'])) {
                         <p class="product-detail"><?php echo $description; ?></p>
                         <br>
 
-                        <a href=<?php echo URL . 'Customer/order.php?id=' . $codeProduct; ?> class="btn btn-primary">Mua ngay</a>
+                        <a href=<?php echo URL . 'Customer/product-details.php?id=' . $codeProduct; ?> class="btn btn-primary">Mua ngay</a>
                     </div>
                 </div>
         <?php

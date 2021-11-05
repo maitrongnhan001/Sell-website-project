@@ -5,6 +5,10 @@ if (isset($_SESSION['status'])) {
     echo "<h3 class='green text-center'>" . $_SESSION['status'] . "</h3>";
     unset($_SESSION['status']);
 }
+if (isset($_SESSION['error'])) {
+    echo "<h3 class='red text-center'>".$_SESSION['error']."</h3>";
+    unset($_SESSION['error']);
+}
 ?>
 <!-- Categories Section Starts Here -->
 <section class="categories">
@@ -73,7 +77,7 @@ if (isset($_SESSION['status'])) {
                     <p class="product-detail"><?php echo $description; ?></p>
                     <br>
 
-                    <a href=<?php echo URL . 'Customer/order.php?id=' . $codeProduct; ?> class="btn btn-primary">Mua ngay</a>
+                    <a href=<?php echo URL . 'Customer/product-details.php?id=' . $codeProduct; ?> class="btn btn-primary">Mua ngay</a>
                 </div>
             </div>
         <?php

@@ -177,7 +177,7 @@ $('document').ready(() => {
                                 <p class="product-detail">${list_product[i].description}</p>
                                 <br>
 
-                                <a href='http://localhost/B1805899_MTNhan/Customer/order.php?id=${list_product[i].id}' class="btn btn-primary">Mua ngay</a>
+                                <a href='http://localhost/B1805899_MTNhan/Customer/product-details.php?id=${list_product[i].id}' class="btn btn-primary">Mua ngay</a>
                             </div>
                         </div>`
                     );
@@ -219,7 +219,7 @@ $('document').ready(() => {
                                 <p class="product-detail">${list_product[i].description}</p>
                                 <br>
 
-                                <a href='http://localhost/B1805899_MTNhan/Customer/order.php?id=${list_product[i].id}' class="btn btn-primary">Mua ngay</a>
+                                <a href='http://localhost/B1805899_MTNhan/Customer/product-details.php?id=${list_product[i].id}' class="btn btn-primary">Mua ngay</a>
                             </div>
                         </div>`
                     );
@@ -265,5 +265,96 @@ $('document').ready(() => {
                 $('#list-categories .container .container-category-center').append('<p id="load-categories" class="text-center pink">Xem thêm danh mục</p>');
             }
         );
+    });
+
+    //slides
+    $("#btn-1").click(() => {
+        const id_element = $("#btn-1").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+        //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
+    });
+
+    $("#btn-2").click(() => {
+        const id_element = $("#btn-2").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+         //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
+    });
+
+    $("#btn-3").click(() => {
+        const id_element = $("#btn-3").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+         //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
+    });
+
+    $("#btn-4").click(() => {
+        const id_element = $("#btn-4").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+         //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
+    });
+
+    $("#btn-5").click(() => {
+        const id_element = $("#btn-5").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+         //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
+    });
+
+    $("#btn-6").click(() => {
+        const id_element = $("#btn-6").attr("id");
+        const current_forcus_element = $('.slider-control').find('.forcus');
+        current_forcus_element.removeClass('forcus');
+        $(`#${id_element}`).addClass('forcus');
+
+        //hide all img
+        $(".my-slides").addClass('hide');
+
+         //show image choose
+        const position_img_element = id_element[id_element.length - 1];
+        const id_img = `img-${position_img_element}`;
+        $(`#${id_img}`).removeClass("hide");
     });
 });
