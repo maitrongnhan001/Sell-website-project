@@ -4,17 +4,46 @@ var line = $('<div />').addClass('line');
 
 line.appendTo(nav);
 
-var active = nav.find('.active');
+var active;
 var pos = 0;
 var wid = 0;
+var id = "";
 
-if(active.length) {
-  pos = active.position().left;
-  wid = active.width();
-  line.css({
-    left: pos,
-    width: wid
-  });
+if (localStorage.getItem('pos') && localStorage.getItem('wid')) {
+  //get id
+  id = localStorage.getItem('id');
+
+  //set class active
+  nav.find('ul li').removeClass('active');
+  $(`#${id}`).addClass('active');
+
+  active = nav.find('.active');
+
+  //get status menu
+  pos = parseFloat(localStorage.getItem('pos'));
+  wid = parseFloat(localStorage.getItem('wid'));
+
+  //set line
+  if (active.length) {
+    line.css({
+      left: pos,
+      width: wid
+    });
+    localStorage.clear();
+  }
+} else {
+  //set class active
+  active = nav.find('.active');
+
+  //set line
+  if(active.length) {
+    pos = active.position().left;
+    wid = active.width();
+    line.css({
+      left: pos,
+      width: wid
+    });
+  }
 }
 
 nav.find('ul li a').hover(function(e) {
@@ -55,8 +84,15 @@ nav.find('ul li a').hover(function(e) {
         _this.parent().addClass('active');
       });
     }
-
+    //get status and store to localstorage
+    id = $(this).parent().attr('id');
     pos = position.left;
     wid = width;
   }
+});
+
+nav.find('ul li a').click(function(e) {
+  localStorage.setItem('id', id);
+  localStorage.setItem('pos', pos);
+  localStorage.setItem('wid', wid);
 });

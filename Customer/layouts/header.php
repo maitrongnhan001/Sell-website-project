@@ -24,10 +24,10 @@ include('../Config/connect.php');
 
             <nav class="menu text-right">
                 <ul>
-                    <li class="active"><a href=<?php echo URL . 'Customer/'; ?>>Trang Chủ</a></li>
-                    <li><a href=<?php echo URL . 'Customer/categories.php'; ?>>Danh Mục</a></li>
-                    <li><a href=<?php echo URL . 'Customer/products.php'; ?>>Sản Phẩm</a></li>
-                    <li>
+                    <li id="item-1" class="active"><a href=<?php echo URL . 'Customer/'; ?>>Trang Chủ</a></li>
+                    <li id="item-2"><a href=<?php echo URL . 'Customer/categories.php'; ?>>Danh Mục</a></li>
+                    <li id="item-3"><a href=<?php echo URL . 'Customer/products.php'; ?>>Sản Phẩm</a></li>
+                    <li id="item-4">
                         <?php
                         if (isset($_SESSION['username_customer'])) {
                         ?>
