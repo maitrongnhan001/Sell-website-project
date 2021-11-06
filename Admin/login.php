@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('../config/connect.php');
 ?>
 <!DOCTYPE html>
@@ -73,4 +74,5 @@ include('../config/connect.php');
         //redirect
     }
     include('./layouts/footer.php');
+    ob_end_flush();
     ?>

@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('../Config/connect.php');
 if (isset($_SESSION['username'])) {
     unset($_SESSION['username']);
@@ -7,4 +8,5 @@ if (isset($_SESSION['username'])) {
 } else {
     header('location: '.URL.'admin/login.php');
 }
+ob_end_flush();
 ?>

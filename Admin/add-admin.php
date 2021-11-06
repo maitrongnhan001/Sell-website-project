@@ -1,5 +1,6 @@
-<?php include('./layouts/header.php') ?>
-<?php
+<?php 
+ob_start();
+include('./layouts/header.php');
 //check user is admin
 if (isset($_SESSION['position'])) {
     if (!($_SESSION['position'] == "Quản lý")) {
@@ -97,6 +98,7 @@ if (isset($_POST['submit'])) {
         header('Location: ' . URL . '/Admin/add-admin.php');
     }
 }
-?>
 
-<?php include('./layouts/footer.php') ?>
+include('./layouts/footer.php');
+ob_end_flush();
+?>

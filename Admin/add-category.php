@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 include('./layouts/header.php');
 
 //check user is stocker
@@ -99,6 +100,6 @@ if (isset($_POST['submit'])) {
     unset($_POST['submit'],$_POST['Name-Category'], $_POST['Image-Category']);
     closeConnect($conn);
 }
+include('./layouts/footer.php');
+ob_end_flush();
 ?>
-
-<?php include('./layouts/footer.php') ?>

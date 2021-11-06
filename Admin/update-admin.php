@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('./layouts/header.php');
 
 //check user is admin
@@ -130,4 +131,5 @@ function CheckPosition($value, $ChucVu)
 <?php
 closeConnect($conn);
 include('./layouts/footer.php');
+ob_end_flush();
 ?>

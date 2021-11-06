@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('../Config/connect.php');
 
 //check user is sale
@@ -46,4 +47,5 @@ if (!$result) {
     header('Location: ' . URL . '/admin/manager-order.php?filter=1');
 }
 closeConnect($conn);
+ob_end_flush();
 ?>
