@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('../Config/connect.php');
 if (isset($_SESSION['username_customer'])) {
     $username = $_SESSION['username_customer'];
@@ -28,4 +29,5 @@ if (!$result) {
     header('Location: ' . URL . 'Customer/manager-order.php?filter=1');
 }
 closeConnect($conn);
+ob_end_flush();
 ?>

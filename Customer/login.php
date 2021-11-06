@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('./layouts/header.php');
 ?>
 <!-- login -->
@@ -64,4 +65,5 @@ if (isset($_POST['submit'])) {
     //redirect
 }
 include('./layouts/footer.php');
+ob_end_flush();
 ?>
