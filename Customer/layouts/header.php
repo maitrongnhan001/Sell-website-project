@@ -17,7 +17,7 @@ include('../Config/connect.php');
     <section class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="#" title="Logo">
+                <a href=<?php echo URL.'customer/index.php'; ?> title="Logo">
                     <img src="./images/for-web/logo.jpeg" alt="Restaurant Logo" class="img-responsive">
                 </a>
             </div>

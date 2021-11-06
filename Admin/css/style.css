@@ -127,7 +127,17 @@ button:hover {
 }
 
 /* css for menu */
+.logo {
+    float: left;
+    width: 100px;
+}
+
+.logo img{
+    width: 100px;
+}
+
 .menu {
+    height: 100px;
     margin: 0;
     border-bottom: 1px solid;
 }
@@ -137,17 +147,24 @@ button:hover {
 }
 
 .menu ul li {
-    padding: 1%;
+    margin: 1%;
     display: inline;
+    line-height: 70px;
 }
 
 .menu ul li a {
-    color: #ff6b81;
-    font-weight: bold;
+    color: gray;
+    font-weight: normal;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-bottom: 1%;
+    border-bottom: 2px solid #fff;
 }
 
 .menu ul li a:hover {
     color: #ff4757;
+    border-bottom: 2px solid #ff4757;
 }
 /* css main */
 
