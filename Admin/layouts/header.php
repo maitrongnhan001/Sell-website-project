@@ -28,7 +28,7 @@ if (!isset($_SESSION['username'])) {
             <ul>
                 <li><a href=<?php echo URL . "admin/index.php"; ?>>Trang Chủ</a></li>
                 <li><a href=<?php echo URL . "admin/manager-admin.php"; ?>>Nhân Viên</a></li>
-                <li><a href=<?php echo URL . "admin/manager-admin.php"; ?>>Khách hàng</a></li>
+                <li><a href=<?php echo URL . "admin/manager-customer.php"; ?>>Khách hàng</a></li>
                 <li><a href=<?php echo URL . "admin/manager-categories.php"; ?>>Danh Mục</a></li>
                 <li><a href=<?php echo URL . "admin/manager-products.php"; ?>>Sản Phẩm</a></li>
                 <li><a href=<?php echo URL . "admin/manager-order.php?filter=1"; ?>>Đơn Hàng</a></li>

@@ -535,3 +535,9 @@ button span {
 .hide {
     display: none;
 }
+
+/* css manager cusomter */
+.tbl-manager .manager-customer a {
+    float: none !important;
+    margin: 0 auto !important;
+}
