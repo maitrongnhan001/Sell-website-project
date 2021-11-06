@@ -420,8 +420,20 @@ button:hover {
 .select-link {
     font-size: 16px;
 }
+/* css for add order */
+
+
 
 /* css for update order */
+.btn-add-order{
+    float: left;
+    margin-right:  10px;
+}
+
+.group-btn-notification a {
+    margin-top: 2px;
+}
+
 #form-updade-order {
     width: 1000px;
 }
