@@ -38,16 +38,16 @@ if (isset($_SESSION['position'])) {
             </div>
             <div class="group-input">
                 <p><b>Tên sản phẩm</b></p>
-                <input type="text" name="name-product" required placeholder="Tên sản phẩm *" class="format-ip">
+                <input type="text" name="name-product" disabled placeholder="Tên sản phẩm" class="format-ip">
             </div>
             <div class="group-input">
                 <p><b>Số lượng</b></p>
-                <input type="number" name="quatity" id="quality" required placeholder="Số lượng *" class="format-ip">
+                <input type="number" name="quatity" id="quality" value="1" required placeholder="Số lượng *" class="format-ip">
                 <p id="nofi-3" class="error"></p>
             </div>
             <div class="group-input">
                 <p><b>Giá</b></p>
-                <input type="number" name="Price" id="price" required placeholder="Giá *" class="format-ip">
+                <input type="number" name="price" id="price" disabled  placeholder="Tổng giá" class="format-ip">
                 <p id="nofi-2" class="red"></p>
             </div>
             <div class="group-input">
@@ -57,12 +57,99 @@ if (isset($_SESSION['position'])) {
     </div>
 </section>
 <?php
+//function check result
+function checkResult($result)
+{
+    if (!$result) {
+        $_SESSION['error'] = "Mua hàng thất bại";
+        header('Location: ' . URL . 'admin/add-order.php');
+        unset($_POST['submit'],  $_POST['code-product'], $_POST['quatity']);
+        die();
+    }
+}
+
 if (isset($_POST['submit'])) {
-    //function check result
-    //get data
-    //add data to DatHang
-    //add data to ChiTietDatHang
-    //update data HangHoa
+    if (isset($_POST['submit'])) {
+        //get data
+        $code_product = $_POST['code-product'];
+        $quatity = $_POST['quatity'];
+
+        //get code admin
+        $conn = connectToDatabase();
+        $username = $_SESSION['username'];
+        $sql = "SELECT MSNV FROM NhanVien WHERE UserName = '$username'";
+        $result_admin = executeSQLResult($conn, $sql);
+        $code_admin = $result_admin[0]['MSNV'];
+
+        //get date 
+        date_default_timezone_set("VietNam/HoChiMinh");
+        $date = getdate();
+        $day = $date['mday'];
+        $month = $date['mon'];
+        $year = $date['year'];
+        $DayOrder = "$year-$month-$day";
+
+        $statusOrder = "Đã giao";
+
+        //add data to DatHang
+        $sql = "INSERT INTO DatHang (
+            MSNV,
+            NgayDH,
+            NgayGH,
+            TrangThaiDH
+        ) VALUES (
+            $code_admin,
+            '$DayOrder',
+            '$DayOrder',
+            '$statusOrder'
+        )";
+
+        $result = executeSQL($conn, $sql);
+        checkResult($result);
+
+        //get No.order
+        $codeOrder = $conn->insert_id;
+
+        //get total cost
+        $sql = "SELECT Gia, SoLuongHang FROM HangHoa WHERE MSHH = $code_product";
+        $result_product = executeSQLResult($conn, $sql);
+        $total_quatity = $result_product[0]['SoLuongHang'];
+        $price = $result_product[0]['Gia'];
+        $total = $price * $quatity;
+
+        //store table ChiTietDatHang
+        $sql = "INSERT INTO ChiTietDatHang (
+            SoDonDH,
+            MSHH,
+            SoLuong,
+            GiaDatHang,
+            GiamGia
+        ) VALUES (
+            $codeOrder,
+            $code_product,
+            $quatity,
+            $total,
+            0
+        )";
+
+        $result = executeSQL($conn, $sql);
+        checkResult($result);
+
+        //update data HangHoa
+        $total_quatity = $total_quatity - $quatity;
+        $sql = "UPDATE HangHoa SET 
+                    SoLuongHang = $total_quatity
+                    WHERE MSHH = $code_product";
+        $result = executeSQL($conn, $sql);
+        checkResult($result);
+
+        if ($result) {
+            $_SESSION['status_order'] = "Mua hàng thành công";
+            header('Location: ' . URL . 'admin/manager-order.php');
+        }
+        //clear data
+        unset($_POST['submit'],  $_POST['code-product'], $_POST['quatity']);
+    }
 }
 ?>
 <?php

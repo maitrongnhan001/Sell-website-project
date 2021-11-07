@@ -271,6 +271,7 @@ button:hover {
     padding: 5px;
     font-size: 17px;
     border-radius: 7px;
+    background-color: #fff;
 }
 
 .group-input input[type="submit"]:hover {

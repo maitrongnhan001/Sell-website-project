@@ -428,4 +428,40 @@ $('document').ready(() => {
     $("#btn-close-notification").click(() => {
         $('#notification-order').addClass('hide');
     });
+
+    //auto fill name product and total price
+    $('input[name="code-product"]').change(() => {
+        const code_product = $('input[name="code-product"]').val();
+        
+        //use api to get name and price
+        $.get(`http://localhost/B1805899_MTNhan/Admin/API/get-product-id.php?id=${code_product}`,
+            (data, status, xhr) => {
+                const product = JSON.parse(data);
+
+                const price = product.price;
+                const quatity = $('input[name="quatity"]').val();
+                const name_product = product.name_product;
+                const total = price * quatity;
+                
+                //render name and price to display
+                $('input[name="name-product"]').val(name_product);
+
+                if (quatity <= 0) {
+                    $('input[name="price"]').val(price);
+                } else {
+                    $('input[name="price"]').val(total);
+                }
+
+                $('input[name="quatity"]').change(() => {
+                    const quatity = $('input[name="quatity"]').val();
+                    const total = price * quatity;
+            
+                    if (quatity <= 0) {
+                        $('input[name="price"]').val(price);
+                    } else {
+                        $('input[name="price"]').val(total);
+                    }
+                });
+            });
+    });
 });
