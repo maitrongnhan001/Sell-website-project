@@ -33,7 +33,7 @@
             $conn = connectToDatabase();
             $sql = "SELECT HangHoa.MSHH, TenHH, QuyCach, Gia, SoLuongHang, TenLoaiHang 
                     FROM HangHoa, LoaiHangHoa 
-                    WHERE LoaiHangHoa.MaLoaiHang = HangHoa.MaLoaiHang;";
+                    WHERE LoaiHangHoa.MaLoaiHang = HangHoa.MaLoaiHang LIMIT 10;";
             $listProducts = executeSQLResult($conn, $sql);
             for ($i = 1; $i <= count($listProducts); $i++) {
                 $id = $listProducts[$i - 1]['MSHH'];
@@ -94,7 +94,7 @@
             }
             ?>
         </table>
-
+        <p class="text-center pink" id="load-product">Xem Thêm</p>
     </div>
 </section>
 

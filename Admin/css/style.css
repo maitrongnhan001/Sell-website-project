@@ -554,3 +554,8 @@ button span {
     float: none !important;
     margin: 0 auto !important;
 }
+
+/* load more */
+#load-product{
+    cursor: pointer;
+}

@@ -1,3 +1,6 @@
+//config
+const URL = `http://localhost/B1805899_MTNhan/`;
+
 //check input for form add-admin
 function CheckUserName(UserName) {
     //check name is valid?
@@ -47,7 +50,7 @@ function CheckSubmit() {
     }
 }
 
-function checkDayShip () {
+function checkDayShip() {
     var dateOrder = $('input[name="dayOrder"]').val().split("-");;
     const dayOrder = dateOrder[2];
     const monthOrder = dateOrder[1];
@@ -69,7 +72,7 @@ function checkDayShip () {
     return result;
 }
 
-function checkDiscount () {
+function checkDiscount() {
     let result = true;
     if ($("input[name='discount']").val() >= 0) {
         $('#nofi-1').text('');
@@ -153,7 +156,7 @@ $('document').ready(() => {
             );
 
             //render btn
-            const array_img = Object.keys( e.target.files);
+            const array_img = Object.keys(e.target.files);
             array_img.forEach((element, i) => {
                 File = new FileReader();
                 File.readAsDataURL($('#image-upload').prop('files')[i]);
@@ -172,7 +175,7 @@ $('document').ready(() => {
                     $("#list-btn-slides").append(
                         `<span class="btn-slider-small forcus" id="btn-${i + 1}"></span>`
                     );
-                }else {
+                } else {
                     //add image
                     File.onload = (e) => {
                         $('#slider-img-review').append(
@@ -187,7 +190,7 @@ $('document').ready(() => {
                 }
             });
             $("#list-btn-slides").append("<div class='clearfix'></div>")
-            
+
             //listening btn slides
             //listening click button sildes
             $(`#btn-1`).click(() => {
@@ -195,10 +198,10 @@ $('document').ready(() => {
                 const current_forcus_element = $('.slider-control').find('.forcus');
                 current_forcus_element.removeClass('forcus');
                 $(`#${id_element}`).addClass('forcus');
-        
+
                 //hide all img
                 $(".my-slides").addClass('hide');
-        
+
                 //show image choose
                 const position_img_element = id_element[id_element.length - 1];
                 const id_img = `img-${position_img_element}`;
@@ -209,10 +212,10 @@ $('document').ready(() => {
                 const current_forcus_element = $('.slider-control').find('.forcus');
                 current_forcus_element.removeClass('forcus');
                 $(`#${id_element}`).addClass('forcus');
-        
+
                 //hide all img
                 $(".my-slides").addClass('hide');
-        
+
                 //show image choose
                 const position_img_element = id_element[id_element.length - 1];
                 const id_img = `img-${position_img_element}`;
@@ -223,10 +226,10 @@ $('document').ready(() => {
                 const current_forcus_element = $('.slider-control').find('.forcus');
                 current_forcus_element.removeClass('forcus');
                 $(`#${id_element}`).addClass('forcus');
-        
+
                 //hide all img
                 $(".my-slides").addClass('hide');
-        
+
                 //show image choose
                 const position_img_element = id_element[id_element.length - 1];
                 const id_img = `img-${position_img_element}`;
@@ -237,10 +240,10 @@ $('document').ready(() => {
                 const current_forcus_element = $('.slider-control').find('.forcus');
                 current_forcus_element.removeClass('forcus');
                 $(`#${id_element}`).addClass('forcus');
-        
+
                 //hide all img
                 $(".my-slides").addClass('hide');
-        
+
                 //show image choose
                 const position_img_element = id_element[id_element.length - 1];
                 const id_img = `img-${position_img_element}`;
@@ -251,10 +254,10 @@ $('document').ready(() => {
                 const current_forcus_element = $('.slider-control').find('.forcus');
                 current_forcus_element.removeClass('forcus');
                 $(`#${id_element}`).addClass('forcus');
-        
+
                 //hide all img
                 $(".my-slides").addClass('hide');
-        
+
                 //show image choose
                 const position_img_element = id_element[id_element.length - 1];
                 const id_img = `img-${position_img_element}`;
@@ -265,10 +268,10 @@ $('document').ready(() => {
                 const current_forcus_element = $('.slider-control').find('.forcus');
                 current_forcus_element.removeClass('forcus');
                 $(`#${id_element}`).addClass('forcus');
-        
+
                 //hide all img
                 $(".my-slides").addClass('hide');
-        
+
                 //show image choose
                 const position_img_element = id_element[id_element.length - 1];
                 const id_img = `img-${position_img_element}`;
@@ -305,7 +308,7 @@ $('document').ready(() => {
         //hide all img
         $(".my-slides").addClass('hide');
 
-         //show image choose
+        //show image choose
         const position_img_element = id_element[id_element.length - 1];
         const id_img = `img-${position_img_element}`;
         $(`#${id_img}`).removeClass("hide");
@@ -320,7 +323,7 @@ $('document').ready(() => {
         //hide all img
         $(".my-slides").addClass('hide');
 
-         //show image choose
+        //show image choose
         const position_img_element = id_element[id_element.length - 1];
         const id_img = `img-${position_img_element}`;
         $(`#${id_img}`).removeClass("hide");
@@ -335,7 +338,7 @@ $('document').ready(() => {
         //hide all img
         $(".my-slides").addClass('hide');
 
-         //show image choose
+        //show image choose
         const position_img_element = id_element[id_element.length - 1];
         const id_img = `img-${position_img_element}`;
         $(`#${id_img}`).removeClass("hide");
@@ -350,7 +353,7 @@ $('document').ready(() => {
         //hide all img
         $(".my-slides").addClass('hide');
 
-         //show image choose
+        //show image choose
         const position_img_element = id_element[id_element.length - 1];
         const id_img = `img-${position_img_element}`;
         $(`#${id_img}`).removeClass("hide");
@@ -365,7 +368,7 @@ $('document').ready(() => {
         //hide all img
         $(".my-slides").addClass('hide');
 
-         //show image choose
+        //show image choose
         const position_img_element = id_element[id_element.length - 1];
         const id_img = `img-${position_img_element}`;
         $(`#${id_img}`).removeClass("hide");
@@ -432,7 +435,7 @@ $('document').ready(() => {
     //auto fill name product and total price
     $('input[name="code-product"]').change(() => {
         const code_product = $('input[name="code-product"]').val();
-        
+
         //use api to get name and price
         $.get(`http://localhost/B1805899_MTNhan/Admin/API/get-product-id.php?id=${code_product}`,
             (data, status, xhr) => {
@@ -442,7 +445,7 @@ $('document').ready(() => {
                 const quatity = $('input[name="quatity"]').val();
                 const name_product = product.name_product;
                 const total = price * quatity;
-                
+
                 //render name and price to display
                 $('input[name="name-product"]').val(name_product);
 
@@ -455,13 +458,85 @@ $('document').ready(() => {
                 $('input[name="quatity"]').change(() => {
                     const quatity = $('input[name="quatity"]').val();
                     const total = price * quatity;
-            
+
                     if (quatity <= 0) {
                         $('input[name="price"]').val(price);
                     } else {
                         $('input[name="price"]').val(total);
                     }
                 });
+            });
+    });
+
+    //load more product
+    $('#load-product').click(() => {
+        //count element product
+        var position = $('.tbl-manager tr').length - 1;
+        //load
+        $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-product.php?position=${position}&limit=10`,
+            (data, status, xhr) => {
+                //render to display
+
+                const list_product = JSON.parse(data);
+
+                for (let i = 0; i < list_product.length; i++) {
+                    const code_product = list_product[i]['id'];
+                    const nameProduct = list_product[i]['name_product'];
+                    const description = list_product[i]['description'];
+                    const price = list_product[i]['price'];
+                    const quality = list_product[i]['quatity'];
+                    const category = list_product[i]['category'];
+                    const path_image = `${URL}images/products/${list_product[i]['image_name']}`
+
+                    if (i % 2 !== 0) {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${position + i + 1} </td>
+                                <td class="name-product"> ${nameProduct} </td>
+                                <td class="description">
+                                    <div class="limit-height"> ${description} </div>
+                                </td>
+                                <td>VNĐ: ${price} </td>
+                                <td> ${quality} </td>
+                                <td> ${category} </td>
+                                <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                                <td>
+                                    <a href='${`${URL}admin/update-product.php?id=${code_product}`}' class="btn-primary">Cập nhật</a>
+                                    <a href='${`${URL}admin/update-product.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
+                                    <div class="clear-fix"></div>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    } else {
+                        $('.container table').append(
+                            `
+                            <tr class="white text-center">
+                                <td> ${position + i + 1} </td>
+                                <td class="name-product"> ${nameProduct} </td>
+                                <td class="description">
+                                    <div class="limit-height"> ${description} </div>
+                                </td>
+                                <td>VNĐ: ${price} </td>
+                                <td> ${quality} </td>
+                                <td> ${category} </td>
+                                <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                                <td>
+                                    <a href='${`${URL}admin/update-product.php?id=${code_product}`}' class="btn-primary">Cập nhật</a>
+                                    <a href='${`${URL}admin/update-product.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
+                                    <div class="clear-fix"></div>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    }
+                    $('.container').append(
+                        `
+                        
+                        `
+                    );
+                }
             });
     });
 });
