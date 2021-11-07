@@ -556,10 +556,6 @@ button span {
 }
 
 /* load more */
-#load-product{
-    cursor: pointer;
-}
-
-#load-category{
+.load-more{
     cursor: pointer;
 }

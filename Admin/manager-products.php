@@ -94,7 +94,8 @@
             }
             ?>
         </table>
-        <p class="text-center pink" id="load-product">Xem Thêm</p>
+        <br>
+        <p class="text-center pink load-more" id="load-product">Xem Thêm</p>
     </div>
 </section>
 

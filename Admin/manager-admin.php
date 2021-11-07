@@ -29,7 +29,7 @@
             <?php
             //get data admin
             $conn = connectToDatabase();
-            $sql = "SELECT * FROM NhanVien";
+            $sql = "SELECT * FROM NhanVien LIMIT 10";
             $listAdmin = executeSQLResult($conn, $sql);
             for ($i = 1; $i <= count($listAdmin); $i++) {
                 //show data admin to screen
@@ -79,6 +79,8 @@
             }
             ?>
         </table>
+        <br>
+        <p class="text-center pink load-more" id="load-admin">Xem thêm</p>
 
     </div>
 </section>

@@ -531,11 +531,6 @@ $('document').ready(() => {
                             `
                         );
                     }
-                    $('.container').append(
-                        `
-                        
-                        `
-                    );
                 }
             });
     });
@@ -587,11 +582,63 @@ $('document').ready(() => {
                             `
                         );
                     }
-                    $('.container').append(
-                        `
-                        
-                        `
-                    );
+                }
+            });
+    });
+
+    //load more admin
+    $('#load-admin').click(() => {
+        //count element product
+        var position = $('.tbl-manager tr').length - 1;
+        //load
+        $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-admin.php?position=${position}&limit=10`,
+            (data, status, xhr) => {
+                //render to display
+
+                const list_admin = JSON.parse(data);
+
+                for (let i = 0; i < list_admin.length; i++) {
+                    const code_admin = list_admin[i]['id'];
+                    const name_admin = list_admin[i]['name_admin'];
+                    const position_admin = list_admin[i]['position'];
+                    const address = list_admin[i]['address'];
+                    const phone = list_admin[i]['phone'];
+
+                    if (i % 2 !== 0) {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${position + i + 1} </td>
+                                <td> ${name_admin} </td>
+                                <td> ${position_admin} </td>
+                                <td> ${address} </td>
+                                <td> ${phone} </td>
+                                <td>
+                                    <a href='${`${URL}admin/update-admin.php?id=${code_admin}`}' class="btn-primary">Cập nhật</a>
+                                    <a href='${`${URL}admin/delete-item.php?id=${code_admin}&type=1`}' class="btn-danger">Xoá</a>
+                                    <div class="clear-fix"></div>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    } else {
+                        $('.container table').append(
+                            `
+                            <tr class="white text-center">
+                                <td> ${position + i + 1} </td>
+                                <td> ${name_admin} </td>
+                                <td> ${position_admin} </td>
+                                <td> ${address} </td>
+                                <td> ${phone} </td>
+                                <td>
+                                    <a href='${`${URL}admin/update-admin.php?id=${code_admin}`}' class="btn-primary">Cập nhật</a>
+                                    <a href='${`${URL}admin/delete-item.php?id=${code_admin}&type=1`}' class="btn-danger">Xoá</a>
+                                    <div class="clear-fix"></div>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    }
                 }
             });
     });
