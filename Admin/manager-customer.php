@@ -15,7 +15,7 @@
             <?php
             //get data admin
             $conn = connectToDatabase();
-            $sql = "SELECT * FROM KhachHang";
+            $sql = "SELECT * FROM KhachHang LIMIT 10";
             $listCustomer = executeSQLResult($conn, $sql);
             for ($i = 1; $i <= count($listCustomer); $i++) {
                 //show data admin to screen
@@ -55,7 +55,8 @@
             }
             ?>
         </table>
-
+        <br>
+        <p class="text-center pink load-more" id="load-customer">Xem thêm</p>
     </div>
 </section>
 

@@ -488,7 +488,7 @@ $('document').ready(() => {
                     const category = list_product[i]['category'];
                     const path_image = `${URL}images/products/${list_product[i]['image_name']}`
 
-                    if (i % 2 !== 0) {
+                    if ((i + 1 + position) % 2 === 0) {
                         $('.container table').append(
                             `
                             <tr class="text-center">
@@ -551,7 +551,7 @@ $('document').ready(() => {
                     const name_category = list_category[i]['name_category'];
                     const path_image = `${URL}images/categories/${list_category[i]['image_name']}`
 
-                    if (i % 2 !== 0) {
+                    if ((i + 1 + position) % 2 === 0) {
                         $('.container table').append(
                             `
                             <tr class="text-center">
@@ -604,7 +604,7 @@ $('document').ready(() => {
                     const address = list_admin[i]['address'];
                     const phone = list_admin[i]['phone'];
 
-                    if (i % 2 !== 0) {
+                    if ((i + 1 + position) % 2 !== 0) {
                         $('.container table').append(
                             `
                             <tr class="text-center">
@@ -635,6 +635,53 @@ $('document').ready(() => {
                                     <a href='${`${URL}admin/delete-item.php?id=${code_admin}&type=1`}' class="btn-danger">Xoá</a>
                                     <div class="clear-fix"></div>
                                 </td>
+                            </tr>
+                            `
+                        );
+                    }
+                }
+            });
+    });
+
+    //load more customer
+    $('#load-customer').click(() => {
+        //count element product
+        var position = $('.tbl-manager tr').length - 1;
+        //load
+        $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-customer.php?position=${position}&limit=10`,
+            (data, status, xhr) => {
+                //render to display
+
+                const list_customer = JSON.parse(data);
+
+                for (let i = 0; i < list_customer.length; i++) {
+                    const code_customer = list_customer[i]['id'];
+                    const name_customer = list_customer[i]['name_customer'];
+                    const company = list_customer[i]['company'];
+                    const phone = list_customer[i]['phone'];
+                    const fax = list_customer[i]['fax'];
+
+                    if ((i + 1 + position) % 2 === 0) {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${position + i + 1} </td>
+                                <td> ${name_customer} </td>
+                                <td> ${company} </td>
+                                <td> ${phone} </td>
+                                <td> ${fax} </td>
+                            </tr>
+                            `
+                        );
+                    } else {
+                        $('.container table').append(
+                            `
+                            <tr class="white text-center">
+                                <td> ${position + i + 1} </td>
+                                <td> ${name_customer} </td>
+                                <td> ${company} </td>
+                                <td> ${phone} </td>
+                                <td> ${fax} </td>
                             </tr>
                             `
                         );
