@@ -559,3 +559,7 @@ button span {
 #load-product{
     cursor: pointer;
 }
+
+#load-category{
+    cursor: pointer;
+}

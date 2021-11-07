@@ -27,7 +27,7 @@
             <?php
             //get data of category
             $conn = connectToDatabase();
-            $sql = "SELECT * FROM LoaiHangHoa";
+            $sql = "SELECT * FROM LoaiHangHoa LIMIT 2";
             $listCategories = executeSQLResult($conn, $sql);
             for ($i = 1; $i <= count($listCategories); $i++) {
                 $id = $listCategories[$i - 1]['MaLoaiHang'];
@@ -63,7 +63,7 @@
             }
             ?>
         </table>
-
+        <p class="text-center pink" id="load-category">Xem Thêm</p>
     </div>
 </section>
 
