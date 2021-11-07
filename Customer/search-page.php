@@ -16,25 +16,20 @@ if (isset($_GET['search'])) {
     listProductsCategory is result search by name category
     */
     $listProductsSearch = array();
-    $listProductsId = array();
     $listProductsName = array();
-    $listProductsCategory = array();
-    for ($i = 0; $i < count($listProducts); $i++) {
-        //search id
-        $id = (int) filter_var($valueSearch, FILTER_SANITIZE_NUMBER_INT);
-        if ($id == $listProducts[$i]['MSHH']) {
-            array_push($listProductsId, $i);
-        }
-        //search name product
-        if (strcasecmp($valueSearch, $listProducts[$i]['TenHH']) == 0) {
-            array_push($listProductsName, $i);
-        }
-        //search name category
-        if (strcasecmp($valueSearch, $listProducts[$i]['TenLoaiHang']) == 0) {
-            array_push($listProductsCategory, $i);
+
+    //search by name
+    $array_search = str_split($valueSearch);
+    for ($i = count($array_search); $i > 0; $i--) {
+        $str_child = substr($valueSearch, 0, $i);
+        for ($j = 0; $j < count($listProducts); $j++) {
+            if (strpos($listProducts[$j]['TenHH'], $str_child)) {
+                array_push($listProductsName, $j);
+            }
         }
     }
-    $listProductsSearch = array_merge($listProductsId, $listProductsName, $listProductsCategory);
+    $listProductsSearch = array_unique($listProductsName);
+    unset($_GET['search']);
 }
 ?>
 
@@ -44,8 +39,7 @@ if (isset($_GET['search'])) {
         <h2 class="text-center">Products Menu</h2>
         <?php
         //render to display
-        for ($i = 0; $i < count($listProductsSearch); $i++) {
-            $index = $listProductsSearch[$i];
+        foreach($listProductsSearch as $index) {
             $codeProduct = $listProducts[$index]['MSHH'];
             $nameProduct = $listProducts[$index]['TenHH'];
             $price = $listProducts[$index]['Gia'];
