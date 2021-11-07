@@ -184,7 +184,7 @@ include('./layouts/header.php');
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
                         AND A.TrangThaiDH = 'Bị huỷ'
-                        ORDER BY A.SoDonDH DESC LIMIT 1";
+                        ORDER BY A.SoDonDH DESC LIMIT 10";
                     break;
             }
             $listOrder = executeSQLResult($conn, $sql);
