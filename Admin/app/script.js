@@ -689,4 +689,78 @@ $('document').ready(() => {
                 }
             });
     });
+
+    //load more order
+    $('#load-order').click(() => {
+        //get filter
+        const filter = $("input[name='filter']").val();
+
+        //count element product
+        var position = $('.tbl-manager tr').length - 1;
+        //load
+        $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-order.php?position=${position}&limit=10&filter=${filter}`,
+            (data, status, xhr) => {
+                //render to display
+
+                const list_order = JSON.parse(data);
+
+                for (let i = 0; i < list_order.length; i++) {
+                    const code_order = list_order[i]['id'];
+                    const code_product = list_order[i]['codeProduct'];
+                    const name_customer = list_order[i]['nameCustomer'];
+                    const product = list_order[i]['product'];
+                    const day_order = list_order[i]['dayOrder'];
+                    const day_ship = list_order[i]['dayShip'];
+                    const status_order = list_order[i]['statusOrder'];
+                    const quatity = list_order[i]['quatity'];
+                    const discount = list_order[i]['discount'];
+                    const total = list_order[i]['total'];
+                    const path_image = `${URL}images/products/${list_order[i]['image']}` 
+
+                    if ((i + 1 + position) % 2 === 0) {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${i + 1 + position} </td>
+                                <td> ${name_customer} </td>
+                                <td> ${product} </td>
+                                <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                                <td class="day-order"> ${day_order} </td>
+                                <td class="day-order"> ${day_ship} </td>
+                                <td> ${status_order} </td>
+                                <td> ${quatity} </td>
+                                <td> ${discount} </td>
+                                <td> ${total} </td>
+                                <td>
+                                    <a href='${URL}admin/update-order.php?noOrder=${code_order}&filter=${filter}' class="btn-primary">Cập nhật</a>
+                                    <a href='${URL}admin/cancel-order.php?noOrder=${code_order}&filter=${filter}'' class="btn-danger">Huỷ đơn</a>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    } else {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${i + 1 + position} </td>
+                                <td> ${name_customer} </td>
+                                <td> ${product} </td>
+                                <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                                <td class="day-order"> ${day_order} </td>
+                                <td class="day-order"> ${day_ship} </td>
+                                <td> ${status_order} </td>
+                                <td> ${quatity} </td>
+                                <td> ${discount} </td>
+                                <td> ${total} </td>
+                                <td>
+                                    <a href='${URL}admin/update-order.php?noOrder=${code_order}&filter=${filter}' class="btn-primary">Cập nhật</a>
+                                    <a href='${URL}admin/cancel-order.php?noOrder=${code_order}&filter=${filter}'' class="btn-danger">Huỷ đơn</a>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    }
+                }
+            });
+    });
 });

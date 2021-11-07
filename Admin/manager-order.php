@@ -148,7 +148,7 @@ include('./layouts/header.php');
                     WHERE A.MSKH = B.MSKH
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
-                        ORDER BY A.SoDonDH DESC";
+                        ORDER BY A.SoDonDH DESC LIMIT 10";
                     break;
                 case 2:
                     $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, F.MSHH
@@ -157,7 +157,7 @@ include('./layouts/header.php');
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
                         AND A.TrangThaiDH = 'Đặt hàng'
-                        ORDER BY A.SoDonDH DESC";
+                        ORDER BY A.SoDonDH DESC LIMIT 10";
                     break;
                 case 3:
                     $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, F.MSHH
@@ -166,7 +166,7 @@ include('./layouts/header.php');
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
                         AND A.TrangThaiDH = 'Đang giao'
-                        ORDER BY A.SoDonDH DESC";
+                        ORDER BY A.SoDonDH DESC LIMIT 10";
                     break;
                 case 4:
                     $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, F.MSHH
@@ -175,7 +175,7 @@ include('./layouts/header.php');
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
                         AND A.TrangThaiDH = 'Đã giao'
-                        ORDER BY A.SoDonDH DESC";
+                        ORDER BY A.SoDonDH DESC LIMIT 10";
                     break;
                 case 5:
                     $sql = "SELECT A.SoDonDH, B.HoTenKH, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, F.TenHH, F.MSHH
@@ -184,7 +184,7 @@ include('./layouts/header.php');
                         AND A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
                         AND A.TrangThaiDH = 'Bị huỷ'
-                        ORDER BY A.SoDonDH DESC";
+                        ORDER BY A.SoDonDH DESC LIMIT 1";
                     break;
             }
             $listOrder = executeSQLResult($conn, $sql);
@@ -248,6 +248,9 @@ include('./layouts/header.php');
 
             ?>
         </table>
+        <br>
+        <input type="hidden" name="filter" value="<?php echo $filter; ?>">
+        <p class="text-center pink load-more" id="load-order">Xem thêm</p>
 
     </div>
 </section>
