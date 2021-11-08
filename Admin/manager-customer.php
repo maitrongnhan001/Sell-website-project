@@ -3,6 +3,11 @@
 <section class="main text-content">
     <div class="container">
         <h1>Quản lý khách hàng</h1>
+        <div class="search">
+            <input type="text" name='search' class="search-input" placeholder="Tìm kiểm khách hàng">
+            <button class="search-btn btn-primary" id="load-search-customer"> Tiềm kiếm </button>
+            <div class="clearfix"></div>
+        </div>
         <br><br>
         <table class="tbl-manager">
             <tr>

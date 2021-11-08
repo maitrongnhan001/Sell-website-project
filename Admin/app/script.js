@@ -920,7 +920,7 @@ $('document').ready(() => {
             });
     });
 
-    //load search category
+    //load search admin
     $('#load-search-admin').click(() => {
         //get filter
         const search = $('input[name="search"]').val();
@@ -995,4 +995,70 @@ $('document').ready(() => {
                 }
             });
     });
+
+    //load search customer
+    $('#load-search-customer').click(() => {
+        //get filter
+        const search = $('input[name="search"]').val();
+
+        if (search.length === 0) {
+            return;
+        }
+
+        //load admin
+        $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-search-customer.php?search=${search}`,
+            (data, status, xhr) => {
+                //render to display
+
+                const list_customer = JSON.parse(data);
+
+                //clean table
+                $('.container table').empty();
+                $('.container table').append(`
+                <tr>
+                    <th>STT</th>
+                    <th>Họ và Tên</th>
+                    <th>Tên công ty</th>
+                    <th>Số điện thoại</th>
+                    <th>Số fax</th>
+                </tr>
+                `);
+                $('#load-customer').remove();
+
+                for (let i = 0; i < list_customer.length; i++) {
+                    const code_customer = list_customer[i]['id'];
+                    const name_customer = list_customer[i]['name_customer'];
+                    const company = list_customer[i]['company'];
+                    const phone = list_customer[i]['phone'];
+                    const fax = list_customer[i]['fax'];
+
+                    if ((i + 1) % 2 === 0) {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${i + 1} </td>
+                                <td> ${name_customer} </td>
+                                <td> ${company} </td>
+                                <td> ${phone} </td>
+                                <td> ${fax} </td>
+                            </tr>
+                            `
+                        );
+                    } else {
+                        $('.container table').append(
+                            `
+                            <tr class="white text-center">
+                                <td> ${i + 1} </td>
+                                <td> ${name_customer} </td>
+                                <td> ${company} </td>
+                                <td> ${phone} </td>
+                                <td> ${fax} </td>
+                            </tr>
+                            `
+                        );
+                    }
+                }
+            });
+    });
+
 });

@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Quản lý nhân viên</h1>
         <div class="search">
-            <input type="text" name='search' class="search-input" placeholder="Tìm kiểm loại sản phẩm">
+            <input type="text" name='search' class="search-input" placeholder="Tìm kiểm nhân viên">
             <button class="search-btn btn-primary" id="load-search-admin"> Tiềm kiếm </button>
             <div class="clearfix"></div>
         </div>
