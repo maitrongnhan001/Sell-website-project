@@ -861,7 +861,7 @@ $('document').ready(() => {
             return;
         }
 
-        //load
+        //load category
         $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-search-category.php?search=${search}`,
             (data, status, xhr) => {
                 //render to display
@@ -910,6 +910,82 @@ $('document').ready(() => {
                                 <td>
                                     <a href='${`${URL}admin/update-category.php?id=${code_category}`}' class="btn-primary">Cập nhật</a>
                                     <a href='${`${URL}admin/delete-item.php?id=${code_category}&type=2`}' class="btn-danger">Xoá</a>
+                                    <div class="clear-fix"></div>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    }
+                }
+            });
+    });
+
+    //load search category
+    $('#load-search-admin').click(() => {
+        //get filter
+        const search = $('input[name="search"]').val();
+
+        if (search.length === 0) {
+            return;
+        }
+
+        //load admin
+        $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-search-admin.php?search=${search}`,
+            (data, status, xhr) => {
+                //render to display
+
+                const list_admin = JSON.parse(data);
+
+                //clean table
+                $('.container table').empty();
+                $('.container table').append(`
+                <tr>
+                    <th>STT</th>
+                    <th>Họ và Tên</th>
+                    <th>Chức vụ</th>
+                    <th>Địa chỉ</th>
+                    <th>Số điện thoại</th>
+                    <th>Quản lý</th>
+                </tr>
+                `);
+                $('#load-admin').remove();
+
+                for (let i = 0; i < list_admin.length; i++) {
+                    const code_admin = list_admin[i]['id'];
+                    const name_admin = list_admin[i]['name_admin'];
+                    const position_admin = list_admin[i]['position'];
+                    const address = list_admin[i]['address'];
+                    const phone = list_admin[i]['phone'];
+
+                    if ((i + 1) % 2 !== 0) {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${i + 1} </td>
+                                <td> ${name_admin} </td>
+                                <td> ${position_admin} </td>
+                                <td> ${address} </td>
+                                <td> ${phone} </td>
+                                <td>
+                                    <a href='${`${URL}admin/update-admin.php?id=${code_admin}`}' class="btn-primary">Cập nhật</a>
+                                    <a href='${`${URL}admin/delete-item.php?id=${code_admin}&type=1`}' class="btn-danger">Xoá</a>
+                                    <div class="clear-fix"></div>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    } else {
+                        $('.container table').append(
+                            `
+                            <tr class="white text-center">
+                                <td> ${i + 1} </td>
+                                <td> ${name_admin} </td>
+                                <td> ${position_admin} </td>
+                                <td> ${address} </td>
+                                <td> ${phone} </td>
+                                <td>
+                                    <a href='${`${URL}admin/update-admin.php?id=${code_admin}`}' class="btn-primary">Cập nhật</a>
+                                    <a href='${`${URL}admin/delete-item.php?id=${code_admin}&type=1`}' class="btn-danger">Xoá</a>
                                     <div class="clear-fix"></div>
                                 </td>
                             </tr>
