@@ -1005,7 +1005,7 @@ $('document').ready(() => {
             return;
         }
 
-        //load admin
+        //load customer
         $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-search-customer.php?search=${search}`,
             (data, status, xhr) => {
                 //render to display
@@ -1053,6 +1053,101 @@ $('document').ready(() => {
                                 <td> ${company} </td>
                                 <td> ${phone} </td>
                                 <td> ${fax} </td>
+                            </tr>
+                            `
+                        );
+                    }
+                }
+            });
+    });
+
+    //load search order
+    $('#load-search-order').click(() => {
+        //get filter
+        const search = $('input[name="search"]').val();
+
+        if (search.length === 0) {
+            return;
+        }
+
+        //load order
+        $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-search-order.php?search=${search}`,
+            (data, status, xhr) => {
+                //render to display
+
+                const list_order = JSON.parse(data);
+
+                //clean table
+                $('.container table').empty();
+                $('.container table').append(`
+                <tr>
+                    <th>STT</th>
+                    <th>Tên khách hàng</th>
+                    <th>Sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Ngày ĐH</th>
+                    <th>Ngày GH</th>
+                    <th>Trạng thái ĐH</th>
+                    <th>Số lượng</th>
+                    <th>Giảm giá</th>
+                    <th>Tổng giá</th>
+                    <th>Quản lý</th>
+                </tr>
+                `);
+                $('#load-order').remove();
+
+                for (let i = 0; i < list_order.length; i++) {
+                    const code_order = list_order[i]['id'];
+                    const code_product = list_order[i]['codeProduct'];
+                    const name_customer = list_order[i]['nameCustomer'];
+                    const product = list_order[i]['product'];
+                    const day_order = list_order[i]['dayOrder'];
+                    const day_ship = list_order[i]['dayShip'];
+                    const status_order = list_order[i]['statusOrder'];
+                    const quatity = list_order[i]['quatity'];
+                    const discount = list_order[i]['discount'];
+                    const total = list_order[i]['total'];
+                    const path_image = `${URL}images/products/${list_order[i]['image']}`
+
+                    if ((i + 1) % 2 === 0) {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${i + 1} </td>
+                                <td> ${name_customer} </td>
+                                <td> ${product} </td>
+                                <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                                <td class="day-order"> ${day_order} </td>
+                                <td class="day-order"> ${day_ship} </td>
+                                <td> ${status_order} </td>
+                                <td> ${quatity} </td>
+                                <td> ${discount} </td>
+                                <td> ${total} </td>
+                                <td>
+                                    <a href='${URL}admin/update-order.php?noOrder=${code_order}&filter=${1}' class="btn-primary">Cập nhật</a>
+                                    <a href='${URL}admin/cancel-order.php?noOrder=${code_order}&filter=${1}'' class="btn-danger">Huỷ đơn</a>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    } else {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${i + 1} </td>
+                                <td> ${name_customer} </td>
+                                <td> ${product} </td>
+                                <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                                <td class="day-order"> ${day_order} </td>
+                                <td class="day-order"> ${day_ship} </td>
+                                <td> ${status_order} </td>
+                                <td> ${quatity} </td>
+                                <td> ${discount} </td>
+                                <td> ${total} </td>
+                                <td>
+                                    <a href='${URL}admin/update-order.php?noOrder=${code_order}&filter=${1}' class="btn-primary">Cập nhật</a>
+                                    <a href='${URL}admin/cancel-order.php?noOrder=${code_order}&filter=${1}'' class="btn-danger">Huỷ đơn</a>
+                                </td>
                             </tr>
                             `
                         );

@@ -62,6 +62,11 @@ include('./layouts/header.php');
 <section class="main text-content">
     <div class="container">
         <h1>Quản lý đơn hàng</h1>
+        <div class="search">
+            <input type="text" name='search' class="search-input" placeholder="Tìm kiểm khách hàng">
+            <button class="search-btn btn-primary" id="load-search-order"> Tiềm kiếm </button>
+            <div class="clearfix"></div>
+        </div>
         <br>
         <div class="group-btn-notification">
             <?php
