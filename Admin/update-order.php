@@ -49,10 +49,8 @@ if (isset($_GET['filter'])) {
             $codeAdmin = $codeAdmin[0]['MSNV'];
             if ($codeAdmin == null) {
                 $sql = "SELECT A.SoDonDH, B.HoTenKH, B.SoDienThoai, B.TenCongTy, B.SoFax, D.DiaChi, F.MSHH, F.TenHH, F.Gia, H.TenLoaiHang, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang
-                        FROM DatHang AS A, KhachHang AS B, DiaChiKH AS D, ChiTietDatHang AS E, HangHoa AS F, LoaiHangHoa AS H
-                        WHERE A.MSKH = B.MSKH
-                        AND A.SoDonDH = E.SoDonDH
-                        AND A.MaDC = D.MaDC
+                        FROM ((DatHang AS A LEFT JOIN KhachHang AS B ON A.MSKH = B.MSKH) LEFT JOIN DiaChiKH AS D ON A.MaDC = D.MaDC ), DiaChiKH AS D, ChiTietDatHang AS E, HangHoa AS F, LoaiHangHoa AS H
+                        WHERE A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
                         AND F.MaLoaiHang = H.MaLoaiHang
                         AND A.SoDonDH = $noOrder";
@@ -61,11 +59,9 @@ if (isset($_GET['filter'])) {
                 $adminUpdate = "Chưa cập nhật";
             } else {
                 $sql = "SELECT A.SoDonDH, B.HoTenKH, B.SoDienThoai, B.TenCongTy, B.SoFax, D.DiaChi, F.MSHH, F.TenHH, F.Gia, H.TenLoaiHang, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang, C.HoTenNV
-                        FROM DatHang AS A, KhachHang AS B, NhanVien AS C, DiaChiKH AS D, ChiTietDatHang AS E, HangHoa AS F, LoaiHangHoa AS H
-                        WHERE A.MSKH = B.MSKH
-                        AND A.MSNV = C.MSNV
+                        FROM ((DatHang AS A LEFT JOIN KhachHang AS B ON A.MSKH = B.MSKH) LEFT JOIN DiaChiKH AS D ON A.MaDC = D.MaDC ), NhanVien AS C, ChiTietDatHang AS E, HangHoa AS F, LoaiHangHoa AS H
+                        WHERE A.MSNV = C.MSNV
                         AND A.SoDonDH = E.SoDonDH
-                        AND A.MaDC = D.MaDC
                         AND E.MSHH = F.MSHH
                         AND F.MaLoaiHang = H.MaLoaiHang
                         AND A.SoDonDH = $noOrder";
