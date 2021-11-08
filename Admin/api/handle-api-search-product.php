@@ -19,7 +19,15 @@ if (isset($_GET['search'])) {
     listProductsCategory is result search by name category
     */
     $listProductsSearch = array();
+    $listProductsId = array();
     $listProductsName = array();
+
+    //search by id
+    for ($i = 0; $i < count($result); $i++) {
+        if (strcmp($result[$i]['MSHH'], $search) == 0) {
+            array_push($listProductsId, $i);
+        }
+    }
 
     //search by name
     $array_search = str_split($search);
@@ -31,7 +39,8 @@ if (isset($_GET['search'])) {
             }
         }
     }
-    $listProductsSearch = array_unique($listProductsName);
+    $listProductsSearch = array_merge($listProductsId, $listProductsName);
+    $listProductsSearch = array_unique($listProductsSearch);
 
     $list_product = array();
     $i = 0;
