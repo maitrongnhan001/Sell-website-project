@@ -3,6 +3,11 @@
 <section class="main text-content">
     <div class="container">
         <h1>Quản lý danh mục sản phẩm</h1>
+        <div class="search">
+            <input type="text" name='search' class="search-input" placeholder="Tìm kiểm loại sản phẩm">
+            <button class="search-btn btn-primary" id="load-search-category"> Tiềm kiếm </button>
+            <div class="clearfix"></div>
+        </div>
         <br>
         <a href=<?php echo URL . "admin/add-category.php"; ?> class="btn-200 btn-primary">Thêm danh mục</a>
         <?php

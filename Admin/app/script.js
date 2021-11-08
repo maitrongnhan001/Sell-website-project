@@ -851,4 +851,72 @@ $('document').ready(() => {
                 }
             });
     });
+
+     //load search category
+     $('#load-search-category').click(() => {
+        //get filter
+        const search = $('input[name="search"]').val();
+
+        if (search.length === 0) {
+            return;
+        }
+
+        //load
+        $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-search-category.php?search=${search}`,
+            (data, status, xhr) => {
+                //render to display
+
+                const list_category = JSON.parse(data);
+
+                //clean table
+                $('.container table').empty();
+                $('.container table').append(`
+                <tr>
+                    <th>STT</th>
+                    <th>Tên danh mục</th>
+                    <th>Hình ảnh</th>
+                    <th>Quản lý</th>
+                </tr>
+                `);
+                $('#load-category').remove();
+
+                for (let i = 0; i < list_category.length; i++) {
+                    const code_category = list_category[i]['id'];
+                    const name_category = list_category[i]['name_category'];
+                    const path_image = `${URL}images/categories/${list_category[i]['image_name']}`
+
+                    if ((i + 1) % 2 === 0) {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${i + 1} </td>
+                                <td> ${name_category} </td>
+                                <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                                <td>
+                                    <a href='${`${URL}admin/update-category.php?id=${code_category}`}' class="btn-primary">Cập nhật</a>
+                                    <a href='${`${URL}admin/delete-item.php?id=${code_category}&type=2`}' class="btn-danger">Xoá</a>
+                                    <div class="clear-fix"></div>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    } else {
+                        $('.container table').append(
+                            `
+                            <tr class="white text-center">
+                                <td> ${i + 1} </td>
+                                <td> ${name_category} </td>
+                                <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                                <td>
+                                    <a href='${`${URL}admin/update-category.php?id=${code_category}`}' class="btn-primary">Cập nhật</a>
+                                    <a href='${`${URL}admin/delete-item.php?id=${code_category}&type=2`}' class="btn-danger">Xoá</a>
+                                    <div class="clear-fix"></div>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    }
+                }
+            });
+    });
 });
