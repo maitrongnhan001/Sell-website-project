@@ -715,7 +715,7 @@ $('document').ready(() => {
                     const quatity = list_order[i]['quatity'];
                     const discount = list_order[i]['discount'];
                     const total = list_order[i]['total'];
-                    const path_image = `${URL}images/products/${list_order[i]['image']}` 
+                    const path_image = `${URL}images/products/${list_order[i]['image']}`
 
                     if ((i + 1 + position) % 2 === 0) {
                         $('.container table').append(
@@ -755,6 +755,94 @@ $('document').ready(() => {
                                 <td>
                                     <a href='${URL}admin/update-order.php?noOrder=${code_order}&filter=${filter}' class="btn-primary">Cập nhật</a>
                                     <a href='${URL}admin/cancel-order.php?noOrder=${code_order}&filter=${filter}'' class="btn-danger">Huỷ đơn</a>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    }
+                }
+            });
+    });
+
+    //load search product
+    $('#load-search-product').click(() => {
+        //get filter
+        const search = $('input[name="search"]').val();
+
+        if (search.length === 0) {
+            return;
+        }
+
+        //load
+        $.get(`http://localhost/B1805899_MTNhan/Admin/API/handle-api-search-product.php?search=${search}`,
+            (data, status, xhr) => {
+                //render to display
+
+                const list_product = JSON.parse(data);
+
+                //clean table
+                $('.container table').empty();
+                $('.container table').append(`
+                <tr>
+                    <th>STT</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Quy cách</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Loại hàng</th>
+                    <th>Hình ảnh</th>
+                    <th>Quản lý</th>
+                </tr>
+                `);
+                $('#load-product').remove();
+
+                for (let i = 0; i < list_product.length; i++) {
+                    const code_product = list_product[i]['id'];
+                    const nameProduct = list_product[i]['name_product'];
+                    const description = list_product[i]['description'];
+                    const price = list_product[i]['price'];
+                    const quality = list_product[i]['quatity'];
+                    const category = list_product[i]['category'];
+                    const path_image = `${URL}images/products/${list_product[i]['image_name']}`
+
+                    if ((i + 1) % 2 === 0) {
+                        $('.container table').append(
+                            `
+                            <tr class="text-center">
+                                <td> ${i + 1} </td>
+                                <td class="name-product"> ${nameProduct} </td>
+                                <td class="description">
+                                    <div class="limit-height"> ${description} </div>
+                                </td>
+                                <td>VNĐ: ${price} </td>
+                                <td> ${quality} </td>
+                                <td> ${category} </td>
+                                <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                                <td>
+                                    <a href='${`${URL}admin/update-product.php?id=${code_product}`}' class="btn-primary">Cập nhật</a>
+                                    <a href='${`${URL}admin/update-product.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
+                                    <div class="clear-fix"></div>
+                                </td>
+                            </tr>
+                            `
+                        );
+                    } else {
+                        $('.container table').append(
+                            `
+                            <tr class="white text-center">
+                                <td> ${i + 1} </td>
+                                <td class="name-product"> ${nameProduct} </td>
+                                <td class="description">
+                                    <div class="limit-height"> ${description} </div>
+                                </td>
+                                <td>VNĐ: ${price} </td>
+                                <td> ${quality} </td>
+                                <td> ${category} </td>
+                                <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
+                                <td>
+                                    <a href='${`${URL}admin/update-product.php?id=${code_product}`}' class="btn-primary">Cập nhật</a>
+                                    <a href='${`${URL}admin/update-product.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
+                                    <div class="clear-fix"></div>
                                 </td>
                             </tr>
                             `

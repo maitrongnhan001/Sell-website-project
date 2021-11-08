@@ -559,3 +559,25 @@ button span {
 .load-more{
     cursor: pointer;
 }
+
+/* css for search */
+.search {
+    width: 100%;
+}
+
+.search-input {
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    border: 0;
+    font-size: 18px;
+    padding: 0 10px 0 10px;
+    float: left;
+}
+
+.search-btn {
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 11px;
+    float: left;
+}
