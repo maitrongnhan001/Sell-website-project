@@ -53,8 +53,8 @@ if (isset($_SESSION['position'])) {
                     <img id='img-show' class='format-img-review img-category' width=300px height=300px src=<?php echo $pathImage; ?> >
                 </div>
                 <br>
-                <label for="image-upload" class="input-file btn-secondary">
-                    <input type="file" name="Image-Category" id="image-upload" placeholder="Thêm hình ảnh">
+                <label for="image-upload-cagegory" class="input-file btn-secondary">
+                    <input type="file" name="Image-Category" id="image-upload-cagegory" placeholder="Thêm hình ảnh">
                     Chọn ảnh
                 </label>
                 <p id="nofi-5"></p>

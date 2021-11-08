@@ -40,8 +40,8 @@ if (isset($_SESSION['position'])) {
                     <p id="text-review-img">Chưa chọn ảnh nào</p>
                 </div>
                 <br>
-                <label for="image-upload" class="input-file btn-secondary">
-                    <input type="file" name="Image-Category" id="image-upload" required placeholder="Thêm hình ảnh">
+                <label for="image-upload-cagegory" class="input-file btn-secondary">
+                    <input type="file" name="Image-Category" id="image-upload-cagegory" required placeholder="Thêm hình ảnh">
                     Chọn ảnh
                 </label>
                 <p id="nofi-5"></p>

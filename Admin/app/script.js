@@ -137,6 +137,15 @@ $('document').ready(() => {
         CheckSubmit();
     });
 
+    $('#image-upload-cagegory').change(() => {
+        $('#img-review').empty();
+        var File = new FileReader();
+        File.readAsDataURL($('#image-upload-cagegory').prop('files')[0]);
+        File.onload = (e) => {
+            $('#img-review').append("<img class='format-img-review img-category' width=300px height=300px src='" + e.target.result + "' >")
+        }
+    });
+
     $("#group-input-img").on('change', '#image-upload', (e) => {
 
         //because if user  $('#image-upload').change() then dont't click element in following times

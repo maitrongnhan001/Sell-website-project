@@ -96,7 +96,7 @@ if (isset($_POST['submit'])) {
             header('location: '.URL.'Customer/register.php');
         }
     }
+    closeConnect($conn);
 }
-closeConnect($conn);
 include('./layouts/footer.php');
 ?>

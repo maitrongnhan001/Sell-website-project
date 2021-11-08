@@ -120,7 +120,7 @@ if (isset($_GET['id'])) {
                     <button class="btn btn-address-order" id="btn-current-address">Địa chỉ cũ</button>
                 </div>
 
-                <input type="submit" name="submit" id="submit-order" value="Confirm Order" class="btn btn-primary">
+                <input type="submit" name="submit" id="submit-order" value="Mua hàng" class="btn btn-primary">
             </fieldset>
 
         </form>
