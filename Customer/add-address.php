@@ -22,7 +22,6 @@ if (count($result) > 0) {
 }
 ?>
 
-<!-- login -->
 <section class="login">
     <div class="container">
         <h1 class="text-center">Cập nhật địa chỉ</h1>
@@ -44,7 +43,6 @@ if (count($result) > 0) {
     </div>
 </section>
 
-<!-- end login -->
 <?php
 //update address
 if ($_POST['submit']) {

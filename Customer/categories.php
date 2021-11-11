@@ -3,7 +3,6 @@ include('./layouts/header.php');
 include('./layouts/search.php');
 ?>
 
-<!-- Categories Section Starts Here -->
 <section id="list-categories" class="categories">
     <div class="container">
         <h2 class="text-center">Danh Mục</h2>
@@ -34,7 +33,7 @@ include('./layouts/search.php');
         </div>
     </div>
 </section>
-<!-- Categories Section Ends Here -->
+
 <?php
 closeConnect($conn);
 include('./layouts/footer.php');

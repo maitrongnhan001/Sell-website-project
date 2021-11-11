@@ -18,7 +18,6 @@ include('../config/connect.php');
     <h1 class="text-center">Quản lý đặt hàng</h1>
     <br>
     <hr>
-    <!-- login -->
     <section class="login">
         <div class="container">
             <h1 class="text-center">Đăng nhập</h1>
@@ -47,7 +46,6 @@ include('../config/connect.php');
         </div>
     </section>
 
-    <!-- end login -->
     <?php
     $conn = connectToDatabase();
     if (isset($_POST['submit'])) {

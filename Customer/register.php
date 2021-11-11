@@ -1,7 +1,7 @@
 <?php
 include('./layouts/header.php');
 ?>
-<!-- login -->
+
 <section class="register">
     <div class="container">
         <h1 class="text-center">Đăng ký</h1>
@@ -46,7 +46,7 @@ include('./layouts/header.php');
         </form>
     </div>
 </section>
-<!-- end login -->
+
 <?php
 if (isset($_POST['submit'])) {
     //get value

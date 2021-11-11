@@ -11,9 +11,7 @@ if (isset($_GET['search'])) {
     $listProducts = executeSQLResult($conn, $sql);
     /*
     listProductSearch is all result search
-    listProductsId is result search by id
     listProductsName is reuslt search by name product
-    listProductsCategory is result search by name category
     */
     $listProductsSearch = array();
     $listProductsName = array();
@@ -33,7 +31,7 @@ if (isset($_GET['search'])) {
 }
 ?>
 
-<!-- fOOD MEnu Section Starts Here -->
+
 <section class="product-menu">
     <div class="container">
         <h2 class="text-center">Products Menu</h2>

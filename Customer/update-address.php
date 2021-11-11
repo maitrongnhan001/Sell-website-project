@@ -19,7 +19,6 @@ if (isset($_GET['code_address'])) {
 }
 ?>
 
-<!-- login -->
 <section class="login">
     <div class="container">
         <h1 class="text-center">Cập nhật địa chỉ</h1>
@@ -47,7 +46,6 @@ if (isset($_GET['code_address'])) {
     </div>
 </section>
 
-<!-- end login -->
 <?php
 //update address
 if ($_POST['submit']) {

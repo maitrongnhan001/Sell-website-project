@@ -14,7 +14,6 @@ if (isset($_GET['codeCategory'])) {
 include('./layouts/search.php');
 ?>
 
-<!-- fOOD MEnu Section Starts Here -->
 <section id="list-product-menu" class="product-menu">
     <div class="container">
         <h2 class="text-center">Sản Phẩm</h2>

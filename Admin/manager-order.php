@@ -1,7 +1,7 @@
 <?php
 include('./layouts/header.php');
 ?>
-<!--nofication-->
+
 <div id="notification-order" class="notification hide">
     <div class="main-notification">
         <br><br>
@@ -57,7 +57,7 @@ include('./layouts/header.php');
         <br><br>
     </div>
 </div>
-<!--end nofication-->
+
 
 <section class="main text-content">
     <div class="container">

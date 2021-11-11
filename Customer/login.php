@@ -2,7 +2,7 @@
 ob_start();
 include('./layouts/header.php');
 ?>
-<!-- login -->
+
 <section class="login">
     <div class="container">
         <h1 class="text-center">Đăng nhập</h1>
@@ -40,7 +40,7 @@ include('./layouts/header.php');
     </div>
 </section>
 
-<!-- end login -->
+
 <?php
 $conn = connectToDatabase();
 if (isset($_POST['submit'])) {

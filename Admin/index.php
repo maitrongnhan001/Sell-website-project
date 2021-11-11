@@ -1,5 +1,5 @@
 <?php include('./layouts/header.php') ?>
-<!--main-->
+
 <section class="main">
     <div class="container">
         <h1>Thống kê cửa hàng</h1>

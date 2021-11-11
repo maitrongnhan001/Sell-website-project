@@ -10,7 +10,7 @@ if (isset($_SESSION['error'])) {
     unset($_SESSION['error']);
 }
 ?>
-<!-- Categories Section Starts Here -->
+
 <section class="categories">
     <div class="container">
         <h2 class="text-center">Danh Mục</h2>
@@ -40,10 +40,10 @@ if (isset($_SESSION['error'])) {
         </div>
     </div>
 </section>
-<!-- Categories Section Ends Here -->
 
 
-<!-- fOOD MEnu Section Starts Here -->
+
+
 <section id="list-product-menu" class="product-menu">
     <div class="container">
         <h2 class="text-center">Sản Phẩm</h2>
