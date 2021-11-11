@@ -27,6 +27,15 @@ if (isset($_GET['id'])) {
         $name = $result_product[0]['TenHH'];
         $description = $result_product[0]['QuyCach'];
         $price = $result_product[0]['Gia'];
+
+        //format price
+        $price = strval($price);
+        $index = strlen($price) - 3;
+        while ($index > 0) {
+            $price = substr($price, 0, $index).",".substr($price,$index);
+             $index = $index - 3;
+        }
+
         $Quatity = $result_product[0]['SoLuongHang'];
         $category = $result_product[0]['TenLoaiHang'];
         ?>

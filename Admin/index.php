@@ -36,7 +36,17 @@
                 Sản phẩm
             </div>
             <div class="item-details text-center">
-                <h1><?php echo $TotalSales; ?></h1>
+                <h1>
+                    <?php 
+                        $TotalSales = strval($TotalSales);
+                        $i = strlen($TotalSales) - 3;
+                        while ($i > 0) {
+                            $TotalSales = substr($TotalSales, 0, $i).",".substr($TotalSales,$i);
+                            $i = $i - 3;
+                        }
+                        echo $TotalSales
+                    ?>
+                </h1>
                 Tổng doanh thu
             </div>
         </div>

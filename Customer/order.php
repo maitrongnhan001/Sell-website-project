@@ -20,6 +20,15 @@ if (isset($_GET['id'])) {
     $product = executeSQLResult($conn, $sql);
     $nameProduct = $product[0]['TenHH'];
     $price = $product[0]['Gia'];
+
+    //format price
+    $price = strval($price);
+    $index = strlen($price) - 3;
+    while ($index > 0) {
+        $price = substr($price, 0, $index).",".substr($price,$index);
+         $index = $index - 3;
+    }
+
     $quality = $product[0]['SoLuongHang'];
 
     //get image

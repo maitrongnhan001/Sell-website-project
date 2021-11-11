@@ -41,6 +41,15 @@ if (isset($_GET['search'])) {
             $codeProduct = $listProducts[$index]['MSHH'];
             $nameProduct = $listProducts[$index]['TenHH'];
             $price = $listProducts[$index]['Gia'];
+
+            //format price
+            $price = strval($price);
+            $index = strlen($price) - 3;
+            while ($index > 0) {
+                $price = substr($price, 0, $index).",".substr($price,$index);
+                 $index = $index - 3;
+            }
+
             $description = $listProducts[$index]['QuyCach'];
 
             //get image

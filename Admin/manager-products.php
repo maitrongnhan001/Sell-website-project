@@ -48,6 +48,15 @@
                     $nameProduct = $listProducts[$i - 1]['TenHH'];
                     $description = $listProducts[$i - 1]['QuyCach'];
                     $price = $listProducts[$i - 1]['Gia'];
+
+                    //format price
+                    $price = strval($price);
+                    $index = strlen($price) - 3;
+                    while ($index > 0) {
+                        $price = substr($price, 0, $index).",".substr($price,$index);
+                         $index = $index - 3;
+                    }
+
                     $quality = $listProducts[$i - 1]['SoLuongHang'];
                     $category = $listProducts[$i - 1]['TenLoaiHang'];
 

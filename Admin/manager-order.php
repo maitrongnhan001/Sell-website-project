@@ -200,6 +200,14 @@ include('./layouts/header.php');
                 $discount = $listOrder[$i - 1]['GiamGia'];
                 $total = $listOrder[$i - 1]['GiaDatHang'];
 
+                //format price
+                $total = strval($total);
+                $index = strlen($total) - 3;
+                while ($index > 0) {
+                    $total = substr($total, 0, $index).",".substr($total, $index);
+                     $index = $index - 3;
+                }
+
                 //get image
                 $sql = "SELECT * FROM HinhHangHoa WHERE MSHH = $codeProduct LIMIT 1";
                 $result_image = executeSQLResult($conn, $sql);

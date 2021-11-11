@@ -58,6 +58,15 @@ if (isset($_SESSION['error'])) {
             $codeProduct = $listProducts[$i]['MSHH'];
             $nameProduct = $listProducts[$i]['TenHH'];
             $price = $listProducts[$i]['Gia'];
+
+            //format price
+            $price = strval($price);
+            $index = strlen($price) - 3;
+            while ($index > 0) {
+                $price = substr($price, 0, $index).",".substr($price,$index);
+                 $index = $index - 3;
+            }
+
             $description = $listProducts[$i]['QuyCach'];
 
             //get image
