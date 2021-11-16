@@ -512,7 +512,7 @@ $('document').ready(() => {
                                 <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
                                 <td>
                                     <a href='${`${URL}admin/update-product.php?id=${code_product}`}' class="btn-primary">Cập nhật</a>
-                                    <a href='${`${URL}admin/update-product.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
+                                    <a href='${`${URL}admin/delete-item.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
                                     <div class="clear-fix"></div>
                                 </td>
                             </tr>
@@ -533,7 +533,7 @@ $('document').ready(() => {
                                 <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
                                 <td>
                                     <a href='${`${URL}admin/update-product.php?id=${code_product}`}' class="btn-primary">Cập nhật</a>
-                                    <a href='${`${URL}admin/update-product.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
+                                    <a href='${`${URL}admin/delete-item.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
                                     <div class="clear-fix"></div>
                                 </td>
                             </tr>
@@ -829,7 +829,7 @@ $('document').ready(() => {
                                 <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
                                 <td>
                                     <a href='${`${URL}admin/update-product.php?id=${code_product}`}' class="btn-primary">Cập nhật</a>
-                                    <a href='${`${URL}admin/update-product.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
+                                    <a href='${`${URL}admin/delete-item.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
                                     <div class="clear-fix"></div>
                                 </td>
                             </tr>
@@ -850,7 +850,7 @@ $('document').ready(() => {
                                 <td><a href='${path_image}'  ><img src='${path_image}' width="100px" height="100px" alt="No image" class="img-category"></a></td>
                                 <td>
                                     <a href='${`${URL}admin/update-product.php?id=${code_product}`}' class="btn-primary">Cập nhật</a>
-                                    <a href='${`${URL}admin/update-product.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
+                                    <a href='${`${URL}admin/delete-item.php?id=${code_product}&type=3`}' class="btn-danger">Xoá</a>
                                     <div class="clear-fix"></div>
                                 </td>
                             </tr>

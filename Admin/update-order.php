@@ -4,7 +4,7 @@ include('./layouts/header.php');
 
 //check user is sale
 if (isset($_SESSION['position'])) {
-    if ($_SESSION['position'] == "Thủ kho") {
+    if ($_SESSION['position'] != "Bán hàng") {
         $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
         header('location: '.URL.'/admin/manager-order.php?filter=1');
         die();
@@ -49,7 +49,7 @@ if (isset($_GET['filter'])) {
             $codeAdmin = $codeAdmin[0]['MSNV'];
             if ($codeAdmin == null) {
                 $sql = "SELECT A.SoDonDH, B.HoTenKH, B.SoDienThoai, B.TenCongTy, B.SoFax, D.DiaChi, F.MSHH, F.TenHH, F.Gia, H.TenLoaiHang, A.NgayDH, A.NgayGH, A.TrangThaiDH, E.GiamGia, E.SoLuong, E.GiaDatHang
-                        FROM ((DatHang AS A LEFT JOIN KhachHang AS B ON A.MSKH = B.MSKH) LEFT JOIN DiaChiKH AS D ON A.MaDC = D.MaDC ), DiaChiKH AS D, ChiTietDatHang AS E, HangHoa AS F, LoaiHangHoa AS H
+                        FROM ((DatHang AS A LEFT JOIN KhachHang AS B ON A.MSKH = B.MSKH) LEFT JOIN DiaChiKH AS D ON A.MaDC = D.MaDC ), ChiTietDatHang AS E, HangHoa AS F, LoaiHangHoa AS H
                         WHERE A.SoDonDH = E.SoDonDH
                         AND E.MSHH = F.MSHH
                         AND F.MaLoaiHang = H.MaLoaiHang

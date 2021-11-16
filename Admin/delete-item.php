@@ -15,7 +15,7 @@ function deleteItem($type, $id)
     if ($type == 1) {
         //check user is admin
         if (isset($_SESSION['position'])) {
-            if (!($_SESSION['position'] == "Quản lý")) {
+            if (($_SESSION['position'] != "Quản lý")) {
                 $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
                 header('location: ' . URL . '/admin/manager-admin.php');
                 closeConnect($conn);
@@ -45,7 +45,7 @@ function deleteItem($type, $id)
     if ($type == 2) {
         //check user is stocker
         if (isset($_SESSION['position'])) {
-            if ($_SESSION['position'] == "Bán hàng") {
+            if ($_SESSION['position'] != "Thủ kho") {
                 $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
                 header('location: ' . URL . '/admin/manager-categories.php');
                 die();
@@ -85,7 +85,7 @@ function deleteItem($type, $id)
     if ($type == 3) {
         //check user is stocker
         if (isset($_SESSION['position'])) {
-            if ($_SESSION['position'] == "Bán hàng") {
+            if ($_SESSION['position'] != "Thủ kho") {
                 $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
                 header('location: ' . URL . '/admin/manager-products.php');
                 die();
@@ -129,6 +129,17 @@ function deleteItem($type, $id)
     }
 
     if ($type == 4) {
+        //check user is stocker
+        if (isset($_SESSION['position'])) {
+            if ($_SESSION['position'] != "Thủ kho") {
+                $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
+                header('location: '.URL.'/admin/manager-product.php');
+                die();
+            }
+        } else {
+            header('location: '.URL.'/admin/login.php');
+            die();
+        }
         //delete image
         $sql = "SELECT * FROM HinhHangHoa WHERE MaHinh = $id";
         $listImageName = executeSQLResult($conn, $sql);
@@ -184,4 +195,3 @@ if (isset($_GET['id'])) {
 }
 
 ob_end_flush();
-?>

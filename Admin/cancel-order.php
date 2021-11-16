@@ -3,8 +3,9 @@ ob_start();
 include('../Config/connect.php');
 
 //check user is sale
+//check user is stocker
 if (isset($_SESSION['position'])) {
-    if ($_SESSION['position'] == "Thủ kho") {
+    if ($_SESSION['position'] != "Bán hàng") {
         $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
         header('location: '.URL.'/admin/manager-order.php?filter=1');
         die();

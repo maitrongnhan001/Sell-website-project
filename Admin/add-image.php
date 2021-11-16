@@ -1,6 +1,17 @@
 <?php
 ob_start();
 include('./layouts/header.php');
+//check user is stocker
+if (isset($_SESSION['position'])) {
+    if ($_SESSION['position'] != "Thủ kho") {
+        $_SESSION['error'] = "Bạn không có quyền sử dụng tính năng này";
+        header('location: '.URL.'/admin/manager-product.php');
+        die();
+    }
+} else {
+    header('location: '.URL.'/admin/login.php');
+    die();
+}
 ?>
 <?php
 if (isset($_GET['id'])) {
