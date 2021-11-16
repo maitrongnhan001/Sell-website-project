@@ -179,6 +179,7 @@ button:hover {
     padding: 1%;
     margin: 2%;
     width: 300px;
+    border-radius: 10px;
 }
 
 .main .item-details h1 {
