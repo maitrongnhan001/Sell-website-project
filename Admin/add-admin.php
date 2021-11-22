@@ -54,7 +54,6 @@ if (isset($_SESSION['position'])) {
             <div class="group-input">
                 <p><b>Chức vụ</b></p>
                 <Select name="Position" class="format-ip">
-                    <option value="Nhân viên">Nhân viên</option>
                     <option value="Quản lý">Quản lý</option>
                     <option value="Thủ kho">Thủ kho</option>
                     <option value="Bán hàng">Bán hàng</option>

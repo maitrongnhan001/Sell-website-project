@@ -82,7 +82,6 @@ function CheckPosition($value, $ChucVu)
             <div class="group-input">
                 <p><b>Chức vụ</b></p>
                 <Select name="Position" class="format-ip">
-                    <option value="Nhân viên" <?php CheckPosition("Nhân viên", $ChucVu) ?>>Nhân viên</option>
                     <option value="Quản lý" <?php CheckPosition("Quản lý", $ChucVu) ?>>Quản lý</option>
                     <option value="Thủ kho" <?php CheckPosition("Thủ kho", $ChucVu) ?>>Thủ kho</option>
                     <option value="Bán hàng" <?php CheckPosition("Bán hàng", $ChucVu) ?>>Bán hàng</option>
