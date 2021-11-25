@@ -15,9 +15,9 @@ username: root; password:
 
 --------------------------Các bước config web--------------------------
 
-1. Di chuyển thư mục gốc của project (B1805899_MTNHAN) vào thư mục htdoc trong XAMPP.
+1. Di chuyển thư mục gốc của project (B1805899_MTNhan) vào thư mục htdoc trong XAMPP.
 2. Chạy XAMPP và các dịch vụ như apache, MySQL Database.
 3. Copy toàn bộ script trong file QuanLyDatHang.sql vào trong PHPMyAdmin.
 4. Chạy script vừa copy. (Tạo database, các bảng và các dữ liệu ban đầu).
-5. Mở trình duyệt và truy cập địa chỉ http://localhost/B1805899_MTNHAN/Customer -> để truy cập trang Customer
-6. Mở trình duyệt và truy cập địa chỉ http://localhost/B1805899_MTNHAN/Admin -> để truy cập trang Admin
+5. Mở trình duyệt và truy cập địa chỉ http://localhost/B1805899_MTNhan/Customer -> để truy cập trang Customer
+6. Mở trình duyệt và truy cập địa chỉ http://localhost/B1805899_MTNhan/Admin -> để truy cập trang Admin
