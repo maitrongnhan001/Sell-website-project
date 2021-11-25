@@ -117,6 +117,11 @@ if (isset($_POST['submit'])) {
         $price = $result_product[0]['Gia'];
         $total = $price * $quatity;
 
+        //check quatity
+        if ($quatity > $total_quatity) {
+            checkResult(false);
+        }
+
         //store table ChiTietDatHang
         $sql = "INSERT INTO ChiTietDatHang (
             SoDonDH,

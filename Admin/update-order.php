@@ -167,6 +167,12 @@ if (isset($_GET['filter'])) {
                 $total = $total - $discount;
                 $username = $_SESSION['username'];
 
+                //check day order
+                if (strtotime($dateShip) < strtotime($dayOrder)) {
+                    $_SESSION['status_order'] = "Cập nhật đơn hàng không thành công";
+                    header('Location: ' . URL . 'admin/update-order.php?noOrder=' . $noOrder);
+                }
+
                 //check status is cancel
                 if ($status == 'Bị huỷ') {
                     header('Location: '.URL.'admin/cancel-order.php?noOrder='.$noOrder);
