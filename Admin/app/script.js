@@ -69,7 +69,7 @@ function checkDayShip() {
         $('#nofi-2').text("");
         reuslt = true;
     }
-    return result;
+    return reuslt;
 }
 
 function checkDiscount() {

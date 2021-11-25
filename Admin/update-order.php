@@ -168,9 +168,11 @@ if (isset($_GET['filter'])) {
                 $username = $_SESSION['username'];
 
                 //check day order
-                if (strtotime($dateShip) < strtotime($dayOrder)) {
+                if (strtotime($dayShip) < strtotime($dayOrder)) {
                     $_SESSION['status_order'] = "Cập nhật đơn hàng không thành công";
                     header('Location: ' . URL . 'admin/update-order.php?noOrder=' . $noOrder);
+                    unset($_POST['submit'], $_POST['dayShip'], $_POST['status']);
+                    die();
                 }
 
                 //check status is cancel

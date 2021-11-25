@@ -22,10 +22,10 @@ if (isset($_GET['id'])) {
     $price = $product[0]['Gia'];
 
     //format price
-    $price = strval($price);
-    $index = strlen($price) - 3;
+    $str_price = strval($price);
+    $index = strlen($str_price) - 3;
     while ($index > 0) {
-        $price = substr($price, 0, $index).",".substr($price,$index);
+        $str_price = substr($str_price, 0, $index).",".substr($str_price,$index);
          $index = $index - 3;
     }
 
@@ -65,14 +65,14 @@ if (isset($_GET['id'])) {
                                 <?php echo $nameProduct; ?>
                             </h3>
                             <p class="product-price">
-                                VNĐ: <?php echo $price ?>
+                                VNĐ: <?php echo $str_price ?>
                             </p>
                             <input type="hidden" id="pr" name="price" value="<?php echo $price; ?>">
                         </div>
                         <div class="clearfix total-container">
                             <h3>Tổng</h3>
                             <p class="product-price" id="rt">
-                                VNĐ: <?php echo $price ?>
+                                VNĐ: <?php echo $str_price ?>
                             </p>
                         </div>
                     </div>

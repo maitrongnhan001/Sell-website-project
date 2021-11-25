@@ -1,4 +1,5 @@
 //script for animation of menu
+
 var nav = $('nav');
 var line = $('<div />').addClass('line');
 
