@@ -1,6 +1,9 @@
 Chào thầy!
 Em là Mai Trọng Nhân, MSSV: B1805899
 Em viết file này để hướng dẫn cách config web
+Em có đẩy trang web lên GitHub, nếu có lỗi nào trong file nén thì thầy hải clone project trên GitHub về
+link GitHub: https://github.com/maitrongnhan001/Web-ban-hang
+Nếu có vấn đề gì thầy hãy liên hệ với em qua email: nhanb1805899@student.ctu.edu.vn
 
 --------------------------Thông tin database--------------------------
 username: root; password:
@@ -19,5 +22,6 @@ username: root; password:
 2. Chạy XAMPP và các dịch vụ như apache, MySQL Database.
 3. Copy toàn bộ script trong file QuanLyDatHang.sql vào trong PHPMyAdmin.
 4. Chạy script vừa copy. (Tạo database, các bảng và các dữ liệu ban đầu).
-5. Mở trình duyệt và truy cập địa chỉ http://localhost/B1805899_MTNhan/Customer -> để truy cập trang Customer
-6. Mở trình duyệt và truy cập địa chỉ http://localhost/B1805899_MTNhan/Admin -> để truy cập trang Admin
+5. Cấp quyền cho thư mục images/categories, images/products, images/error, dùng chmod 777 <Tên thư mục>.
+6. Mở trình duyệt và truy cập địa chỉ http://localhost/B1805899_MTNhan/Customer -> để truy cập trang Customer
+7. Mở trình duyệt và truy cập địa chỉ http://localhost/B1805899_MTNhan/Admin -> để truy cập trang Admin
