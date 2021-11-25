@@ -20,7 +20,6 @@ include('./layouts/header.php');
                 <input type="password" name="password" class="input-responsive" require placeholder="Nhập mật khẩu *">
                 <p id="nofi-1"></p>
                 <br>
-                <a href="" class="pink">Quên mật khẩu</a>
                 <a href= <?php echo URL.'Customer/register.php'; ?> class="pink">Tạo tài khoản</a>
             </div>
             <?php
